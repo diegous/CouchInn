@@ -1,18 +1,39 @@
 <?php
 
+include "loader.php";
+
 $content = "main.php";
+// -------------- TEST - GET_BY_ID
+// $a_user = User::get_by_id(19);
+// echo $a_user;
+// echo "<br><br><br>";
 
-$con = new mysqli("localhost", "root", "", "couchinn");
+// -------------- TEST - DELETE
+// if ($a_user->delete() === TRUE)
+//   echo "se borro";
+// else
+//   echo "NO BORRO NADA";
 
-if (mysqli_connect_errno()) {
-    echo "error: " . mysqli_connect_errno();
-} else {
-    $result = $con->query("SELECT * FROM users");
-    $user_amount = $result->num_rows;
+// -------------- TEST - NEW USER
+// $a_new_user = new User(19, "mailPI@m.c", "123", "UP-GREYED2", NULL, NULL, NULL, 0,  0);
+// echo $a_new_user;
+// echo "<br><br><br>";
 
-    $result->close();
-}
+// -------------- TEST - UPDATE
+// if ( $a_new_user->update() )
+//   echo "update successfull";
+// else
+//   echo " - - NO UPDATE - - ";
+// echo "<br><br><br>";
 
-mysqli_close($con);
+// -------------- TEST - SAVE_NEW
+// $a_new_user->save_new();
+// echo "new user id: " . $a_new_user->id . "<br><br>";
 
-include("views/skeleton.php");
+// -------------- TEST - GET_ALL
+// $users = User::get_all();
+// foreach ($users as $key => $value)
+//   echo $value . "<br>";
+
+
+include "views/skeleton.php";

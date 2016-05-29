@@ -1,0 +1,36 @@
+header {
+  text-align: center;
+}
+
+body {
+  background: #FAFAFA;
+}
+
+.center-column {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-img {
+  max-width: 90%;
+}
+
+
+/* MAIN PAGE */
+.couch-list-item {
+}
+
+.couch-info-container {
+  margin: 25px;
+}
+
+.couch-img-container {
+  display: inline-block;
+  float: left;
+}
+
+.couch-img {
+  float: left;
+  margin: 25px;
+}

@@ -1,3 +1,3 @@
 <header>
-	-- hola soy un header --
+  <img class="logo-img" src="images/couchinn-logo.png">
 </header>
