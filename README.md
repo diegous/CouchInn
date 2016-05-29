@@ -18,17 +18,17 @@ Instalación
 Comandos de GIT
 ===============
 
-Bajar cambios nuevos
+### Bajar cambios nuevos
 `git pull`
 
-Ver estado
+### Ver estado
 `git status`
 
-Agregar cambios a un commit
+### Agregar cambios a un commit
 `git add [nombre_de_archivo]`
 
-Crear nuevo commit (un grupo de cambios)
+### Crear nuevo commit (un grupo de cambios)
 `git commit -m "[descripcion_de_cambios_hechos]"`
 
-Subir commit a GitHub
+### Subir commit a GitHub
 `git push`
