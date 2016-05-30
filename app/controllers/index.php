@@ -2,6 +2,8 @@
 
 include "loader.php";
 
+$title = "Inicio";
+
 $content = "main.php";
 // -------------- TEST - GET_BY_ID
 // $a_user = User::get_by_id(19);
@@ -36,4 +38,4 @@ $content = "main.php";
 //   echo $value . "<br>";
 
 
-include "views/skeleton.php";
+include "../views/skeleton.php";

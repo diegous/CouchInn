@@ -1,10 +1,8 @@
 <?php
 
-include "model/GenericModel.php";
-include "model/User.php";
-include "model/CouchType.php";
-
-
+include "../model/GenericModel.php";
+include "../model/User.php";
+include "../model/CouchType.php";
 
 function get_connection(){
   $con = new mysqli("localhost", "root", "", "couchinn");
