@@ -5,7 +5,7 @@ Instalación
 
    `git clone https://github.com/diegous/CouchInn/`
 
-2. En **/xampp/Apache/conf/httpd.conf** en las lineas 244 y 245 cambiar "*/xampp/htdocs*" por "*/xampp/htdocs/couchinn/app*"
+2. En **/xampp/Apache/conf/httpd.conf** en las lineas 244 y 245 cambiar "*/xampp/htdocs*" por "*/xampp/htdocs/couchinn/app/controllers*"
 
 3. Iniciar Apache y MySQL desde el menu de Xampp
 
