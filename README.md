@@ -18,17 +18,37 @@ Instalación
 Comandos de GIT
 ===============
 
-### Bajar cambios nuevos
+##### Bajar cambios nuevos
 `git pull`
 
-### Ver estado
+##### Ver estado
 `git status`
 
-### Agregar cambios a un commit
+##### Agregar cambios a un commit
 `git add [nombre_de_archivo]`
 
-### Crear nuevo commit (un grupo de cambios)
+##### Crear nuevo commit (un grupo de cambios)
 `git commit -m "[descripcion_de_cambios_hechos]"`
 
-### Subir commit a GitHub
+##### Subir commit a GitHub
 `git push`
+
+Distribución de archivos
+========================
+
+En la carpeta **app/** se encuentra el sistema. Dentro de esa carpeta están las siguientes carpetas:
+
+#### controllers/
+Contiene los controladores. Cuando son referidos a objetos del modelo (por ejemplo User o CouchType) el nombre debe ir seguido de uno de los siguientes términos:
+* **list**: muestra un listados de todos los objetos
+* **new**: muestra un formulario a completar con los datos del objeto, al presionar el botón "Guardar" envía los datos al **_create**.
+* **create**: recibe por POST los campos del objeto, lo guarda en la base de datos con el mensaje save_new() y hace una redirección.
+* **edit**: recibe por GET un id y muestra un formulario con los datos a modificar, al presionar el botón "Guardar" envía los datos al **_update**.
+* **update**: recibe por POST los campos del objeto, lo actualiza en la base de datos con el mensaje update() y hace una redirección.
+* **delete**: recibe por GET un id, elimina ese objeto de la base de datos y hace una redirección.
+
+#### model/
+Contiene las clases del modelo. Todas las clases heredan de GenericModel que contiene consultas a la base de datos comunes a todas las clases.
+
+#### views/
+Contiene las vistas. Un archivo de vista específico a un controlador debe tener el mismo nombre que el controlador seguido de **"_view"**, por ejemplo la vista del controlador **couch_list.php** debe llamarse **couch_list_view.php**
