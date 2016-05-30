@@ -3,6 +3,7 @@
 include "../model/GenericModel.php";
 include "../model/User.php";
 include "../model/CouchType.php";
+include "../model/Couch.php";
 
 function get_connection(){
   $con = new mysqli("localhost", "root", "", "couchinn");
