@@ -46,6 +46,6 @@ class Couch extends GenericModel {
     $result .= "capacity=" . $this->capacity . ", ";
     $result .= "location='" . $this->location . "' ";
 
-    return $result,
+    return $result;
   }
 }
