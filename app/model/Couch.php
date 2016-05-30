@@ -13,11 +13,11 @@ class Couch extends GenericModel {
 
   public function __construct($id, $type_id,$title,$description,$capacity,$location) {
     $this->id = $id;
-    $this->$type_id=$type_id;
-    $this->$title=$title;
-    $this->$description=$description;
-    $this->$capacity=$capacity;
-    $this->$location=$location;
+    $this->type_id=$type_id;
+    $this->title=$title;
+    $this->description=$description;
+    $this->capacity=$capacity;
+    $this->location=$location;
   }
 
   static function new_object_from_array($arr) {
