@@ -10,6 +10,12 @@
 
 <? if(!empty($_SESSION) && $_SESSION['user']) : ?>
   <strong>Usuario actual: <?= $_SESSION['user']->email ?></strong><br>
+  <? if(! $_SESSION['user']->is_premium): ?>
+    <a href="user_make_premium.php">Adquirir Cuenta Premium</a>
+  <? else: ?>
+    Ya es Usuario Premium
+  <? endif ?>
+   - 
   <a href="session_close.php">Cerrar Sesi&oacute;n</a>
 <? else : ?>
   <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
