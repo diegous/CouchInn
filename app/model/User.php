@@ -14,7 +14,7 @@ class User extends GenericModel {
   public $is_admin;
   public $is_premium;
 
-  public function __construct($id, $email,  $password,  $name,  $last_name,  $birthday,  $phone,  $is_admin,  $is_premium) {
+  public function __construct($id, $email, $password, $name = NULL, $last_name = NULL, $birthday = NULL, $phone = NULL, $is_admin = 0, $is_premium = 0) {
     $this->id = $id;
     $this->email = $email;
     $this->password = $password;
@@ -60,6 +60,27 @@ class User extends GenericModel {
     $result .= "phone='" . $this->phone . "', ";
     $result .= "is_admin=" . $this->is_admin . ", ";
     $result .= "is_premium=" . $this->is_premium;
+
+    return $result;
+  }
+
+  public static function check_login($an_email, $a_password) {
+    $query = "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE email='" . $an_email . "'";
+    $query .= " AND password='" . $a_password . "'";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    if ($row = $query_result->fetch_assoc())
+      $result = static::new_object_from_array($row);
+    else
+      $result = NULL;
+
+    $query_result->close();
+    $connection->close();
 
     return $result;
   }
