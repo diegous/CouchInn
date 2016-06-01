@@ -37,5 +37,10 @@ $content = "main.php";
 // foreach ($users as $key => $value)
 //   echo $value . "<br>";
 
+//////////
+//	Controlador de couch_list
+//////////
+$couch_list = Couch::get_all();
+//////////
 
 include "../views/skeleton.php";
