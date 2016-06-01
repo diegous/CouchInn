@@ -1,3 +1,13 @@
+<head>  
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" media="all" href="css/login.css">
+</head>
+
+
+
+
 <? if(!empty($_SESSION) && $_SESSION['user']) : ?>
   <strong>Usuario actual: <?= $_SESSION['user']->email ?></strong><br>
   <a href="session_close.php">Cerrar Sesi&oacute;n</a>
