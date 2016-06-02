@@ -6,6 +6,7 @@ include "../model/GenericModel.php";
 include "../model/User.php";
 include "../model/CouchType.php";
 include "../model/Couch.php";
+include "../model/Picture.php";
 
 // Start session (this must start after loading the classes)
 session_start();
