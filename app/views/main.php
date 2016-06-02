@@ -3,7 +3,11 @@
     <div class="couch-list-item">
       <img class="couch-img" src="images/couchinn-logo-couch.png">
       <div class="couch-info-container">
-        <h3 class="couch-title"> <?= $couch->title; ?></h3>
+        <h3 class="couch-title">
+          <a href="couch_view.php?id=<?= $couch->id ?>">
+            <?= $couch->title; ?>
+          </a>
+        </h3>
         <label>Descripci&oacute;n:</label>
         <p class="couch-description"> <?= $couch->description; ?></p>
         <label>Capacidad:</label>
@@ -11,14 +15,7 @@
         <label>Ubicaci&oacute;n:</label>
         <p class="couch-location"> <?= $couch->location; ?></p>
         <br>
-        <form action="couch_view.php?id=<?= $couch->id ?>">
-          <button type="submit">Ver couch</a>
-        </form>
       </div>
-          
-      
-          
-      <br style="clear:both;"/>
 
       <hr>
     </div>
