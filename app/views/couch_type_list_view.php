@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <? foreach ($couch_type_list as $couch_type): ?>
+    <? foreach ($couch_type_list as $couch_type) : ?>
       <tr>
         <td><?= $couch_type->description; ?></td>
         <td>
@@ -18,12 +18,12 @@
         </td>
         <td>
           <? if ($couch_type->enabled) : ?>
-            <a href="couch_type_disable.php?id=<?= $couch_type->id ?>">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <a href="couch_type_habilitation.php?action=disable&amp;id=<?= $couch_type->id ?>">
+              Deshabilitar
             </a>
           <? else : ?>
-            <a href="couch_type_enable.php?id=<?= $couch_type->id ?>">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            <a href="couch_type_habilitation.php?action=enable&amp;id=<?= $couch_type->id ?>">
+              Habilitar
             </a>
           <? endif ?>
         </td>

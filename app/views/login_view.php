@@ -5,25 +5,18 @@
   </div>
 
   <? if(!empty($_SESSION) && $_SESSION['user']) : ?>
-    <strong>Usuario actual: <?= $_SESSION['user']->email ?></strong><br>
-    <? if(! $_SESSION['user']->is_premium): ?>
-      <a href="user_make_premium.php">Adquirir Cuenta Premium</a>
-    <? else: ?>
-      Ya es Usuario Premium
-    <? endif ?>
-     -
-    <a href="session_close.php">Cerrar Sesi&oacute;n</a>
-     -
-    <a href="user_list.php">Modificar datos de Usuario</a>   <!-- Hecho Por Nahuel --> 
+    <strong>Usuario actual: <a href="user_edit.php"><?= $_SESSION['user']->email ?></a></strong><br>
 
-    <? if($_SESSION['user']->is_admin): ?>                   <!-- Hecho Por Nahuel --> 
-      -
+    <? if($_SESSION['user']->is_admin): ?>
       <a href="couch_type_list.php">Ver tipos de couch</a>
     <? endif ?>
+    -
+    <a href="session_close.php">Cerrar Sesi&oacute;n</a>
+
   <? else : ?>
     <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
     -
-    <a href="user_new.php" > Registrarse</a>                 <!-- Hecho Por Nahuel --> 
+    <a href="user_new.php" >Registrarse</a>
 
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -43,7 +36,3 @@
     </div>
   <? endif ?>
 </head>
-
-
-
-

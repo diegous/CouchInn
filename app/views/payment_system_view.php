@@ -1,5 +1,5 @@
 
-<form action="payment_system.php" method="post">	
+<form action="payment_system.php" method="post">
 	<script type="text/javascript">
 		writeCardHint=(function(){
 			var ejemplos={
@@ -19,29 +19,21 @@
 			}
 		})()
 	</script>
-	<table>
-		<tr>
-			<td><label>Tipo de Tarjeta Bancaria</label></td>
-			<td>
-			<select name="type_card" id="type_card"  onchange="writeCardHint();"> 
+			<h2>Tipo de Tarjeta Bancaria</h2>
+			<select name="type_card" id="type_card"  onchange="writeCardHint();">
 			  	<option value="credito" >credito</option>
-			  	<option value="debito" >debito</option>	  	
 			</select>
-			</td>
-		</tr>
-		<tr>
-			<td style="vertical-align: top"><label>Codigo de Tarjeta Bancaria</label></td>
-			<td>
-				<input name="codigo_tarjeta" id="codigo_tarjeta" size=30 required="required" value=""	 >
-				<? if($wronginput): ?>
-					<span style="color:red">Ha ingresado mal el codigo</span>
-				<? endif ?>
-				<br>
-				<label>Ejemplo: <span id="card_hint"></span></label>
-			</td>
-		</tr>
-		<tr><td><input type="submit" value="Realizar pago" ></td></tr>
-	</table>
+			<br>
+			<h3>Codigo de Tarjeta Bancaria</h3>
+
+			<input name="codigo_tarjeta" id="codigo_tarjeta" size=30 required="required" value=""	 >
+			<? if($wronginput): ?>
+				<span style="color:red">Ha ingresado mal el codigo</span>
+			<? endif ?>
+			<br>
+			<label>Ejemplo: <span id="card_hint"></span></label>
+			<br><br>
+		<input type="submit" value="Realizar pago" >
 
 	<script type="text/javascript"> writeCardHint(); </script>
 </form>

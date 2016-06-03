@@ -21,9 +21,17 @@ function get_connection() {
   return $con;
 }
 
+// If user isn't loged in
+function check_login() {
+  if (!$_SESSION['user']) {
+    header('Location: ' . 'index.php');
+    exit();
+  }
+}
+
 // If user isn't admin, redirect to home page
 function check_admin() {
-  if (!$_SESSION[''] || !$_SESSION['is_admin']) {
+  if (!$_SESSION['user'] || !$_SESSION['user']->is_admin) {
     header('Location: ' . 'index.php');
     exit();
   }

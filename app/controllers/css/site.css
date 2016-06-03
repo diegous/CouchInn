@@ -31,6 +31,8 @@ body {
 }
 
 .couch-img {
+  height: 20em;
+  width: 20em;
   float: left;
   margin: 25px;
 }

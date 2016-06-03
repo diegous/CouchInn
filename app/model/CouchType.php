@@ -14,7 +14,7 @@ class CouchType extends GenericModel {
     $this->description = $description;
   }
 
-  static function new_object_from_array($arr) { echo $arr['description'] . "<br>li<br>";
+  static function new_object_from_array($arr) {
     return new CouchType($arr['id'],
                     $arr['enabled'],
                     $arr['description']);
@@ -36,26 +36,16 @@ class CouchType extends GenericModel {
 
   public function already_exists() {
     $query = 'SELECT * FROM ' . static::$table_name;
-    $query .= ' WHERE UPPER(description)="' . strtoupper($this->description) . '"';
+    $query .= ' WHERE UPPER(description)="' . strtoupper(trim($this->description)) . '"';
     $connection = get_connection();
     $query_result = $connection->query($query);
 
     $result = array();
 
-    echo "error: ";
-    echo $connection->errno;
-    echo "<br>result: ";
-    // echo $query_result;
-
     if ($query_result && $row = $query_result->fetch_assoc()) {
       $result = static::new_object_from_array($row);
-      echo "resultado: ";
-      echo $result;
-      echo "<br>row: ";
-      echo $row;
       $query_result->close();
     } else {
-      echo "nop";
       $result = NULL;
     }
 
