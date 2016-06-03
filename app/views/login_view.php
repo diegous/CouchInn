@@ -13,8 +13,17 @@
     <? endif ?>
      -
     <a href="session_close.php">Cerrar Sesi&oacute;n</a>
+     -
+    <a href="user_list.php">Modificar datos de Usuario</a>   <!-- Hecho Por Nahuel --> 
+
+    <? if($_SESSION['user']->is_admin): ?>                   <!-- Hecho Por Nahuel --> 
+      -
+      <a href="couch_type_list.php">Ver tipos de couch</a>
+    <? endif ?>
   <? else : ?>
     <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
+    -
+    <a href="user_new.php" > Registrarse</a>                 <!-- Hecho Por Nahuel --> 
 
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">

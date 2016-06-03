@@ -9,6 +9,8 @@
 <? elseif(!$user_has_paid ): ?>
 	Debe pagar para volverse usuario premium.<br>
 	<a href="payment_system.php">Sistema de pago</a>
+<? else: ?>
+	No tiene permisos para acceder a esta pagina.
 <? endif ?>
 <br>
 
