@@ -52,3 +52,10 @@ Contiene las clases del modelo. Todas las clases heredan de GenericModel que con
 
 #### views/
 Contiene las vistas. Un archivo de vista específico a un controlador debe tener el mismo nombre que el controlador seguido de **"_view"**, por ejemplo la vista del controlador **couch_list.php** debe llamarse **couch_list_view.php**
+
+Comandos para sublimetext en preferences -> settings - user
+  "tab_size": 2,
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true,
+  "ensure_newline_at_eof_on_save": true
+
