@@ -21,7 +21,7 @@
 	</script>
 	<table>
 		<tr>
-			<td><label>tipo de tarjeta bancaria</label></td>
+			<td><label>Tipo de Tarjeta Bancaria</label></td>
 			<td>
 			<select name="type_card" id="type_card"  onchange="writeCardHint();"> 
 			  	<option value="credito" >credito</option>
@@ -30,14 +30,14 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="vertical-align: top"><label>codigo de tarjeta bancaria</label></td>
+			<td style="vertical-align: top"><label>Codigo de Tarjeta Bancaria</label></td>
 			<td>
 				<input name="codigo_tarjeta" id="codigo_tarjeta" size=30 required="required" value=""	 >
 				<? if($wronginput): ?>
-					<span style="color:red">ingreso el codigo mal</span>
+					<span style="color:red">Ha ingresado mal el codigo</span>
 				<? endif ?>
 				<br>
-				<label>ejemplo:<span id="card_hint"></span></label>
+				<label>Ejemplo: <span id="card_hint"></span></label>
 			</td>
 		</tr>
 		<tr><td><input type="submit" value="Realizar pago" ></td></tr>
