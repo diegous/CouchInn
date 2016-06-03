@@ -13,6 +13,8 @@
     <? endif ?>
      -
     <a href="session_close.php">Cerrar Sesi&oacute;n</a>
+     -
+    <a href="user_list.php">Ver Usuario</a> <!-- Hecho Por Nahuel --> 
   <? else : ?>
     <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
 
