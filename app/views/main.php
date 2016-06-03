@@ -3,11 +3,17 @@
 <? foreach ($couch_list as $couch): ?>
   <div class="couch-list-item">
     <a href="couch.php?id=<?= $couch->id ?>">
-      <img class="couch-img" src="images/couchinn-logo-couch.png">
+      <img class="couch-img"
+           src="<? if (isset($images[$couch->id])) : ?>
+                  images/<?= $images[$couch->id] ?>
+                <? else : ?>
+                  images/couchinn-logo-couch.png
+                <? endif ?>
+                ">
     </a>
     <div class="couch-info-container">
       <h3 class="couch-title">
-        <a href="couch_view.php?id=<?= $couch->id ?>">
+        <a href="couch.php?id=<?= $couch->id ?>">
           <?= $couch->title; ?>
         </a>
       </h3>
