@@ -66,8 +66,22 @@ abstract class GenericModel {
     return $query_result;
   }
 
-  public function delete() {
-    $query =  'DELETE FROM ' . static::$table_name . ' ';
+  public function disable() {
+    $query =  'UPDATE ' . static::$table_name . ' ';
+    $query .= 'SET enabled=FALSE ';
+    $query .= 'WHERE id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
+
+  public function enable() {
+    $query =  'UPDATE ' . static::$table_name . ' ';
+    $query .= 'SET enabled=TRUE ';
     $query .= 'WHERE id=' . $this->id;
 
     $connection = get_connection();

@@ -8,4 +8,3 @@ $title = "Editar tipo de couch";
 $couch_type = CouchType::get_by_id($_GET["id"]);
 
 include "../views/skeleton.php";
-

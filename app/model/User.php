@@ -2,9 +2,10 @@
 
 class User extends GenericModel {
   protected static $table_name = 'users';
-  protected static $table_fields = 'email, password, name, last_name, birthday, phone, is_admin, is_premium';
+  protected static $table_fields = 'enabled, email, password, name, last_name, birthday, phone, is_admin, is_premium';
 
   public $id;
+  public $enabled;
   public $email;
   public $password;
   public $name;
@@ -14,8 +15,9 @@ class User extends GenericModel {
   public $is_admin;
   public $is_premium;
 
-  public function __construct($id, $email, $password, $name = NULL, $last_name = NULL, $birthday = NULL, $phone = NULL, $is_admin = 0, $is_premium = 0) {
+  public function __construct($id, $enabled = 1, $email, $password, $name = NULL, $last_name = NULL, $birthday = NULL, $phone = NULL, $is_admin = 0, $is_premium = 0) {
     $this->id = $id;
+    $this->enabled = $enabled;
     $this->email = $email;
     $this->password = $password;
     $this->name = $name;
@@ -28,6 +30,7 @@ class User extends GenericModel {
 
   static function new_object_from_array($arr) {
     return new User($arr['id'],
+                    $arr['enabled'],
                     $arr['email'],
                     $arr['password'],
                     $arr['name'],
@@ -39,7 +42,8 @@ class User extends GenericModel {
   }
 
   public function __toString() {
-    $result = "'" . $this->email . "', ";
+    $result = "'" . $this->enabled . "', ";
+    $result .= "'" . $this->email . "', ";
     $result .= "'" . $this->password . "', ";
     $result .= "'" . $this->name . "', ";
     $result .= "'" . $this->last_name . "', ";
@@ -52,7 +56,8 @@ class User extends GenericModel {
   }
 
   protected function values_for_update() {
-    $result = "email='" . $this->email . "', ";
+    $result = "enabled='" . $this->enabled . "', ";
+    $result .= "email='" . $this->email . "', ";
     $result .= "password='" . $this->password . "', ";
     $result .= "name='" . $this->name . "', ";
     $result .= "last_name='" . $this->last_name . "', ";
@@ -68,6 +73,7 @@ class User extends GenericModel {
     $query = "SELECT * FROM " . static::$table_name;
     $query .= " WHERE email='" . $an_email . "'";
     $query .= " AND password='" . $a_password . "'";
+    $query .= " AND enabled=TRUE ";
 
     $connection = get_connection();
     $query_result = $connection->query($query);

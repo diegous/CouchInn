@@ -12,11 +12,19 @@ include "../model/Picture.php";
 session_start();
 
 // Function to get DB connection used by classes
-function get_connection(){
+function get_connection() {
   $con = new mysqli("localhost", "root", "", "couchinn");
 
   if ($con->connect_error)
     die('Connect Error: ' . $con->connect_error);
 
   return $con;
+}
+
+// If user isn't admin, redirect to home page
+function check_admin() {
+  if (!$_SESSION[''] || !$_SESSION['is_admin']) {
+    header('Location: ' . 'index.php');
+    exit();
+  }
 }
