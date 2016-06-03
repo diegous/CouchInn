@@ -3,6 +3,8 @@
 class Couch extends GenericModel {
   protected static $table_name = 'couchs';
   protected static $table_fields = 'type_id,title,description,capacity,location';
+  protected static $table_name_couch_type = 'couchs_types';
+  protected static $table_fields_couch_type = 'type_id,description';
 
   public $id;
   public $type_id;
@@ -48,4 +50,5 @@ class Couch extends GenericModel {
 
     return $result;
   }
+
 }

@@ -8,6 +8,7 @@ $title = "Ver couch";
 if ($_GET['id']) {
   $couch = Couch::get_by_id($_GET["id"]);
   $picture_list = Picture::get_by_couch_id($_GET["id"]);
+  $couch_type = CouchType::get_by_id($couch->type_id);
   
   include "../views/skeleton.php";
 } else {
