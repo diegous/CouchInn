@@ -1,7 +1,8 @@
-<h1>Ver couch</h1>
+<h1><?= $couch->title; ?></h1>
 
 <div class="couch-info-container">
-  <h3 class="couch-title"> <?= $couch->title; ?> </h3>
+  <label>Due&ntilde;o:</label>
+  <p class=""><?= $owner->name ?>, <?= $owner->last_name ?></p>
   <label>Descripci&oacute;n:</label>
   <p class="couch-description"> <?= $couch->description; ?> </p>
   <label>Tipo:</label>
