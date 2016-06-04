@@ -10,7 +10,7 @@ if ( !empty($_POST) ) {
     echo "<form action='alert_page.php' method='post' name='frm'>
     <input type='hidden' name='title' value='Recuperar contraseña' >
     <input type='hidden' name='url' value='index.php'>
-    <input type='hidden' name='message' value='El e-mail fue enviado correctamente " .$email."' >
+    <input type='hidden' name='message' value='Se envío un e-mail a " .$email."' >
     </form>
     <script language='JavaScript'> document.frm.submit(); </script>";
     }

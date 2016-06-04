@@ -13,7 +13,7 @@
 
       <? include($content) ?>
 
-      <? include("footer.php") ?>
+      <!--<? include("footer.php") ?>-->
     </div>
 
   </body>

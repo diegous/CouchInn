@@ -14,10 +14,9 @@
   <br>
 </div>
 
-<!--<button onclick="alert('El mail fue enviado correctamente')">Recuperar contrase&ntilde;a</button> -->
-
 <div>
   <? foreach ($picture_list as $picture): ?>
     <img class="couch-img" src="images/<?= $picture->filename ?>">
   <? endforeach ?>
 </div>
+<br>
