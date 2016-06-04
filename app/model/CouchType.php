@@ -34,6 +34,12 @@ class CouchType extends GenericModel {
     return $result;
   }
 
+  public function update() {
+    if (!$this->already_exists()){
+      parent::update();
+    }
+  }
+
   public function already_exists() {
     $query = 'SELECT * FROM ' . static::$table_name;
     $query .= ' WHERE UPPER(description)="' . strtoupper(trim($this->description)) . '"';
