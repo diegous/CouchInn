@@ -17,7 +17,7 @@ $last_name = $_POST['last_name'] ? $_POST['last_name'] : NULL;
 $birthday  = $_POST['birthday'] ? $_POST['birthday'] : NULL;
 $phone     = $_POST['phone'] ? $_POST['phone'] : NULL;
 
-$user = new User(NULL, NULL, $email, $password, $name, $last_name, $birthday, $phone, 0, 0);
+$user = new User(NULL, TRUE, $email, $password, $name, $last_name, $birthday, $phone, 0, 0);
 $user->save_new();
 
 
