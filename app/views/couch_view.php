@@ -1,15 +1,15 @@
 <h1><?= $couch->title; ?></h1>
 
 <div class="couch-info-container">
-  <label>Due&ntilde;o:</label>
+  <h3>Due&ntilde;o:</h3>
   <p class=""><?= $owner->name ?>, <?= $owner->last_name ?></p>
-  <label>Descripci&oacute;n:</label>
+  <h3>Descripci&oacute;n:</h3>
   <p class="couch-description"> <?= $couch->description; ?> </p>
-  <label>Tipo:</label>
+  <h3>Tipo:</h3>
   <p class="couch-description"> <?= $couch_type->description; ?> </p>
-  <label>Capacidad:</label>
+  <h3>Capacidad:</h3>
   <p class="couch-capacity"><?= $couch->capacity; ?></p>
-  <label>Ubicaci&oacute;n:</label>
+  <h3>Ubicaci&oacute;n:</h3>
   <p class="couch-location"><?= $couch->location; ?></p>
   <br>
 </div>
@@ -21,4 +21,3 @@
     <img class="couch-img" src="images/<?= $picture->filename ?>">
   <? endforeach ?>
 </div>
--
