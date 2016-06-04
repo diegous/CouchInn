@@ -3,7 +3,7 @@
   <form class="panel-body" action="recuperar_pass_validar.php" method="post">
     <div class="form-group">
       <label for="description">Ingrese usuario</label><br>
-      <input id="email" class="form-control" type="email" name="email">
+      <input id="email" class="form-control" required="required" type="email" name="email">
     </div>
     <button type="submit" class="btn btn-default">Enviar</button>
   </form>
