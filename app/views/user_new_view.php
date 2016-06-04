@@ -10,27 +10,27 @@
 
     <div class="form-group">
       <label for="email">Email</label><br>
-      <input id="email" class="form-control" type="email" name="email">
+      <input id="email" class="form-control" type="email" name="email" required>
     </div>
 
     <div class="form-group">
       <label for="password">Contrase&ntilde;a</label><br>
-      <input id="password" class="form-control" type="password" name="password">
+      <input id="password" class="form-control" type="password" name="password" required>
     </div>
 
     <div class="form-group">
       <label for="name">Nombre</label><br>
-      <input id="name" class="form-control" type="name" name="name">
+      <input id="name" class="form-control" type="name" name="name" required>
     </div>
 
     <div class="form-group">
       <label for="last_name">Apellido</label><br>
-      <input id="last_name" class="form-control" type="last_name" name="last_name">
+      <input id="last_name" class="form-control" type="last_name" name="last_name" required>
     </div>
 
     <div class="form-group">
-      <label for="bithday">Fecha de nacimiento</label><br>
-      <input id="bithday" class="form-control" type="date" name="bithday">
+      <label for="birthday">Fecha de nacimiento</label><br>
+      <input id="birthday" class="form-control" type="date" name="birthday" required>
     </div>
 
     <div class="form-group">
