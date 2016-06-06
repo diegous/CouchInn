@@ -1,6 +1,5 @@
 <?php
 
-
 // Include Classes
 include "../model/GenericModel.php";
 include "../model/User.php";
@@ -21,18 +20,45 @@ function get_connection() {
   return $con;
 }
 
-// If user isn't loged in
-function check_login() {
-  if (!$_SESSION['user']) {
+// Session checkers
+function redirect_if_not_logged_in() {
+  if (!isset($_SESSION['user'])) {
     header('Location: ' . 'index.php');
     exit();
   }
 }
 
-// If user isn't admin, redirect to home page
-function check_admin() {
-  if (!$_SESSION['user'] || !$_SESSION['user']->is_admin) {
+function redirect_if_not_admin() {
+  if (!isset($_SESSION['user']) || !$_SESSION['user']->is_admin) {
     header('Location: ' . 'index.php');
     exit();
+  }
+}
+
+function redirect_if_not_visitor() {
+  if (isset($_SESSION['user'])) {
+    header('Location: ' . 'index.php');
+    exit();
+  }
+}
+
+function create_alert($alert, $message) {
+    $_SESSION['alert'] = $alert;
+    $_SESSION['message'] = $message;
+}
+
+function check_for_alert() {
+  if (isset($_SESSION['alert']) && isset($_SESSION['message'])) {
+    $alert_variables = [
+      "alert"   => $_SESSION['alert'],
+      "message" => $_SESSION['message'],
+    ];
+
+    unset($_SESSION['alert']);
+    unset($_SESSION['message']);
+
+    return $alert_variables;
+  } else {
+    return NULL;
   }
 }

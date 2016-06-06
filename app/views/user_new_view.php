@@ -1,8 +1,4 @@
-<? if ( isset($_GET['warning']) && $_GET['warning'] == "missing_fields"): ?>
-  <div class="red">
-    <p>Falt&oacute; alg&uacute;n campo obligatorio</p>
-  </div>
-<? endif ?>
+<? include("alerts.php") ?>
 
 <div class="panel panel-default">
   <div class="panel-heading">Registrarse</div>
