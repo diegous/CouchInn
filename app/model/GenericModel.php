@@ -61,9 +61,10 @@ abstract class GenericModel {
     $connection = get_connection();
     $query_result = $connection->query($query);
 
+    $result = $connection->affected_rows;
     $connection->close();
 
-    return $query_result;
+    return $result;
   }
 
   public function disable() {

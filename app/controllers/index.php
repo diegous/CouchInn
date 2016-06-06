@@ -20,7 +20,7 @@ foreach ($couch_list as $couch) {
   if ($user->is_premium) {
     $couch_images = Picture::get_by_couch_id($couch->id);
 
-    // If couch has pictures, save first
+    // If couch has pictures, get the first one
     if ($couch_images) {
       $images[$couch->id] = $couch_images[0]->filename;
     }
