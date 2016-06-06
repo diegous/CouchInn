@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2016 at 01:59 AM
+-- Generation Time: Jun 07, 2016 at 01:02 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -29,22 +29,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `couchs` (
   `id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `published` tinyint(1) NOT NULL DEFAULT '1',
   `user_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `description` text NOT NULL,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `capacity` int(11) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `couchs`
 --
 
-INSERT INTO `couchs` (`id`, `enabled`, `user_id`, `type_id`, `title`, `description`, `capacity`, `location`) VALUES
-(1, 1, 11, 11, 'Mi casa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 3, 'La Plata'),
-(2, 1, 12, 18, 'Choza Feliz', 'Acogedora choza en la selva misionera. Cuenta con capacidad para 6 personas. Se encuentra en una aldea, ideal para compartir momentos con la tribu.\r\n\r\nNo cuenta con ventanas.', 6, 'La Plata'),
-(3, 1, 13, 13, 'Camping Juancito', 'Ideal para hacer camping :)', 15, 'Hipódromo, La Plata');
+INSERT INTO `couchs` (`id`, `enabled`, `published`, `user_id`, `type_id`, `title`, `description`, `capacity`, `location`) VALUES
+(1, 1, 1, 11, 11, 'Mi casa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 3, 'La Plata'),
+(2, 1, 1, 12, 18, 'Choza Feliz', 'Acogedora choza en la selva misionera. Cuenta con capacidad para 6 personas. Se encuentra en una aldea, ideal para compartir momentos con la tribu.\r\n\r\nNo cuenta con ventanas.', 6, 'La Plata'),
+(3, 1, 1, 13, 13, 'Camping Juancito', 'Ideal para hacer camping :)', 15, 'Hip?dromo, La Plata');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ CREATE TABLE `couch_comments` (
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `user_id` int(11) NOT NULL,
   `couch_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,7 +73,7 @@ CREATE TABLE `couch_scores` (
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `reservation_id` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  `comment` text NOT NULL
+  `comment` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,7 +85,7 @@ CREATE TABLE `couch_scores` (
 CREATE TABLE `couch_types` (
   `id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `description` varchar(20) NOT NULL
+  `description` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -95,7 +96,8 @@ INSERT INTO `couch_types` (`id`, `enabled`, `description`) VALUES
 (11, 1, 'Casa'),
 (12, 1, 'Departamento'),
 (13, 1, 'Camping'),
-(18, 1, 'Choza');
+(18, 1, 'Choza'),
+(33, 1, 'pepe');
 
 -- --------------------------------------------------------
 
@@ -121,7 +123,7 @@ CREATE TABLE `pictures` (
   `id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `couch_id` int(11) NOT NULL,
-  `filename` varchar(30) NOT NULL
+  `filename` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -171,12 +173,12 @@ CREATE TABLE `reservation_states` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `birthday` date NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `is_premium` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -186,10 +188,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `enabled`, `email`, `password`, `name`, `last_name`, `birthday`, `phone`, `is_admin`, `is_premium`) VALUES
-(10, 1, 'admin@a.b', 'admin', '', '', '0000-00-00', '', 1, 1),
+(10, 1, 'admin@a.b', 'admin', '', '', '0000-00-00', '', 1, 0),
 (11, 1, 'estebanquito@hotmail.com', '123456', 'Esteban', 'Quito', '1995-06-12', NULL, 0, 0),
 (12, 1, 'stella@gmail.com', '123456', 'Stella', 'Garto', '1975-01-26', NULL, 0, 1),
-(13, 1, 'e.nito@aol.com', '123456', 'Elena', 'Nito', '1976-11-09', NULL, 0, 0);
+(13, 1, 'e.nito@aol.com', '123456', 'Elena', 'Nito', '1976-11-09', NULL, 0, 0),
+(20, 1, 'fdsf@fa.com', '12456', 'fds', 'gfgfdgfdgfd', '2016-06-21', 'gfdgfdgds', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +205,7 @@ CREATE TABLE `user_scores` (
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `reservation_id` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  `comment` text NOT NULL
+  `comment` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -293,7 +296,7 @@ ALTER TABLE `couch_scores`
 -- AUTO_INCREMENT for table `couch_types`
 --
 ALTER TABLE `couch_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `payments`
 --
@@ -318,7 +321,7 @@ ALTER TABLE `reservation_states`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `user_scores`
 --
