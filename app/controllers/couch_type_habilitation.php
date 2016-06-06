@@ -2,9 +2,9 @@
 
 include "loader.php";
 
-check_admin();
+redirect_if_not_admin();
 
-if ($_GET["id"] && $_GET["action"]) {
+if (isset($_GET["id"]) && isset($_GET["action"])) {
   $couch_type = CouchType::get_by_id($_GET["id"]);
 
   if ($_GET["action"] == "enable") {
