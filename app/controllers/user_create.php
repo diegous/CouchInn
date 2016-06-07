@@ -5,13 +5,13 @@ include "loader.php";
 $errors_table=Array();
 
 if ( ! $email = $_POST['email']) {
-	$errors_table["error_email"]="empty";
+	$errors_table["error_email"]="vacio";
 }elseif(User::exist_user($email)){
-	$errors_table["error_email"]="user exists";
+	$errors_table["error_email"]="email ya existe";
 }
 
 if ( ! $password = $_POST['password'] ) {
-	$errors_table["error_password"]="empty";
+	$errors_table["error_password"]="vacio";
 }
 
 //si no hay errores

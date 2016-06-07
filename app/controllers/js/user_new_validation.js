@@ -14,23 +14,17 @@ $(document).ready(function(){
     var formulario=$(".panel-body").serialize();
     ajaxSync("user_create.php",formulario,
       function(message){errorTable=message;});
-    //convierto la salida de php a un objecto de javascript
-    if(errorTable=="success"){
-      alert("usuario creado exitosamente");
-      //vuelvo al indice
-      window.location="/index.php";
+    if(errorTable==="success"){
+      //vuelvo a la pagina principal
+      redirectToAlertPageView("","usuario creado exitosamente","/index.php");
     }else{
-
+      //convierto la salida de php a un objecto de javascript
       errorTable=JSON.parse(errorTable);
       var err_email=errorTable["error_email"]
       if(err_email){
         $("#label-error-email")
           .show()
-          .html(alertIdentity(
-                err_email==="empty"?"email vacio"
-                :err_email==="user exists"?"email ya existe"
-                :"error desconocido:"+err_email
-          ));
+          .html(alertIdentity("error:"+err_mail));
           huboErrores=true;
       }else{
           $("#label-error-email").hide();
