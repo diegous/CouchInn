@@ -24,8 +24,8 @@ $(document).ready(function(){
       if(err_email){
         $("#label-error-email")
           .show()
-          .html(alertIdentity("error:"+err_mail));
-          huboErrores=true;
+          .html(alertIdentity("error:"+err_email));
+        huboErrores=true;
       }else{
           $("#label-error-email").hide();
       }
