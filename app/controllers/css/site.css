@@ -36,3 +36,9 @@ body {
   float: left;
   margin: 25px;
 }
+
+.label-error{
+  color:red;
+  font-size: 20px;
+  text-align: center;
+}
