@@ -1,3 +1,7 @@
+.modal-dialog {
+  width: 350px;
+}
+
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;
