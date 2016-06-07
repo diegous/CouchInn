@@ -24,6 +24,8 @@ if( count($errors_table)==0 ){
 	$user = new User(NULL, TRUE, $email, $password, $name, $last_name, $birthday, $phone, 0, 0);
 	$user->save_new();
 
-	echo "";
+	echo "success";
+}else{
+
+	echo json_encode($errors_table);
 }
-echo json_encode($errors_table);
