@@ -35,7 +35,7 @@ function redirect_if_not_admin() {
   }
 }
 
-function redirect_if_not_visitor() {
+function redirect_if_logged_in() {
   if (isset($_SESSION['user'])) {
     header('Location: ' . 'index.php');
     exit();

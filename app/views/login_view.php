@@ -39,10 +39,10 @@
       <div class="modal-dialog">
         <div class="loginmodal-container">
           <h1>Iniciar Sesi&oacute;n</h1><br>
-          <form action="session_create.php" method="post">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Contrase&ntilde;a">
-            <input type="submit" name="login" class="login loginmodal-submit" value="Enviar">
+          <form id="login-form" onsubmit="return checkLogin(this)">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Contrase&ntilde;a" required>
+            <input type="submit" class="login loginmodal-submit" value="Enviar">
           </form>
           <div class="login-help">
             <a href="user_new.php">Registrarse</a> - <a href="recuperar_pass.php">Olvid&eacute; mi contrase&ntilde;a</a>
