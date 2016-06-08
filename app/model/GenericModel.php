@@ -8,8 +8,10 @@ abstract class GenericModel {
 
     $result = array();
 
-    while ($row = $query_result->fetch_assoc())
-      $result[] = static::new_object_from_array($row);
+    while ($row = $query_result->fetch_assoc()) {
+      $element = static::new_object_from_array($row);
+      $result[$element->id] = $element;
+    }
 
     $query_result->close();
     $connection->close();
