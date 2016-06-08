@@ -51,7 +51,11 @@
 
     <h2>Cuenta Premium:</h2>
     <? if(! $_SESSION['user']->is_premium): ?>
-      <a href="payment_system.php">Adquirir Cuenta Premium</a>
+      <form id="hidden-amount-form" action="payment_system.php" method="post">
+        <input type="input" name="amount" value="30" hidden="true">
+        <a onclick="document.getElementById('hidden-amount-form').submit()" >
+          Adquirir Cuenta Premium</a>
+      </form>
     <? else: ?>
       Ya es Usuario Premium
     <? endif ?>

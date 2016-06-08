@@ -1,40 +1,79 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+		var ejemplos={
+				"credito":'123 12345 12345678901234',
+			};
+		var regex_map=<?= json_encode($regex_map); ?>;
 
-<form action="payment_system.php" method="post">
-	<script type="text/javascript">
-		writeCardHint=(function(){
-			var ejemplos={
-					"credito":'123 12345 12345678901234',
-					"debito":'123456789 123456 123'
-				};
-			var regex_map=<?= json_encode($regex_map); ?>;
+		var onSelection=function (){
+			var valor=$(".select-card-type").val();
+			var codigo=ejemplos[valor];
+			$("#card_hint").html(codigo);
+			$(".input-card-code").attr("placeholder",codigo);
+			// $(".input-card-code").attr("pattern",regex_map[valor]);
+		}
 
-			return function (){
-				var lista=document.getElementById("type_card");
-				var elem=lista.options[lista.selectedIndex];
-				var codigo=ejemplos[elem.value];
-				document.getElementById("card_hint").innerHTML=codigo;
-				var inputCodigo=document.getElementById("codigo_tarjeta");
-				inputCodigo.placeholder=codigo;
-				inputCodigo.pattern=regex_map[elem.value];
-			}
-		})()
-	</script>
-			<h2>Tipo de Tarjeta Bancaria</h2>
-			<select name="type_card" id="type_card"  onchange="writeCardHint();">
-			  	<option value="credito" >credito</option>
-			</select>
-			<br>
-			<h3>Codigo de Tarjeta Bancaria</h3>
+    var validation=function(e){
+      e.preventDefault();
+      var errorResult;
+      //serializo el formulario para enviarlo por post
+      var formulario=$(".form-card-code").serialize();
+      ajaxSync("payment_system_validation.php",formulario,
+        function(message){errorResult=message;});
+      var resultTable=JSON.parse(errorResult);
+      var success=(resultTable["error"]===false);
+      if(success){
+      	$(".label-error-card-code").hide();
+      	//envio los datos a payment_system_validation para volverse premium si es valido
+			  redirectWithPost("payment_system_validation.php",[
+			  	["codigo_tarjeta"			,$(".input-card-code").val()],
+			  	["type_card"					,$(".select-card-type").val()],
+			  	["finish_transaction"	,"true"],
+          ["payment_amount"     ,"<? echo $_POST["amount"] ?>"]
+			  ]);
+      }else{
+	      $(".label-error-card-code").show()
+      }
+    }
 
-			<input name="codigo_tarjeta" id="codigo_tarjeta" size=30 required="required" value=""	 >
-			<? if($wronginput): ?>
-				<span style="color:red">Ha ingresado mal el codigo</span>
-			<? endif ?>
-			<br>
-			<label>Ejemplo: <span id="card_hint"></span></label>
-			<br><br>
+    $(".form-card-code").on("submit",validation);
+    $(".select-card-type").on("change ",onSelection);
+
+    onSelection();
+  })
+
+</script>
+
+<? if(isset($_POST["amount"])&& !empty($_POST["amount"])): ?>
+
+<form class="form-card-code" action="">
+		<h2>Tipo de Tarjeta Bancaria</h2>
+		<h6>Debe pagar $<? echo $_POST["amount"] ?></h6>
+		<br>
+		<select name="type_card" class="select-card-type"  onchange="writeCardHint();">
+		  	<option value="credito" >credito</option>
+		</select>
+		<br>
+		<h3>Codigo de Tarjeta Bancaria</h3>
+
+    <input type="text" name="codigo_tarjeta" class="input-card-code" size=30 value=""  >
+		<input type="text" name="payment_amount" class="input-amount"hidden="true"
+      value="<? echo $_POST["amount"] ?>"	 >
+		<span class='label-error-card-code' style="color:red" hidden="true">
+			Ha ingresado mal el codigo
+		</span>
+		<br>
+		<label>Ejemplo: <span id="card_hint"></span></label>
+		<br>
 		<input type="submit" value="Realizar pago" >
 
 	<script type="text/javascript"> writeCardHint(); </script>
 </form>
 
+<? else: ?>
+	
+	No se especifico una cantidad monetaria.
+
+<? endif ?>
+
+<div id="hidden-form-placeholder"></div>

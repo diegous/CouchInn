@@ -53,13 +53,28 @@ function ajaxSync(direccion,datos,success,onerror){
   $.ajax(datos);
 }
 
+//crea un form que redirecciona a <url>
+//formato de contents= [ [<name>,<value>]* ]
+function hiddenInputsFormGenerator(url,contents){
+  var acum='<form method="post" action="'+url+'">\n';
+  for (var i = 0; i < contents.length; i++) {
+    var input=contents[i];
+    acum+= '<input hidden="true" type="text" name="'+input[0]+'" value="'+input[1]+'" >\n' ;
+  }
+  acum+=" </form>";
+  return $(acum);
+}
 
-function redirectToAlertPageView(title,message,url){
-  var form = $('<form action="alert_page.php" method="post">' +
-    '<input type="text" name="title" value="' + title + '" />' +
-    '<input type="text" name="url" value="' + url + '" />' +
-    '<input type="text" name="message" value="' + message + '" />' +
-    '</form>');
+//redirecciona a <url>
+//formato de contents= [ [<name>,<value>]* ]
+function redirectWithPost(url,contents){
+  var form= hiddenInputsFormGenerator(url,contents) ;
   $('body').append(form);
   form.submit();
 }
+
+function redirectToAlertPageView(title,message,url){
+  redirectWithPost("alert_page.php",[["title",title],["url",url],["message",message]]);
+}
+
+
