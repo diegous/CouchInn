@@ -12,6 +12,17 @@
   <h3>Ubicaci&oacute;n:</h3>
   <p class="couch-location"><?= $couch->location; ?></p>
   <br>
+  
+  <? if ($_SESSION && $_SESSION['user']): ?>
+    <? if($_SESSION['user']->id == $couch->user_id) : ?>
+      <? if ($couch->enabled) : ?>
+        <a href="couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar</a>
+      <? else : ?>
+        <a href="couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar</a>  
+      <? endif ?>
+    <?endif?>
+  <?endif?>
+
 </div>
 
 <div>
