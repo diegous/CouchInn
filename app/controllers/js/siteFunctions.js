@@ -13,6 +13,7 @@ function checkLogin($form) {
     }
   );
   return false;
+}
 
 function checkEmail($form) {
   $.post("recuperar_pass_validar_prueba.php",
