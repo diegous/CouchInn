@@ -3,6 +3,8 @@
 include "date_validation.php";
 include "loader.php";
 
+redirect_if_not_admin();
+
 
 $errorTable=Array();
 
