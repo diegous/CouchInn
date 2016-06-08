@@ -9,7 +9,7 @@
                 <? else : ?>
                   images/couchinn-logo-couch.png
                 <? endif ?>
-                ">
+                " title="Ver couch">
     </a>
     <div class="couch-info-container">
       <h3 class="couch-title">

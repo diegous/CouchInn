@@ -109,5 +109,5 @@ class User extends GenericModel {
     $connection->close();
 
     return $result;
-  } 
+  }
 }
