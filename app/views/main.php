@@ -2,12 +2,14 @@
 
 <? if ($_SESSION && $_SESSION['user']): ?>
   <? $user_id = $_SESSION['user']->id ?>
+  <? $is_admin = $_SESSION['user']->is_admin ?>
 <? else : ?>
   <? $user_id = 0 ?>
+  <? $is_admin = 0 ?>
 <? endif ?>
 
 <? foreach ($couch_list as $couch): ?>
-  <? if (($couch->enabled) || ($user_id == $couch->user_id)): ?>
+  <? if (($couch->enabled) || ($user_id == $couch->user_id) || ($is_admin)): ?>
     <div class="couch-list-item">
       <a href="couch.php?id=<?= $couch->id ?>">
         <img class="couch-img"
