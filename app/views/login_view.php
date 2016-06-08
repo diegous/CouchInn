@@ -25,6 +25,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="menu administrador">
           <li><a href="couch_type_list.php">Ver tipos de couch</a></li>
+          <li><a href="payment_between_dates.php">Ver ganancias entre dos fechas</a></li>
         </ul>
       </span>
     <? endif ?>
