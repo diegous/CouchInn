@@ -6,6 +6,7 @@ function couch_create_validation(){
     var errorResult;
     //serializo el formulario para enviarlo por post
     var formulario=$("#form-couch-create").serialize();
+    alert(formulario);
     var success=function(message){errorResult=message;};
     ajaxSync("couch_create_validation.php",formulario,success);
     var resultTable=parseJson(errorResult);

@@ -41,8 +41,8 @@ class Couch extends GenericModel {
   public function __toString() {
     $result = $this->enabled . ", ";
     $result .= $this->published . ", ";
-    $result .=  $this->type_id . ", ";
     $result .=  $this->user_id . ", ";
+    $result .=  $this->type_id . ", ";
     $result .= "'" . $this->title . "', ";
     $result .= "'" . $this->description . "', ";
     $result .= $this->capacity . ", ";
@@ -54,11 +54,11 @@ class Couch extends GenericModel {
   protected function values_for_update() {
     $result =  "enabled=" . $this->enabled . ", ";
     $result .=  "published=" . $this->published . ", ";
-    $result .=  "type_id=" . $this->type_id . ", ";
-    $result .=  "user_id=" .  $this->user_id . ", ";
+    $result .=  "user_id='" .  $this->user_id . "', ";
+    $result .=  "type_id='" . $this->type_id . "', ";
     $result .= "title='" . $this->title . "', ";
     $result .= "description='" . $this->description . "', ";
-    $result .= "capacity=" . $this->capacity . ", ";
+    $result .= "capacity='" . $this->capacity . "', ";
     $result .= "location='" . $this->location . "' ";
 
     return $result;
