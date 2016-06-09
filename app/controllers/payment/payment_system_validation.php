@@ -16,9 +16,8 @@ if($check_card_step){
   $regex_tarjeta=$regex_map[$_POST["type_card"]];
   if(preg_match('/'.$regex_tarjeta.'/',$_POST["codigo_tarjeta"])){
     $_SESSION["just_became_premium"]=true;
-    $payment = new Payment(NULL,true,$_POST["user"],$_POST["payment_amount"],date('Y-m-d'));
-    $errorTable["error"]= ! $payment->save_new();
-    echo json_encode(["error"=>false]);
+    $payment = new Payment(NULL,true,$_POST["user"],$_POST["payment_amount"],date('Y-m-d'));    
+    echo json_encode(["error"=> ! $payment->save_new() ]);
   }else{
     echo json_encode(["error"=>true]);
   }
