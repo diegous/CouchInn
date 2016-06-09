@@ -2,22 +2,23 @@
 
 include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
-$user_logged_in=!empty($_SESSION) && $_SESSION['user'];
-$user_was_premium=$user_logged_in && $_SESSION['user']->is_premium;
-$user_has_paid=isset($_POST["paid_for_premium"])&& !empty($_POST["paid_for_premium"]);
+redirect_if_not_logged_in();
 
-if($user_logged_in){
+$user_was_premium=$_SESSION['user']->is_premium;
+$user_has_paid=isset($_SESSION["just_became_premium"]) && $_SESSION["just_became_premium"]==true ;
 
-	$content = "user/user_make_premium_view.php";
-	$title = "Solicitacion de cuenta premium";
 
-	if($user_has_paid){
 
-		$_SESSION['user']->is_premium=true;
-		$_SESSION['user']->update();
+$content = "user/user_make_premium_view.php";
+$title = "Solicitacion de cuenta premium";
 
-	}
+if($user_has_paid){
+  $_SESSION["just_became_premium"]=false;
+  $_SESSION['user']->is_premium=true;
+	$_SESSION['user']->update();
 
-	include $DRV . "/skeleton.php";
 }
+
+include $DRV . "/skeleton.php";
+
 

@@ -35,22 +35,22 @@ function checkEmail($form) {
 
 
 //version sincronica de $.post().Espera a que se termine la consulta al servidor antes de retornar.
-function ajaxSync(direccion,datos,success,onerror){
-  var datos={
+function ajaxSync(direccion,datosPost,success,onerror){
+  var datosAjax={
     url:direccion,
-    data:datos,
+    data:datosPost,
     async:false,
     type:"POST"
   };
   if(typeof success!=="undefined"){
-    datos["success"]=success;
+    datosAjax["success"]=success;
   }
   if(typeof onerror!=="undefined"){
-    datos["onerror"]=onerror;
+    datosAjax["error"]=onerror;
   }else{
-    datos["onerror"]=alert;
+    datosAjax["error"]=alert;
   }
-  $.ajax(datos);
+  $.ajax(datosAjax);
 }
 
 //crea un form que redirecciona a <url>
@@ -74,7 +74,22 @@ function redirectWithPost(url,contents){
 }
 
 function redirectToAlertPageView(title,message,url){
-  redirectWithPost("shared/alert_page.php",[["title",title],["url",url],["message",message]]);
+  window.location=("/shared/alert_page.php"
+      +"?title="+encodeURIComponent(title)
+      +"&url="+encodeURIComponent(url)
+      +"&message="+encodeURIComponent(message)
+    );
 }
 
 
+function parseJson(js_object){
+    if(js_object==""){
+        alert("not valid json(empty string)");
+    }
+    try{
+        return JSON.parse(js_object);
+    }catch(e){
+        alert("not valid json:\n"+js_object);
+        throw e;
+    }
+}

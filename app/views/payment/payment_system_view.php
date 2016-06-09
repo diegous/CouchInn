@@ -20,17 +20,12 @@
       var formulario=$(".form-card-code").serialize();
       ajaxSync("payment_system_validation.php",formulario,
         function(message){errorResult=message;});
-      var resultTable=JSON.parse(errorResult);
+      var resultTable=parseJson(errorResult);
       var success=(resultTable["error"]===false);
       if(success){
       	$(".label-error-card-code").hide();
       	//envio los datos a payment_system_validation para volverse premium si es valido
-			  redirectWithPost("payment_system_validation.php",[
-			  	["codigo_tarjeta"			,$(".input-card-code").val()],
-			  	["type_card"					,$(".select-card-type").val()],
-			  	["finish_transaction"	,"true"],
-          ["payment_amount"     ,"<? echo $_POST["amount"] ?>"]
-			  ]);
+			  window.location="/user/user_make_premium.php";
       }else{
 	      $(".label-error-card-code").show()
       }
@@ -57,8 +52,10 @@
 		<h3>Codigo de Tarjeta Bancaria</h3>
 
     <input type="text" name="codigo_tarjeta" class="input-card-code" size=30 value=""  >
-		<input type="text" name="payment_amount" class="input-amount"hidden="true"
+		<input type="text" name="payment_amount" class="input-amount" hidden="true"
       value="<? echo $_POST["amount"] ?>"	 >
+    <input type="text" name="user" class="input-user_id" hidden="true"
+      value="<? echo $_SESSION["user"]->id ?>"  >
 		<span class='label-error-card-code' style="color:red" hidden="true">
 			Ha ingresado mal el codigo
 		</span>
@@ -67,7 +64,6 @@
 		<br>
 		<input type="submit" value="Realizar pago" >
 
-	<script type="text/javascript"> writeCardHint(); </script>
 </form>
 
 <? else: ?>

@@ -69,3 +69,18 @@ function check_for_alert() {
     return NULL;
   }
 }
+
+
+//funcion identica a encodeURIComponent de javascript
+function encodeURIComponent($str) {
+    $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+    return strtr(rawurlencode($str), $revert);
+}
+
+function redirect_to_message($title,$message,$url){
+  header("Location:"."/shared/alert_page.php"
+      ."?title=".encodeURIComponent($title)
+      ."&url=".encodeURIComponent($url)
+      ."&message=".encodeURIComponent($message)
+  );
+};
