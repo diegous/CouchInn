@@ -25,12 +25,7 @@
       if(success){
       	$(".label-error-card-code").hide();
       	//envio los datos a payment_system_validation para volverse premium si es valido
-			  redirectWithPost("payment_system_validation.php",[
-			  	["codigo_tarjeta"			,$(".input-card-code").val()],
-			  	["type_card"					,$(".select-card-type").val()],
-			  	["finish_transaction"	,"true"],
-          ["payment_amount"     ,"<? echo $_POST["amount"] ?>"]
-			  ]);
+			  window.location="/user/user_make_premium.php";
       }else{
 	      $(".label-error-card-code").show()
       }
@@ -67,7 +62,6 @@
 		<br>
 		<input type="submit" value="Realizar pago" >
 
-	<script type="text/javascript"> writeCardHint(); </script>
 </form>
 
 <? else: ?>
