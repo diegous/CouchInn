@@ -1,12 +1,12 @@
 <?php
 
 // Include Classes
-include "../model/GenericModel.php";
-include "../model/User.php";
-include "../model/CouchType.php";
-include "../model/Couch.php";
-include "../model/Picture.php";
-include "../model/Payment.php";
+include "../../model/GenericModel.php";
+include "../../model/User.php";
+include "../../model/CouchType.php";
+include "../../model/Couch.php";
+include "../../model/Picture.php";
+include "../../model/Payment.php";
 
 // Start session (this must start after loading the classes)
 session_start();

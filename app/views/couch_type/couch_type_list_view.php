@@ -1,6 +1,6 @@
 <h1>Tipos de couch</h1>
 
-<? include("alerts.php") ?>
+<? include("shared/alerts.php") ?>
 
 <table class="table">
   <thead>

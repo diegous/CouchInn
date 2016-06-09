@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-include "date_validation.php";
-include "loader.php";
+include "shared/date_validation.php";
+include "shared/loader.php";
 
 redirect_if_not_admin();
 
@@ -16,7 +16,7 @@ $date_end=getDateOrFalse((isset($_POST["date_end"])&& !empty($_POST["date_end"])
 
 
 if( $date_start && $date_end ){
-  
+
   if($date_start > $date_end){
     $errorTable["error"]="fechas mal escritas";
   }else{
@@ -32,7 +32,7 @@ if( $date_start && $date_end ){
     ($date_start?"":" (fecha inicio mal escrita) ").
     ($date_end?"":" (fecha fin mal escrita) ")
   );
-  
+
 
 
 }

@@ -1,9 +1,9 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
 $title = "Inicio";
-$content = "main.php";
+$content = "couch/couch_list_view.php";
 
 $couch_list = Couch::get_all();
 

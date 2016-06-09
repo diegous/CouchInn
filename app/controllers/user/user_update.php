@@ -1,6 +1,6 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
 //check_login();
 

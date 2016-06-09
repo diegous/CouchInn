@@ -1,8 +1,8 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
-$content = "alert_page_view.php";
+$content = "shared/alert_page_view.php";
 $title = $_POST["title"];
 $url = $_POST["url"];
 $message = $_POST["message"];

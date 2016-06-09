@@ -1,8 +1,8 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
-$content = "couch_view.php";
+$content = "couch/couch_view.php";
 $title = "Ver couch";
 
 if (isset($_GET['id'])) {

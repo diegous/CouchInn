@@ -1,11 +1,11 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
 
 if(! isset($check_card_step) )
   $check_card_step=isset($_POST["codigo_tarjeta"])&& !empty($_POST["codigo_tarjeta"]);
-  
+
 
 $regex_map=[
   "credito"=>"\d{3} \d{5} \d{14}",

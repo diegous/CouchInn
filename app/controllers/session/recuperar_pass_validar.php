@@ -1,6 +1,6 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
 if ( !empty($_POST) ) {
   $email=$_POST['email'];

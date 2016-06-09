@@ -1,6 +1,6 @@
 <?php
 
-include "loader.php";
+include "shared/loader.php";
 
 //redirect_if_not_admin();
 
