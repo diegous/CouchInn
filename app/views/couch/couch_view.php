@@ -11,8 +11,8 @@
     <? if($_SESSION['user']->id == $couch->user_id) : ?>
       -
       <a href="/couch/couch_edit.php?id=<?= $couch->id ?>">Modificar Couch</a>
-      <hr>
     <?endif?>
+    <hr>
   <?endif?>
  
 
