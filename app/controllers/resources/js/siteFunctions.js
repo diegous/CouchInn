@@ -84,7 +84,7 @@ function redirectToAlertPageView(title,message,url){
 
 function parseJson(js_object){
     if(js_object==""){
-        alert("not valid json(empty string)";
+        alert("not valid json(empty string)");
     }
     try{
         return JSON.parse(js_object);
