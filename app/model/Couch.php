@@ -50,7 +50,7 @@ class Couch extends GenericModel {
   protected function values_for_update() {
     $result =  "enabled=" . $this->enabled . ", ";
     $result .=  "type_id=" . $this->type_id . ", ";
-    $result .=  "user_id=" . $user->user_id . ", ";
+    $result .=  "user_id=" .  $this->user_id . ", ";
     $result .= "title='" . $this->title . "', ";
     $result .= "description='" . $this->description . "', ";
     $result .= "capacity=" . $this->capacity . ", ";
