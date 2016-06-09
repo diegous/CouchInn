@@ -1,6 +1,6 @@
 <?php
 
-include "loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $errorTable=[
   "error"=>true
@@ -20,5 +20,7 @@ if($errorTable["error"]){
     $errorTable["errorMessage"]='Fue agregado un nuevo couch';
   }
 }
+
+
 echo json_encode($errorTable);
 

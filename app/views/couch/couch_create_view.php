@@ -1,4 +1,4 @@
-<script type="text/javascript" src="js/couch_create_validation.js">
+<script type="text/javascript" src="/couch/js/couch_create_validation.js">
   
 </script>
 

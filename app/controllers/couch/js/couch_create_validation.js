@@ -1,3 +1,4 @@
+
 function couch_create_validation(){
 
   var onSubmit=function(e){
@@ -13,6 +14,7 @@ function couch_create_validation(){
     }else{
       alert("error:\n"+resultTable["errorMessage"]);
     }
+    return false;
   }
 
   $("#form-couch-create").on("submit",onSubmit);
