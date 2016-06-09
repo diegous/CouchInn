@@ -74,7 +74,7 @@ function redirectWithPost(url,contents){
 }
 
 function redirectToAlertPageView(title,message,url){
-  window.location=("shared/alert_page.php"
+  window.location=("/shared/alert_page.php"
       +"?title="+encodeURIComponent(title)
       +"&url="+encodeURIComponent(url)
       +"&message="+encodeURIComponent(message)
@@ -83,6 +83,9 @@ function redirectToAlertPageView(title,message,url){
 
 
 function parseJson(js_object){
+    if(js_object==""){
+        alert("not valid json(empty string)";
+    }
     try{
         return JSON.parse(js_object);
     }catch(e){

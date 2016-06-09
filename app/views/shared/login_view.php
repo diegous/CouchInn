@@ -32,7 +32,7 @@
   <? else : ?>
     <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
     -
-    <a href="user/user_new.php" >Registrarse</a>
+    <a href="/user/user_new.php" >Registrarse</a>
 
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -44,7 +44,7 @@
             <input type="submit" class="login loginmodal-submit" value="Enviar">
           </form>
           <div class="login-help">
-            <a href="user_new.php">Registrarse</a> - <a href="/session/recuperar_pass.php">Olvid&eacute; mi contrase&ntilde;a</a>
+            <a href="/user/user_new.php">Registrarse</a> - <a href="/session/recuperar_pass.php">Olvid&eacute; mi contrase&ntilde;a</a>
           </div>
         </div>
       </div>

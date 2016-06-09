@@ -78,7 +78,7 @@ function encodeURIComponent($str) {
 }
 
 function redirect_to_message($title,$message,$url){
-  header("Location:"."shared/alert_page.php"
+  header("Location:"."/shared/alert_page.php"
       ."?title=".encodeURIComponent($title)
       ."&url=".encodeURIComponent($url)
       ."&message=".encodeURIComponent($message)
