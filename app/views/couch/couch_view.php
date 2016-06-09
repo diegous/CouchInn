@@ -14,7 +14,7 @@
   <br>
   
   <? if ($_SESSION && $_SESSION['user']): ?>
-    <? if($_SESSION['user']->id == $couch->user_id) : ?>
+    <? if(($_SESSION['user']->id == $couch->user_id) || ($_SESSION['user']->is_admin)) : ?>
       <? if ($couch->enabled) : ?>
         <a href="couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar</a>
       <? else : ?>
