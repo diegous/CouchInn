@@ -74,7 +74,11 @@ function redirectWithPost(url,contents){
 }
 
 function redirectToAlertPageView(title,message,url){
-  redirectWithPost("shared/alert_page.php",[["title",title],["url",url],["message",message]]);
+  window.location=("shared/alert_page.php"
+      +"?title="+encodeURIComponent(title)
+      +"&url="+encodeURIComponent(url)
+      +"&message="+encodeURIComponent(message)
+    );
 }
 
 
