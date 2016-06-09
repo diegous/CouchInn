@@ -1,11 +1,9 @@
-<head>
+<div>
   <div class="logo-container">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" language="javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
   </div>
 
   <? if ($_SESSION && $_SESSION['user']): ?>
-    <strong>Usuario actual: <a href="user_edit.php"><?= $_SESSION['user']->email ?></a></strong>
+    <strong>Usuario actual: <a href="/user/user_edit.php"><?= $_SESSION['user']->email ?></a></strong>
 
     <? if($_SESSION['user']->is_admin) : ?>
       <span class="glyphicon glyphicon-cog" style="color:black" title="Usuario administrador" aria-hidden="true"></span>
@@ -24,17 +22,17 @@
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="menu administrador">
-          <li><a href="couch_type_list.php">Ver tipos de couch</a></li>
-          <li><a href="payment_between_dates.php">Ver ganancias entre dos fechas</a></li>
+          <li><a href="/couch_type/couch_type_list.php">Ver tipos de couch</a></li>
+          <li><a href="/payment/payment_between_dates.php">Ver ganancias entre dos fechas</a></li>
         </ul>
       </span>
     <? endif ?>
-    <a href="session_close.php">Cerrar Sesi&oacute;n</a>
+    <a href="/session/session_close.php">Cerrar Sesi&oacute;n</a>
 
   <? else : ?>
     <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
     -
-    <a href="user_new.php" >Registrarse</a>
+    <a href="user/user_new.php" >Registrarse</a>
 
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -52,4 +50,4 @@
       </div>
     </div>
   <? endif ?>
-</head>
+</div>

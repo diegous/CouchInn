@@ -1,7 +1,7 @@
 <h1>Modificar datos de usuario</h1>
 <table class="table">
   <tbody>
-    <form action="user_update.php" method="post">
+    <form action="/user/user_update.php" method="post">
     <input type="hidden" name="id" value="<?= $user->id ?>">
       <tr>
         <div class="form-group">
@@ -51,7 +51,7 @@
 
     <h2>Cuenta Premium:</h2>
     <? if(! $_SESSION['user']->is_premium): ?>
-      <form id="hidden-amount-form" action="payment_system.php" method="post">
+      <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
         <input type="input" name="amount" value="30" hidden="true">
         <a onclick="document.getElementById('hidden-amount-form').submit()" >
           Adquirir Cuenta Premium</a>

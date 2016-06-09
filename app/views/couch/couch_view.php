@@ -12,13 +12,13 @@
   <h3>Ubicaci&oacute;n:</h3>
   <p class="couch-location"><?= $couch->location; ?></p>
   <br>
-  
+
   <? if ($_SESSION && $_SESSION['user']): ?>
     <? if(($_SESSION['user']->id == $couch->user_id) || ($_SESSION['user']->is_admin)) : ?>
       <? if ($couch->enabled) : ?>
-        <a href="couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar</a>
+        <a href="/couch/couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar</a>
       <? else : ?>
-        <a href="couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar</a>  
+        <a href="/couch/couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar</a>
       <? endif ?>
     <?endif?>
   <?endif?>
@@ -27,7 +27,7 @@
 
 <div>
   <? foreach ($picture_list as $picture): ?>
-    <img class="couch-img" src="images/<?= $picture->filename ?>">
+    <img class="couch-img" src="/resources/images/<?= $picture->filename ?>">
   <? endforeach ?>
 </div>
 <br>

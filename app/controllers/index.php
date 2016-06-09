@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $title = "Inicio";
 $content = "couch/couch_list_view.php";
@@ -27,4 +27,4 @@ foreach ($couch_list as $couch) {
   }
 }
 
-include "../views/skeleton.php";
+include $DRV . "/skeleton.php";

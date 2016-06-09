@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $user_logged_in=!empty($_SESSION) && $_SESSION['user'];
 
@@ -9,7 +9,7 @@ if($user_logged_in){
 	$title = "Listado de datos de usuario";
 
 	$user = $_SESSION['user'];
-	include "../views/skeleton.php";
+	include $DRV . "/skeleton.php";
 }
 
 

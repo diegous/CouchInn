@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 //check_login();
 
@@ -19,5 +19,5 @@ if ($_POST["id"] && $_POST["password"] && $_POST["name"] && $_POST["last_name"] 
   $_SESSION['user'] = $user;
 }
 
-header('Location: ' . "user_edit.php");
+header('Location: ' . "/user/user_edit.php");
 exit();

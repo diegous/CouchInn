@@ -11,18 +11,18 @@
 <? foreach ($couch_list as $couch): ?>
   <? if (($couch->enabled) || ($user_id == $couch->user_id) || ($is_admin)): ?>
     <div class="couch-list-item">
-      <a href="couch.php?id=<?= $couch->id ?>">
+      <a href="/couch/couch.php?id=<?= $couch->id ?>">
         <img class="couch-img"
              src="<? if (isset($images[$couch->id])) : ?>
-                    images/<?= $images[$couch->id] ?>
+                    /resources/images/<?= $images[$couch->id] ?>
                   <? else : ?>
-                    images/couchinn-logo-couch.png
+                    /resources/images/couchinn-logo-couch.png
                   <? endif ?>
                   " title="Ver couch">
       </a>
       <div class="couch-info-container">
         <h3 class="couch-title">
-          <a href="couch.php?id=<?= $couch->id ?>">
+          <a href="/couch/couch.php?id=<?= $couch->id ?>">
             <?= $couch->title; ?>
           </a>
         </h3>

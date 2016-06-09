@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 //redirect_if_not_admin();
 
@@ -14,6 +14,5 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
   }
 }
 
-header('Location: couch.php?id=' . $_GET["id"]);
-
+header('Location: ' . '/couch/couch.php?id=' . $_GET["id"]);
 exit();

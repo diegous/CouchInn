@@ -1,7 +1,7 @@
 <?php
 
-include "shared/date_validation.php";
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
+include $DR . "/shared/date_validation.php";
 
 redirect_if_not_admin();
 

@@ -1,9 +1,9 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $content = "user/user_new_view.php";
 $title = "Registrarse";
 
-include "../views/skeleton.php";
+include $DRV . "/skeleton.php";
 

@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $content = "couch/couch_view.php";
 $title = "Ver couch";
@@ -11,8 +11,8 @@ if (isset($_GET['id'])) {
   $couch_type = CouchType::get_by_id($couch->type_id);
   $owner = User::get_by_id($couch->user_id);
 
-  include "../views/skeleton.php";
+  include $DRV . "/skeleton.php";
 } else {
-  header('Location: ' . "index.php");
+  header('Location: ' . '/index.php');
   exit();
 }

@@ -1,5 +1,5 @@
 function checkLogin($form) {
-  $.post("session_create.php",
+  $.post("/session/session_create.php",
     {
       email: $form.email.value,
       password: $form.password.value,
@@ -16,7 +16,7 @@ function checkLogin($form) {
 }
 
 function checkEmail($form) {
-  $.post("recuperar_pass_validar_prueba.php",
+  $.post("/session/recuperar_pass_validar_prueba.php",
     {
       email: $form.email.value,
       //password: $form.password.value,
@@ -74,7 +74,7 @@ function redirectWithPost(url,contents){
 }
 
 function redirectToAlertPageView(title,message,url){
-  redirectWithPost("alert_page.php",[["title",title],["url",url],["message",message]]);
+  redirectWithPost("shared/alert_page.php",[["title",title],["url",url],["message",message]]);
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-include "shared/loader.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 $user_logged_in=!empty($_SESSION) && $_SESSION['user'];
 $user_was_premium=$user_logged_in && $_SESSION['user']->is_premium;
@@ -8,7 +8,7 @@ $user_has_paid=isset($_POST["paid_for_premium"])&& !empty($_POST["paid_for_premi
 
 if($user_logged_in){
 
-	$content="user/user_make_premium_view.php";
+	$content = "user/user_make_premium_view.php";
 	$title = "Solicitacion de cuenta premium";
 
 	if($user_has_paid){
@@ -18,6 +18,6 @@ if($user_logged_in){
 
 	}
 
-	include "../views/skeleton.php";
+	include $DRV . "/skeleton.php";
 }
 

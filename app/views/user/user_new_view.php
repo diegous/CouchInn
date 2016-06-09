@@ -1,5 +1,5 @@
-<? include("alerts.php") ?>
-<script type="text/javascript" src="js/user_new_validation.js"></script>
+<? include($DRV . "/shared/alerts.php") ?>
+<script type="text/javascript" src="/resources/js/user_new_validation.js"></script>
 
 <div class="panel panel-default">
   <div class="panel-heading">Registrarse</div>

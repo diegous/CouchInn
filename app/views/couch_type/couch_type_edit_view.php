@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">Campos a editar</div>
-  <form class="panel-body" action="couch_type_update.php" method="post">
+  <form class="panel-body" action="/couch_type/couch_type_update.php" method="post">
     <input type="hidden" name="id" value="<?= $couch_type->id ?>">
 
     <div class="form-group">

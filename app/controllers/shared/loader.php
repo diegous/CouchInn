@@ -1,12 +1,18 @@
 <?php
 
+// Define document root shorthand. Document root is at app/controllers/
+// DR -> /app/controllers
+$DR = $_SERVER['DOCUMENT_ROOT'];
+// DRV -> /app/views
+$DRV = $DR . "/../views";
+
 // Include Classes
-include "../../model/GenericModel.php";
-include "../../model/User.php";
-include "../../model/CouchType.php";
-include "../../model/Couch.php";
-include "../../model/Picture.php";
-include "../../model/Payment.php";
+include $DR . "/../model/GenericModel.php";
+include $DR . "/../model/User.php";
+include $DR . "/../model/CouchType.php";
+include $DR . "/../model/Couch.php";
+include $DR . "/../model/Picture.php";
+include $DR . "/../model/Payment.php";
 
 // Start session (this must start after loading the classes)
 session_start();
@@ -24,21 +30,21 @@ function get_connection() {
 // Session checkers
 function redirect_if_not_logged_in() {
   if (!isset($_SESSION['user'])) {
-    header('Location: ' . 'index.php');
+    header('Location: ' . '/index.php');
     exit();
   }
 }
 
 function redirect_if_not_admin() {
   if (!isset($_SESSION['user']) || !$_SESSION['user']->is_admin) {
-    header('Location: ' . 'index.php');
+    header('Location: ' . '/index.php');
     exit();
   }
 }
 
 function redirect_if_logged_in() {
   if (isset($_SESSION['user'])) {
-    header('Location: ' . 'index.php');
+    header('Location: ' . '/index.php');
     exit();
   }
 }
