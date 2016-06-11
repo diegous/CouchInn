@@ -6,6 +6,10 @@ $DR = $_SERVER['DOCUMENT_ROOT'];
 // DRV -> /app/views
 $DRV = $DR . "/../views";
 
+$PICTUREDIR = "/resources/images";
+$COUCHPICTUREDIR = $PICTUREDIR."/couches";
+$COUCHPICTUREDIRFULL = $DR.$COUCHPICTUREDIR;
+
 // Include Classes
 include $DR . "/../model/GenericModel.php";
 include $DR . "/../model/User.php";

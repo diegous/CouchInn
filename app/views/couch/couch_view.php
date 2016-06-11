@@ -36,7 +36,7 @@
 
 <div>
   <? foreach ($picture_list as $picture): ?>
-    <img class="couch-img" src="/resources/images/<?= $picture->filename ?>">
+    <img class="couch-img" src="<?=$COUCHPICTUREDIR."/". $picture->filename ?>">
   <? endforeach ?>
 </div>
 <br>

@@ -3,6 +3,7 @@
 class Picture extends GenericModel {
   protected static $table_name = 'pictures';
   protected static $table_fields = 'enabled, couch_id, filename';
+  public    static $size_limit = 100000000;//bytes
 
   public $id;
   public $enabled;
