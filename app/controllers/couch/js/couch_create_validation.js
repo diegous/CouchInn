@@ -1,14 +1,96 @@
+var CouchCreateGlobals={
+  tamanioMaximoPost:null, //lo seteo en couch_create_view.php
+  sizeOfMB:(Math.pow(2,20)),
+  conexion:null  //es el objeto de conexion con el servidor 
+}
+
+//retorna si hay un error
+function updateWarningLabels(){
+  var activadaAlerta=false;
+  var updateRetVal=function(valor){
+    activadaAlerta=activadaAlerta|| ! valor;
+    return valor;
+  };
+  $(".file-popup").each(function(){
+    var label=$(this).siblings(".image-labels").find(".image-label-big")
+    var doesShowLabel;
+    if(this.files.length>0){
+      var fileSize=this.files[0].size
+      doesShowLabel=(fileSize>=CouchCreateGlobals.tamanioMaximoPost)
+      label.children(".image-filesize").html((fileSize/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
+    }else{
+      doesShowLabel=false;
+    }
+    
+    label.toggleClass("hidden",updateRetVal(!doesShowLabel));
+  });
+
+  //serializo el formulario para enviarlo por post
+  var tamanioformulario=$("#form-couch-create").serialize().length;
+  var sumaDeTamanios=0;
+  $(".file-popup").each(function(){
+    if(this.files.length>0)
+      sumaDeTamanios+=this.files[0].size;
+  })
+  sumaDeTamanios+=tamanioformulario;
+  var doShowTooBigLabel=(sumaDeTamanios >= CouchCreateGlobals.tamanioMaximoPost);
+  $(".image-label-big-all").toggleClass("hidden",updateRetVal(!doShowTooBigLabel))
+                           .children(".image-filesize")
+                           .html((sumaDeTamanios/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
+
+  return activadaAlerta;
+}
+ 
 
 function CouchCreateValidation(){
   var onSubmit=function(e){
     e.preventDefault();
     var errorResult;
-    //serializo el formulario para enviarlo por post
-    var formulario=$("#form-couch-create").serialize();
-    // alert(formulario);
-    $("#form-image-list").submit();
 
-    continuation=function(message){
+    if(CouchCreateGlobals.conexion)
+        CouchCreateGlobals.conexion.abort()
+
+    if(updateWarningLabels())
+      return ;
+
+    var cancelButton=$(".button-cancel-upload");
+
+    var fileTransferContainer=$(".file-transfer-progress");
+    var fileTransferBar=fileTransferContainer.find(".progress-bar");
+    var fileTransferText=fileTransferBar.find("span");
+
+    var updateTransferProgress=function(percentComplete){
+      var percentVal = percentComplete+'%';
+      fileTransferBar.width(percentVal);
+      fileTransferBar.css("width",percentComplete);
+      fileTransferBar.attr("aria-valuenow",percentComplete);
+      fileTransferText.html(percentVal);
+    }
+    var before=function(){
+      fileTransferContainer.removeClass("hidden");
+
+      updateTransferProgress(0);
+      cancelButton.removeClass("hidden")
+    };
+
+    var during=function(event, position, total, percentComplete) {
+      updateTransferProgress(percentComplete);
+    };
+
+    var after=function(){
+      updateTransferProgress(100);
+      fileTransferContainer.addClass("hidden");
+      cancelButton.addClass("hidden")
+    };
+
+    var onCancelUploadClick=function(){
+      CouchCreateGlobals.conexion.abort();
+      CouchCreateGlobals.conexion=null;
+      cancelButton.off("click");
+    }
+
+    var continuation=function(message){
+
       var errorResult=message;
       console.log(errorResult);
       var resultTable=parseJson(errorResult);
@@ -24,8 +106,10 @@ function CouchCreateValidation(){
     };
     var options = { 
       //target:        '#form-couch-create',   // target element(s) to be updated with server response 
-      // beforeSubmit:  showRequest,  // pre-submit callback 
-      success:       continuation,  // post-submit callback 
+      beforeSubmit:  before,
+      uploadProgress:during,
+      success:       continuation,
+      complete:      after,
 
       // other available options: 
       url:"couch_create_validation.php",// override for form's 'action' attribute 
@@ -37,7 +121,8 @@ function CouchCreateValidation(){
       // $.ajax options can be used here too, for example: 
       //timeout:   3000 
     }; 
-    $("#form-couch-create").ajaxSubmit(options); 
+    CouchCreateGlobals.conexion=$("#form-couch-create").ajaxSubmit(options).data("jqxhr"); 
+    cancelButton.on("click",onCancelUploadClick)
   }
 
 
@@ -78,6 +163,7 @@ function CouchImageListValidation(){
                  .show()
           $(that).siblings(".button-choose-file")
                  .hide();
+          updateWarningLabels();
         };
       })();
       // creo una url con la imagen embedida en ella
@@ -87,17 +173,16 @@ function CouchImageListValidation(){
 
 
   var onDeleteClick=function(){
-    var button=this;
-    var image=$(button).siblings("img");
+    var button=$(this);
+    var image=button.siblings("img");
     image.toggleClass("couch-image-hidden couch-image-shown")
-           .removeAttr("src")
+         .removeAttr("src")
            ;
-    $(button).siblings(".image-labels").children(".image-label").addClass("hidden");
-           
-    $(button).hide();
-    $(button).siblings(".button-choose-file")
-             .show();
-    $(button).siblings(".file-popup").each(clearInputFile);
+    button.hide();
+    button.siblings(".button-choose-file")
+          .show();
+    button.siblings(".file-popup").each(clearInputFile);
+    updateWarningLabels();
   }
 
   var onClickChooseFile=function(e){

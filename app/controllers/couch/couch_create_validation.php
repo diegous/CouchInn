@@ -90,9 +90,9 @@ if(count($_FILES)+count(unloadedFiles($_POST)) !==(Couch::$maximum_amount_of_pic
     $bigFiles=whatImagesAreTooBig($files);
     if(count($bigFiles)>0){
       $errorTable["error"]="too big";
-      $names=array_keys(array_map(function($val){ return $val["name"];},$bigFiles));
+      $inputField=array_keys(array_map(function($val){ return $val["name"];},$bigFiles));
       $errorTable["errorMessage"]="Archivos demasiado grandes";
-      $errorTable["which"]=$names;
+      $errorTable["which"]=$inputField;
       
     }else{
       $existingFiles=whichFilesExistAlready($files);

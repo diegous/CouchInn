@@ -1,4 +1,6 @@
-<script type="text/javascript" src="/couch/js/couch_create_validation.js">
+<script src="/couch/js/couch_create_validation.js"></script>
+<script>
+CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
 </script>
 <style>
   .couch-image-shown {
@@ -15,9 +17,24 @@
   }
   .image-label{
     margin: auto;
-    display: block;
+    display: block; 
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .progress {
+      position: relative;
+      background: transparent;
+      color: black;
+      margin-top: 0;
   }
 
+  .progress-bar span {
+      position: absolute;
+      display: block;
+      width: 100%;
+      color: black;
+      font-weight: bold;
+   }
 </style>
 
 <div class="panel panel-default">
@@ -63,12 +80,17 @@
       Imagenes
     </div>
     <div class='panel-body'>
+      <div id="image-label-big-all"
+              class="image-label image-label-big-all alert alert-danger hidden ">
+        <h5>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          Conjunto de imagenes demasiado grande(ocupan <span class="image-filesize" aria-hidden="true"></span>MB)<br>
+          (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
+        </h5>
+      </div>
+
       <div class='row' id="couch-images">
-      <!-- <iframe id="image-server-response" name="image-server-response"></iframe> -->
-      <!-- <form id="form-image-list" target="image-server-response" method="POST" >
-          enctype="multipart/form-data" action="couch_create_validation.php" -->
         <? for($i = 1; $i <= $max_couch_photos; $i++): ?>
-        <!-- <input type="text" hidden="true" name="id" value="22"> -->
           <div class='panel-couch-image div-file<?=$i?>'>
             <input type="file" name="file<?=$i?>" id="file<?=$i?>"
                     class="file-popup" style="display: none;" />
@@ -76,28 +98,42 @@
                    style="display:none" value="Borre la imagen <?= $i ?>"/>
             <input type="button" class="button-choose-file btn btn-default btn-block" 
                    value="Seleccione la imagen <?= $i ?>(opcional)" />
-            <h2 class="image-labels">
-              <span id="image-label-non-file<?=$i?>"
-                    class="image-label image-label-non label label-warning text-center hidden ">
+            <div class="image-labels">
+              <div id="image-label-non-file<?=$i?>"
+                    class="image-label image-label-non label alert alert-danger hidden ">
+                    <!-- class="image-label image-label-non label label-warning text-center full-width hidden "> -->
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 no es una imagen
-              </span>
-              <span id="image-label-big-file<?=$i?>"
-                    class="image-label image-label-big label label-warning text-center hidden">
-                demasiado grande
-              </span>
-            </h2>
+              </div>
+              <div id="image-label-big-file<?=$i?>"
+                    class="image-label image-label-big alert alert-danger hidden">
+                    <!-- class="image-label image-label-big label label-warning text-center full-width hidden"> -->
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                Imagen demasiado grande(ocupa <span class="image-filesize" aria-hidden="true"></span>MB)<br>
+                (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
+              </div>
+            </div>
          
             <img class="couch-img couch-image-hidden"/>
           </div>
-
         <? endfor?>
 <!--         <button type="submit" form="form-image-list" id="button-submit-image"
                 class="btn btn-primary btn-block">Subir imagen</button>   -->
       <!-- </form> -->
       </div>
     </div>
+      <input type="button" class="button-cancel-upload btn btn-default btn-block hidden"
+             value="Cancelar Subida"/>
+      <div class="file-transfer-progress hidden">
+        <h4>Subiendo datos</h4>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                <span>60%</span>
+            </div>
+        </div>
+      </div>
+    </form>
   </div>
-  </form>
 
   
   <button type="submit" form="form-couch-create" id="button-submit-couch"

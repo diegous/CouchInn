@@ -10,6 +10,7 @@ $PICTUREDIR = "/resources/images";
 $COUCHPICTUREDIR = $PICTUREDIR."/couches";
 $COUCHPICTUREDIRFULL = $DR.$COUCHPICTUREDIR;
 
+
 // Include Classes
 include $DR . "/../model/GenericModel.php";
 include $DR . "/../model/User.php";
@@ -88,3 +89,10 @@ function redirect_to_message($title,$message,$url){
       ."&message=".encodeURIComponent($message)
   );
 };
+
+
+
+////////////////////////
+//  Constructores estaticos
+////////////////////////
+Picture::class_initialize();
