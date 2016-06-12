@@ -6,3 +6,5 @@
 <div style="text-align:right">
   <? include("login_view.php") ?>
 </div>
+
+<? include("navbar.html.php") ?>
