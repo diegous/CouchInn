@@ -30,7 +30,10 @@ function whatElemsAreEmpty($array,$ignoredFunction=null){
 }
 
 function whatElemsAreNotImages($paramArray){
-  $callable=function($val){return strpos($val["type"],'image')!==0 ;};
+  $callable=function($val){
+    $pos=strpos($val["type"],'image/');
+    return $pos!==0;
+  };
   return array_filter($paramArray,$callable);
 }
 
@@ -133,9 +136,9 @@ foreach ($files as $key=>$file) {
     $picture=new Picture(NULL,true,intval($couch->id),$imageFilename);
     $errorTable["error"]= ! $picture->save_new();
     if ($errorTable["error"]) {
-      $errorTable["errorMessage"]='No se pudo crear el couch';
+      $errorTable["errorMessage"]='No se pudo crear un Picture';
     } else {
-      $errorTable["errorMessage"]='Fue agregado un nuevo couch';
+      $errorTable["errorMessage"]='Fue agregado un Picture';
     }  
     exit_if_error();
   } else {
@@ -146,7 +149,7 @@ foreach ($files as $key=>$file) {
 
 if(count($noneUploaded)>0){
   $errorTable["error"]="upload";
-  $errorTable["errorMessage"]="No se pudo subir las imagenes '".$noneUploaded."'";
+  $errorTable["errorMessage"]="No se pudo subir las imagenes '".json_encode($noneUploaded)."'";
 }
 
 

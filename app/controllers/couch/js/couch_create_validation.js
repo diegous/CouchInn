@@ -41,6 +41,16 @@ function updateWarningLabels(){
                            .find(".image-filesize")
                            .html(""+(sumaDeTamanios/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
 
+  $(".file-popup").each(function(){
+    var isAnImage=(this.files.length===0 || (this.files[0]["type"].indexOf("image")===0))
+
+    updateRetVal(isAnImage);
+    $(this).siblings(".image-labels")
+            .children(".image-label-non")
+            .toggleClass("hidden",isAnImage);
+  
+  });
+
   return activadaAlerta;
 }
  
@@ -102,10 +112,6 @@ function CouchCreateValidation(){
       var resultTable=parseJson(errorResult);
       if(resultTable["error"]===false){
         redirectToAlertPageView("Creacion de couch","El couch fue creado exitosamente","/");
-      }else if(resultTable["error"]==="non image"){
-        resultTable.which.forEach(function(name){
-          $(".div-"+name).find(".image-label-non").removeClass("hidden");
-        });
       }else{
         alert("error:\n"+resultTable["errorMessage"]);
       }
