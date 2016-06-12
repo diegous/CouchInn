@@ -6,6 +6,10 @@ body {
   background: #FAFAFA;
 }
 
+footer {
+  background-color: gainsboro;
+}
+
 .center-column {
   width: 60%;
   margin-left: auto;

@@ -22,8 +22,9 @@
 
       <? include($content) ?>
 
-      <!--<? include("shared/footer.php") ?>-->
     </div>
+
+    <? include("shared/footer.php") ?>
 
   </body>
 </html>
