@@ -1,7 +1,10 @@
 var CouchCreateGlobals={
   tamanioMaximoPost:null, //lo seteo en couch_create_view.php
   sizeOfMB:(Math.pow(2,20)),
-  conexion:null  //es el objeto de conexion con el servidor 
+  conexion:null,  //es el objeto de conexion con el servidor 
+  printableFileSize:function(sizeInBytes){
+    return ""+(sizeInBytes/(CouchCreateGlobals.sizeOfMB)).toFixed(2)
+  }
 }
 
 //retorna si hay un error
@@ -17,7 +20,7 @@ function updateWarningLabels(){
     if(this.files.length>0){
       var fileSize=this.files[0].size
       doesShowLabel=(fileSize>=CouchCreateGlobals.tamanioMaximoPost)
-      label.children(".image-filesize").html((fileSize/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
+      label.children(".image-filesize").html(CouchCreateGlobals.printableFileSize(fileSize));
     }else{
       doesShowLabel=false;
     }
@@ -35,8 +38,8 @@ function updateWarningLabels(){
   sumaDeTamanios+=tamanioformulario;
   var doShowTooBigLabel=(sumaDeTamanios >= CouchCreateGlobals.tamanioMaximoPost);
   $(".image-label-big-all").toggleClass("hidden",updateRetVal(!doShowTooBigLabel))
-                           .children(".image-filesize")
-                           .html((sumaDeTamanios/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
+                           .find(".image-filesize")
+                           .html(""+(sumaDeTamanios/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
 
   return activadaAlerta;
 }
@@ -58,6 +61,8 @@ function CouchCreateValidation(){
     var fileTransferContainer=$(".file-transfer-progress");
     var fileTransferBar=fileTransferContainer.find(".progress-bar");
     var fileTransferText=fileTransferBar.find("span");
+    var camposDeEntrada=
+      $('.button-delete-image,.button-choose-file,.button-save-couch,input[type="text"],#select-type');
 
     var updateTransferProgress=function(percentComplete){
       var percentVal = percentComplete+'%';
@@ -70,7 +75,8 @@ function CouchCreateValidation(){
       fileTransferContainer.removeClass("hidden");
 
       updateTransferProgress(0);
-      cancelButton.removeClass("hidden")
+      cancelButton.removeClass("hidden");
+      camposDeEntrada.attr("disabled",true);
     };
 
     var during=function(event, position, total, percentComplete) {
@@ -80,13 +86,13 @@ function CouchCreateValidation(){
     var after=function(){
       updateTransferProgress(100);
       fileTransferContainer.addClass("hidden");
-      cancelButton.addClass("hidden")
+      cancelButton.addClass("hidden");
+      camposDeEntrada.removeAttr("disabled");
     };
 
     var onCancelUploadClick=function(){
       CouchCreateGlobals.conexion.abort();
       CouchCreateGlobals.conexion=null;
-      cancelButton.off("click");
     }
 
     var continuation=function(message){
@@ -122,7 +128,7 @@ function CouchCreateValidation(){
       //timeout:   3000 
     }; 
     CouchCreateGlobals.conexion=$("#form-couch-create").ajaxSubmit(options).data("jqxhr"); 
-    cancelButton.on("click",onCancelUploadClick)
+    cancelButton.one("click",onCancelUploadClick)
   }
 
 
@@ -146,7 +152,6 @@ function CouchImageListValidation(){
   $(".file-popup").each(clearInputFile);
 
   var imageFileSelectHandler=function() {
-    console.log("inside:");
     var that=this;
     var file= this.files[0];
     //chequeo que es una imagen
@@ -160,6 +165,9 @@ function CouchImageListValidation(){
                  .toggleClass("couch-image-hidden couch-image-shown")
                  .attr("src",imageData)
           $(that).siblings(".button-delete-image")
+                 .val(function(i,val){
+                   return (val.split('(')[0])+"("+CouchCreateGlobals.printableFileSize(file.size)+"MB)"
+                 })
                  .show()
           $(that).siblings(".button-choose-file")
                  .hide();

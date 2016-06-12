@@ -75,6 +75,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
         pattern="\d+" required="true">
     </div>
 
+  
   <div class="panel panel-default">
     <div class="panel-heading">
       Imagenes
@@ -84,7 +85,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
               class="image-label image-label-big-all alert alert-danger hidden ">
         <h5>
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          Conjunto de imagenes demasiado grande(ocupan <span class="image-filesize" aria-hidden="true"></span>MB)<br>
+          Conjunto de imagenes demasiado grande(ocupan <span class="image-filesize"></span>MB)<br>
           (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
         </h5>
       </div>
@@ -95,7 +96,10 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
             <input type="file" name="file<?=$i?>" id="file<?=$i?>"
                     class="file-popup" style="display: none;" />
             <input type="button" class="button-delete-image btn btn-default btn-block"
-                   style="display:none" value="Borre la imagen <?= $i ?>"/>
+                   style="display:none"
+                   value="Borre la imagen <?= $i ?> ("
+
+                   />
             <input type="button" class="button-choose-file btn btn-default btn-block" 
                    value="Seleccione la imagen <?= $i ?>(opcional)" />
             <div class="image-labels">
@@ -122,22 +126,24 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
       <!-- </form> -->
       </div>
     </div>
-      <input type="button" class="button-cancel-upload btn btn-default btn-block hidden"
-             value="Cancelar Subida"/>
-      <div class="file-transfer-progress hidden">
-        <h4>Subiendo datos</h4>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                <span>60%</span>
-            </div>
-        </div>
-      </div>
     </form>
   </div>
-
+  <div class="panel-footer">
   
-  <button type="submit" form="form-couch-create" id="button-submit-couch"
-          class="btn btn-primary btn-block">Guardar</button>
+    <input type="button" class="button-cancel-upload btn btn-primary btn-block hidden"
+           value="Cancelar Subida"/>
+    <div class="file-transfer-progress hidden">
+      <h4>Subiendo datos</h4>
+      <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+              <span>60%</span>
+          </div>
+      </div>
+    </div>
+    <input type="submit" form="form-couch-create" id="button-submit-couch"
+           class="button-save-couch btn btn-primary btn-block" value="Guardar"/>
+  
+  </div>
 
 
 </div>
