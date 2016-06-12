@@ -36,7 +36,9 @@
 
 <div>
   <? foreach ($picture_list as $picture): ?>
-    <img class="couch-img" src="/resources/images/<?= $picture->filename ?>">
+    <img class="couch-img" src="<?=$COUCHPICTUREDIR."/". $picture->filename ?>"
+         onError="this.src='<?=$PICTUREDIR?>/couchinn-logo-couch.png';"
+    >
   <? endforeach ?>
 </div>
 <br>

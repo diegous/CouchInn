@@ -3,6 +3,8 @@
 class Couch extends GenericModel {
   protected static $table_name = 'couchs';
   protected static $table_fields = 'enabled, published, user_id, type_id, title, description, capacity, location';
+  public    static $maximum_amount_of_pictures = 3;
+
 
   public $id;
   public $enabled;

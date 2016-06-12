@@ -14,11 +14,14 @@
       <a href="/couch/couch.php?id=<?= $couch->id ?>">
         <img class="couch-img"
              src="<? if (isset($images[$couch->id])) : ?>
-                    /resources/images/<?= $images[$couch->id] ?>
+                    <?=$COUCHPICTUREDIR."/".$images[$couch->id] ?>
                   <? else : ?>
                     /resources/images/couchinn-logo-couch.png
                   <? endif ?>
-                  " title="Ver couch">
+                  "
+             title="Ver couch"
+             onError="this.src='<?=$PICTUREDIR?>/couchinn-logo-couch.png';"
+             >
       </a>
       <div class="couch-info-container">
         <h3 class="couch-title">
