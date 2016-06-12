@@ -7,13 +7,16 @@ var CouchCreateGlobals={
   }
 }
 
-//retorna si hay un error
+//comprueba y muestra alertas;retorna true si hay una alerta sino false
 function updateWarningLabels(){
   var activadaAlerta=false;
   var updateRetVal=function(valor){
     activadaAlerta=activadaAlerta|| ! valor;
     return valor;
   };
+
+  ////////////////////////////////////////////////////////////////////////
+  //Compruebo que el tamaño de cada archibo no pase el tamaño admitido por POST
   $(".file-popup").each(function(){
     var label=$(this).siblings(".image-labels").find(".image-label-big")
     var doesShowLabel;
@@ -28,7 +31,8 @@ function updateWarningLabels(){
     label.toggleClass("hidden",updateRetVal(!doesShowLabel));
   });
 
-  //serializo el formulario para enviarlo por post
+  ////////////////////////////////////////////////////////////////////////
+  //Compruebo que la suma del tamaño de todos los archivos no pase del tamaño admitido por POST
   var tamanioformulario=$("#form-couch-create").serialize().length;
   var sumaDeTamanios=0;
   $(".file-popup").each(function(){
@@ -41,6 +45,8 @@ function updateWarningLabels(){
                            .find(".image-filesize")
                            .html(""+(sumaDeTamanios/(CouchCreateGlobals.sizeOfMB)).toFixed(2));
 
+  ////////////////////////////////////////////////////////////////////////
+  //Compruebo que cada archivo sea una imagen 
   $(".file-popup").each(function(){
     var isAnImage=(this.files.length===0 || (this.files[0]["type"].indexOf("image")===0))
 
@@ -54,14 +60,22 @@ function updateWarningLabels(){
   return activadaAlerta;
 }
  
-
+//realiza el proceso de subida de archivos 
 function CouchCreateValidation(){
+
   var onSubmit=function(e){
     e.preventDefault();
     var errorResult;
+    
+    var terminarConexion=function(){
+      CouchCreateGlobals.conexion.abort();
+      CouchCreateGlobals.conexion=null; //libero la conexion
+    }
 
-    if(CouchCreateGlobals.conexion)
-        CouchCreateGlobals.conexion.abort()
+    //si la conexion todavia existe la termino
+    if(CouchCreateGlobals.conexion){
+      terminarConexion();
+    }
 
     if(updateWarningLabels())
       return ;
@@ -77,7 +91,7 @@ function CouchCreateValidation(){
     var updateTransferProgress=function(percentComplete){
       var percentVal = percentComplete+'%';
       fileTransferBar.width(percentVal);
-      fileTransferBar.css("width",percentComplete);
+      fileTransferBar.css("width",percentVal);
       fileTransferBar.attr("aria-valuenow",percentComplete);
       fileTransferText.html(percentVal);
     }
@@ -100,12 +114,9 @@ function CouchCreateValidation(){
       camposDeEntrada.removeAttr("disabled");
     };
 
-    var onCancelUploadClick=function(){
-      CouchCreateGlobals.conexion.abort();
-      CouchCreateGlobals.conexion=null;
-    }
 
     var continuation=function(message){
+      after();
 
       var errorResult=message;
       console.log(errorResult);
@@ -117,38 +128,31 @@ function CouchCreateValidation(){
       }
     };
     var options = { 
-      //target:        '#form-couch-create',   // target element(s) to be updated with server response 
       beforeSubmit:  before,
       uploadProgress:during,
       success:       continuation,
-      complete:      after,
 
-      // other available options: 
-      url:"couch_create_validation.php",// override for form's 'action' attribute 
-      type:"POST"        // 'get' or 'post', override for form's 'method' attribute 
-      //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-      //clearForm: true        // clear all form fields after successful submit 
-      //resetForm: true        // reset the form after successful submit 
-
-      // $.ajax options can be used here too, for example: 
-      //timeout:   3000 
+      url:"couch_create_validation.php",
+      type:"POST"
     }; 
     CouchCreateGlobals.conexion=$("#form-couch-create").ajaxSubmit(options).data("jqxhr"); 
-    cancelButton.one("click",onCancelUploadClick)
+    cancelButton.one("click",function(){
+      terminarConexion();
+      after();
+    });
   }
 
 
 
 
   $("#form-couch-create").on("submit",onSubmit);
-
-  // new CouchImagePanel();
 };
 
 
-
+//configura los eventos de campos de imagen
 function CouchImageListValidation(){
-  clearInputFile= function(){
+  //limpio el campo de archivo
+  var clearInputFile= function(){
     var e=$(this);
     e.wrap('<form>').closest('form').get(0).reset();
     e.unwrap();
@@ -157,11 +161,11 @@ function CouchImageListValidation(){
   //me aseguro de que no haya archivos seleccionados al recargar la pagina.
   $(".file-popup").each(clearInputFile);
 
+  //que hace al seleccionar un archivo
   var imageFileSelectHandler=function() {
     var that=this;
     var file= this.files[0];
-    //chequeo que es una imagen
-    // if (file.type.match('image.*')) {
+  
     if (true) {
       var reader = new FileReader();
       reader.onload = (function() {
@@ -186,6 +190,7 @@ function CouchImageListValidation(){
   };
 
 
+  //que hace al hacer click en borrar imagen
   var onDeleteClick=function(){
     var button=$(this);
     var image=button.siblings("img");
@@ -199,6 +204,8 @@ function CouchImageListValidation(){
     updateWarningLabels();
   }
 
+  //que hace al hacer click en el boton de eleccionar imagen
+  //usa un selector de archivos oculto
   var onClickChooseFile=function(e){
     $(this).siblings(".file-popup")
            .trigger("click");

@@ -109,10 +109,6 @@ if(count($_FILES)+count(unloadedFiles($_POST)) !==(Couch::$maximum_amount_of_pic
 
 
 exit_if_error();
-// $errorTable["error"]="dummy";
-// $errorTable["errorMessage"]="dummy:\n".json_encode(array_keys($_FILES));
-// exit_if_error();
-
 
 $couch = new Couch(NULL, TRUE, TRUE, intval($_POST["userid"]), intval($_POST["type"]), $_POST["titulo"],
                        $_POST["descripcion"], intval($_POST["capacidad"]), $_POST["lugar"]);
