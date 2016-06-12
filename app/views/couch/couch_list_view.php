@@ -18,7 +18,10 @@
                   <? else : ?>
                     /resources/images/couchinn-logo-couch.png
                   <? endif ?>
-                  " title="Ver couch">
+                  "
+             title="Ver couch"
+             onError="this.src='<?=$PICTUREDIR?>/couchinn-logo-couch.png';"
+             >
       </a>
       <div class="couch-info-container">
         <h3 class="couch-title">

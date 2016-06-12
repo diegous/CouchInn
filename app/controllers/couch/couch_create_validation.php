@@ -118,6 +118,7 @@ if ($errorTable["error"]) {
   $errorTable["errorMessage"]='No se pudo crear el couch';
 } else {
   $errorTable["errorMessage"]='Fue agregado un nuevo couch';
+
 }
 
 exit_if_error();
@@ -125,7 +126,7 @@ exit_if_error();
 $noneUploaded=Array();
 foreach ($files as $key=>$file) {
   $couchImageId=firstNumberInString($key);
-  $imageFilename=($couch->user_id.'-'.$couch->id.'-'.$couchImageId);
+  $imageFilename=($couch->user_id.'-'.$couch->id.'-'.$couchImageId.".".pathinfo($file["name"],PATHINFO_EXTENSION));
   $imagePath=$COUCHPICTUREDIRFULL."/".$imageFilename;
 
   if (move_uploaded_file($file["tmp_name"], $imagePath)) {
