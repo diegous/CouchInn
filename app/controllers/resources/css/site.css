@@ -22,23 +22,20 @@ footer {
 
 
 /* MAIN PAGE */
-.couch-list-item {
-}
-
 .couch-info-container {
   margin: 25px;
 }
 
 .couch-img-container {
-  display: inline-block;
-  float: left;
-}
-
-.couch-img {
   height: 20em;
   width: 20em;
   float: left;
   margin: 25px;
+}
+
+.couch-img {
+  max-height: 20em;
+  max-width: 20em;
 }
 
 .label-error{
