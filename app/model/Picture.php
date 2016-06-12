@@ -14,7 +14,7 @@ class Picture extends GenericModel {
   public static function class_initialize() {
     if(! self::$initialized ){
       //El tamaño de las imagenes sera el de los bytes enviables por POST
-      self::$size_limit = (floatval(ini_get('post_max_size'))*(pow(20,2)));
+      self::$size_limit = (floatval(ini_get('post_max_size'))*(pow(2,20)));
       self::$initialized=true;
     }
   }
