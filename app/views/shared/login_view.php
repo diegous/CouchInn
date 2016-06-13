@@ -13,16 +13,7 @@
       <span class="glyphicon glyphicon-star" style="color:goldenrod" title="Usuario premium" aria-hidden="true"></span>
     <? endif ?>
 
-    <br>
-
-    <a href="/session/session_close.php">Cerrar Sesi&oacute;n</a>
-
   <? else : ?>
-    <!--
-    <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
-    -
-    <a href="/user/user_new.php" >Registrarse</a>
-    -->
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="loginmodal-container">

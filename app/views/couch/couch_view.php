@@ -41,8 +41,9 @@
   </div>
 </div>
 
-<? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)): ?>
+<? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin) && !($_SESSION['user']->id == $couch->user_id)): ?>
   <div>
+    <br>
     <h2>Pedir reserva</h2>
     <form class="panel-body" action="/reservation/reservation_create.php" onsubmit="return checkValidDates(this)" method="POST">
 
