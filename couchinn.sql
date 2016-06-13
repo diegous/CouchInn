@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2016 at 01:02 AM
+-- Generation Time: Jun 13, 2016 at 06:16 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -45,7 +45,7 @@ CREATE TABLE `couchs` (
 INSERT INTO `couchs` (`id`, `enabled`, `published`, `user_id`, `type_id`, `title`, `description`, `capacity`, `location`) VALUES
 (1, 1, 1, 11, 11, 'Mi casa', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 3, 'La Plata'),
 (2, 1, 1, 12, 18, 'Choza Feliz', 'Acogedora choza en la selva misionera. Cuenta con capacidad para 6 personas. Se encuentra en una aldea, ideal para compartir momentos con la tribu.\r\n\r\nNo cuenta con ventanas.', 6, 'La Plata'),
-(3, 1, 1, 13, 13, 'Camping Juancito', 'Ideal para hacer camping :)', 15, 'Hip?dromo, La Plata');
+(3, 1, 1, 13, 13, 'Camping Juancito', 'Ideal para hacer camping :)', 15, 'Hipódromo, La Plata');
 
 -- --------------------------------------------------------
 
@@ -96,8 +96,7 @@ INSERT INTO `couch_types` (`id`, `enabled`, `description`) VALUES
 (11, 1, 'Casa'),
 (12, 1, 'Departamento'),
 (13, 1, 'Camping'),
-(18, 1, 'Choza'),
-(33, 1, 'pepe');
+(18, 1, 'Choza');
 
 -- --------------------------------------------------------
 
@@ -161,8 +160,19 @@ CREATE TABLE `reservations` (
 CREATE TABLE `reservation_states` (
   `id` int(11) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `description` int(11) NOT NULL
+  `description` varchar(11) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservation_states`
+--
+
+INSERT INTO `reservation_states` (`id`, `enabled`, `description`) VALUES
+(1, 1, 'Pendiente'),
+(2, 1, 'Confirmada'),
+(3, 1, 'Rechazada'),
+(4, 1, 'Finalizada'),
+(5, 1, 'Vencida');
 
 -- --------------------------------------------------------
 
@@ -190,9 +200,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `enabled`, `email`, `password`, `name`, `last_name`, `birthday`, `phone`, `is_admin`, `is_premium`) VALUES
 (10, 1, 'admin@a.b', 'admin', '', '', '0000-00-00', '', 1, 0),
 (11, 1, 'estebanquito@hotmail.com', '123456', 'Esteban', 'Quito', '1995-06-12', NULL, 0, 0),
-(12, 1, 'stella@gmail.com', '123456', 'Stella', 'Garto', '1975-01-26', NULL, 0, 1),
-(13, 1, 'e.nito@aol.com', '123456', 'Elena', 'Nito', '1976-11-09', NULL, 0, 0),
-(20, 1, 'fdsf@fa.com', '12456', 'fds', 'gfgfdgfdgfd', '2016-06-21', 'gfdgfdgds', 0, 0);
+(12, 1, 'stella@gmail.com', '123456', 'Stella', 'Garto', '1975-01-26', '', 0, 1),
+(13, 1, 'e.nito@aol.com', '123456', 'Elena', 'Nito', '1976-11-09', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -311,12 +320,12 @@ ALTER TABLE `pictures`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `reservation_states`
 --
 ALTER TABLE `reservation_states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
