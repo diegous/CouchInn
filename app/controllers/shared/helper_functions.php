@@ -15,22 +15,26 @@ function get_connection() {
 }
 
 // Session checkers
+function user_is_logged_in() {
+  return isset($_SESSION['user']);
+}
+
 function redirect_if_not_logged_in() {
-  if (!isset($_SESSION['user'])) {
+  if (!user_is_logged_in()) {
     header('Location: ' . '/index.php');
     exit();
   }
 }
 
 function redirect_if_not_admin() {
-  if (!isset($_SESSION['user']) || !$_SESSION['user']->is_admin) {
+  if (!user_is_logged_in() || !$_SESSION['user']->is_admin) {
     header('Location: ' . '/index.php');
     exit();
   }
 }
 
 function redirect_if_logged_in() {
-  if (isset($_SESSION['user'])) {
+  if (user_is_logged_in()) {
     header('Location: ' . '/index.php');
     exit();
   }

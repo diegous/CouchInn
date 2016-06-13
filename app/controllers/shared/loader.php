@@ -13,11 +13,13 @@ $COUCHPICTUREDIRFULL = $DR.$COUCHPICTUREDIR;
 
 // Include Classes
 include $DR . "/../model/GenericModel.php";
-include $DR . "/../model/User.php";
-include $DR . "/../model/CouchType.php";
 include $DR . "/../model/Couch.php";
-include $DR . "/../model/Picture.php";
+include $DR . "/../model/CouchType.php";
 include $DR . "/../model/Payment.php";
+include $DR . "/../model/Picture.php";
+include $DR . "/../model/Reservation.php";
+include $DR . "/../model/ReservationState.php";
+include $DR . "/../model/User.php";
 
 // Include Helper functions
 include $DR . "/shared/helper_functions.php";
