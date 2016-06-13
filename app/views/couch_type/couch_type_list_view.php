@@ -1,7 +1,5 @@
 <h1>Tipos de couch</h1>
 
-<? include($DRV . "/shared/alerts.php") ?>
-
 <table class="table">
   <thead>
     <tr>

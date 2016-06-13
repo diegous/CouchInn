@@ -19,6 +19,7 @@
 
     <div class="center-column">
       <? include($DRV . "/shared/header.php") ?>
+      <? include($DRV . "/shared/alerts.php") ?>
 
       <? include($content) ?>
 

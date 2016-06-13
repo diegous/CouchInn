@@ -1,4 +1,3 @@
-<? include($DRV . "/shared/alerts.php") ?>
 <script type="text/javascript" src="/user/js/user_new_validation.js"></script>
 
 <div class="panel panel-default">
