@@ -9,7 +9,7 @@
 <? endif ?>
 
 <? foreach ($couch_list as $couch): ?>
-  <? if (($couch->enabled) || ($user_id == $couch->user_id) || ($is_admin)): ?>
+  <? if (($couch->enabled==1) || ($user_id == $couch->user_id) || ($is_admin)): ?>
     <div class="couch-list-item">
       <div class="couch-img-container">
         <a href="/couch/couch.php?id=<?= $couch->id ?>">
@@ -39,7 +39,7 @@
         <p class="couch-capacity"> <?= $couch->capacity; ?></p>
         <label>Ubicaci&oacute;n:</label>
         <p class="couch-location"> <?= $couch->location; ?></p>
-        <? if (!$couch->enabled) : ?>
+        <? if (($couch->enabled==0) || ($couch->enabled==2)) : ?>
           <strong><h4 style="color:red;">¡Atención Couch Deshabilitado! </p></strong>
 
         <? endif ?>
