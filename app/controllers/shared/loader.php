@@ -13,6 +13,7 @@ include $DR . "/../model/CouchType.php";
 include $DR . "/../model/Couch.php";
 include $DR . "/../model/Picture.php";
 include $DR . "/../model/Payment.php";
+include $DR . "/../model/CouchComment.php";
 
 // Start session (this must start after loading the classes)
 session_start();
