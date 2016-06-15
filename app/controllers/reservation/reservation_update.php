@@ -47,9 +47,7 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
     exit();
   }
 
-  redirect_to_message("mensaje",
-    "reservations:(".$reservation.")<br>userid:(".$reservation->user_id.",".$_SESSION['user']->id.")",
-    "/");
+  header('Location: ' . "/");
   exit();
 }
 
