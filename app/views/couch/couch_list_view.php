@@ -45,7 +45,7 @@
         <? endif ?>
         <br>
       </div>
-      <hr>
     </div>
+    <hr>
   <? endif ?>
 <? endforeach ?>
