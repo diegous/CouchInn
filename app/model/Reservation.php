@@ -36,8 +36,7 @@ class Reservation extends GenericModel {
   }
 
   public function __toString() {
-    $result = "" . $this->id . ", ";
-    $result .= "" . $this->enabled . ", ";
+    $result = "" . $this->enabled . ", ";
     $result .= "" . $this->user_id . ", ";
     $result .= "" . $this->couch_id . ", ";
     $result .= "" . $this->state_id . ", ";
