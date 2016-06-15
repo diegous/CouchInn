@@ -10,6 +10,13 @@ footer {
   background-color: gainsboro;
 }
 
+hr {
+  border: 0;
+  height: 1px;
+  background: #222;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
 .center-column {
   width: 60%;
   margin-left: auto;
@@ -22,6 +29,10 @@ footer {
 
 
 /* MAIN PAGE */
+.couch-list-item {
+  overflow:hidden;
+}
+
 .couch-info-container {
   margin: 25px;
 }
