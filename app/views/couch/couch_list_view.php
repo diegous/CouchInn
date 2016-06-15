@@ -1,6 +1,6 @@
 <h1>Listado de couch</h1>
 
-<? if ($_SESSION && $_SESSION['user']): ?>
+<? if (isset($_SESSION['user'])): ?>
   <? $user_id = $_SESSION['user']->id ?>
   <? $is_admin = $_SESSION['user']->is_admin ?>
 <? else : ?>
