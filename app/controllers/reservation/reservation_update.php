@@ -6,10 +6,11 @@ redirect_if_not_logged_in();
 
 if (isset($_GET["id"]) && isset($_GET["action"])) {
   $reservation = Reservation::get_by_id($_GET["id"]);
+  $couch = Couch::get_by_id($reservation->couch_id);
   $state_list = ReservationState::get_all();
   $users = User::get_all();
 
-  if ($reservation && ($reservation->user_id == $_SESSION['user']->id)) {
+  if ($reservation && ($couch->user_id == $_SESSION['user']->id)) {
     switch ($_GET["action"]) {
       case "confirm":
         $reservation->state_id = $state_list["Confirmada"];
@@ -46,7 +47,9 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
     exit();
   }
 
-  header('Location: ' . "/");
+  redirect_to_message("mensaje",
+    "reservations:(".$reservation.")<br>userid:(".$reservation->user_id.",".$_SESSION['user']->id.")",
+    "/");
   exit();
 }
 
