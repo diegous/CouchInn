@@ -35,10 +35,11 @@ class Reservation extends GenericModel {
   }
 
   public function __toString() {
-    $result = "" . $this->enabled . ", ";
-    $result .= "'" . $this->user_id . "', ";
-    $result .= "'" . $this->couch_id . "', ";
-    $result .= "'" . $this->state_id . "', ";
+    $result = "" . $this->id . ", ";
+    $result .= "" . $this->enabled . ", ";
+    $result .= "" . $this->user_id . ", ";
+    $result .= "" . $this->couch_id . ", ";
+    $result .= "" . $this->state_id . ", ";
     $result .= "'" . $this->start_date . "', ";
     $result .= "'" . $this->end_date . "'";
 
@@ -55,4 +56,38 @@ class Reservation extends GenericModel {
 
     return $result;
   }
+
+  public static function get_by_couch_id($id) {
+    return parent::get_by_field_value("couch_id", $id);
+  }
+
+  public static function cancel_conflicting_reservations($reservation) {
+    $states = ReservationState::get_all();
+
+    $query = "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE id!=" . $reservation->id;
+    $query .= " AND couch_id=" . $reservation->couch_id;
+    $query .= " AND state_id=" . $states['Pendiente'];
+    $query .= " AND start_date <= '" . $reservation->end_date . "'";
+    $query .= " AND end_date >= '" . $reservation->start_date . "'";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[$row['id']] = static::new_object_from_array($row);
+      $result[$row['id']]->state_id = $states["Rechazada"];
+      $result[$row['id']]->update();
+    }
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
 }
+
+
+

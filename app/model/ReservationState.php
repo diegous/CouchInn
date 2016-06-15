@@ -35,6 +35,16 @@ class ReservationState extends GenericModel {
     return $result;
   }
 
+  public static function get_all() {
+    $states = parent::get_all();
+
+    foreach ($states as $key => $value) {
+      $states[$value->description] = $key;
+    }
+
+    return $states;
+  }
+
   public static function get_by_description($description) {
     $result = static::get_by_field_value('description', $description);
 

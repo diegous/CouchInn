@@ -27,17 +27,28 @@ abstract class GenericModel {
     return $result;
   }
 
-  public static function get_by_id($an_id) {
-    $result = static::get_by_field_value('id', $an_id);
+  public static function get_first_by_field_value($field_name, $value) {
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE ' . $field_name . "='" . $value . "'";
 
-    if (sizeof($result) > 0){
-      $keys = array_keys($result);
-      $result = $result[$keys[0]];
-    } else {
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    if ($row = $query_result->fetch_assoc())
+      $result = static::new_object_from_array($row);
+    else
       $result = NULL;
-    }
+
+    $query_result->close();
+    $connection->close();
 
     return $result;
+  }
+
+  public static function get_by_id($an_id) {
+    return static::get_first_by_field_value('id', $an_id);
   }
 
   public function save_new() {
