@@ -1,4 +1,5 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'].'/shared/date_validation.php';
 
 class Reservation extends GenericModel {
   protected static $table_name = 'reservations';
@@ -86,6 +87,34 @@ class Reservation extends GenericModel {
     $connection->close();
 
     return $result;
+  }
+  
+  public static function reservations_for_user_upto_date_in_state($user_id,$upto_date,$state_name) {
+    $upto_date=getDateOrFalse($upto_date);
+    if($upto_date===false){
+          return [];
+    }
+
+    $states = ReservationState::get_all();
+
+    $query =  " SELECT * from ".static::$table_name;
+    $query .= " WHERE user_id=".$user_id;
+    $query .= " AND end_date <= '".$upto_date."'";
+    $query .= " AND state_id=".$states[$state_name];
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[$row['id']] = static::new_object_from_array($row);
+    }
+
+    return $result;
+
+    $query_result->close();
+    $connection->close();
   }
 }
 

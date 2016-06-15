@@ -17,6 +17,7 @@
           <? else: ?>
             <li><a href="#">Mis Couchs</a></li>
             <li><a href="/couch/couch_create.php">Crear Couch</a></li>
+            <li><a href="/user/user_finished_reservation_list.php">Couchs donde me hosped&eacute;</a></li>
           <? endif ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
