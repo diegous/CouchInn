@@ -17,7 +17,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
   }
   .image-label{
     margin: auto;
-    display: block; 
+    display: block;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -71,11 +71,11 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
 
     <div class="form-group">
       <label for="input-capacidad">Capacidad:</label><br>
-      <input id="input-capacidad" class="form-control" type="text" name="capacidad" 
+      <input id="input-capacidad" class="form-control" type="number" name="capacidad"
         pattern="\d+" required="true">
     </div>
 
-  
+
   <div class="panel panel-default">
     <div class="panel-heading">
       Imagenes
@@ -100,7 +100,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
                    value="Borre la imagen <?= $i ?> ("
 
                    />
-            <input type="button" class="button-choose-file btn btn-default btn-block" 
+            <input type="button" class="button-choose-file btn btn-default btn-block"
                    value="Seleccione la imagen <?= $i ?>(opcional)" />
             <div class="image-labels">
               <div id="image-label-non-file<?=$i?>"
@@ -117,7 +117,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
                 (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
               </div>
             </div>
-         
+
             <img class="couch-img couch-image-hidden"/>
           </div>
         <? endfor?>
@@ -129,7 +129,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
     </form>
   </div>
   <div class="panel-footer">
-  
+
     <input type="button" class="button-cancel-upload btn btn-primary btn-block hidden"
            value="Cancelar Subida"/>
     <div class="file-transfer-progress hidden">
@@ -142,7 +142,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
     </div>
     <input type="submit" form="form-couch-create" id="button-submit-couch"
            class="button-save-couch btn btn-primary btn-block" value="Guardar"/>
-  
+
   </div>
 
 
