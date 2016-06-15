@@ -6,7 +6,7 @@ abstract class GenericModel {
   }
 
   public function get_all_enabled() {
-    return static::get_by_field_value('enabled', 'true');;
+    return static::get_by_field_value('enabled', 1);;
   }
 
   public static function get_by_field_value($field_name, $value) {
