@@ -5,7 +5,6 @@ include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 //check_login();
 
 if ($_POST["id"] && $_POST["password"] && $_POST["name"] && $_POST["last_name"] && $_POST["birthday"]) {
-  echo "entra al if<br>";
   $user = User::get_by_id($_POST["id"]);
 
   $user->password = $_POST['password'];

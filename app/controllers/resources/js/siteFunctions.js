@@ -93,3 +93,22 @@ function parseJson(js_object){
         throw e;
     }
 }
+
+function checkValidDates(form) {
+  start_date = new Date(form.start_date.value);
+  end_date = new Date(form.end_date.value);
+  today = new Date();
+  today.setUTCHours(0,0,0,0);
+
+  if (today <= start_date) {
+    if (start_date < end_date) {;
+      return true;
+    } else {
+      alert("La fecha de inicio debe ser anterior a la fecha de finalización");
+      return false;
+    }
+  } else {
+    alert("La fecha de inicio debe ser a partir de hoy ");
+    return false;
+  }
+}

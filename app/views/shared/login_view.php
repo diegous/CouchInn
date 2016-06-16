@@ -13,27 +13,7 @@
       <span class="glyphicon glyphicon-star" style="color:goldenrod" title="Usuario premium" aria-hidden="true"></span>
     <? endif ?>
 
-    <br>
-
-    <? if($_SESSION['user']->is_admin): ?>
-      <span class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-          Opciones de Administraci&oacute;n
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="menu administrador">
-          <li><a href="/couch_type/couch_type_list.php">Ver tipos de couch</a></li>
-          <li><a href="/payment/payment_between_dates.php">Ver ganancias entre dos fechas</a></li>
-        </ul>
-      </span>
-    <? endif ?>
-    <a href="/session/session_close.php">Cerrar Sesi&oacute;n</a>
-
   <? else : ?>
-    <a href="#" data-toggle="modal" data-target="#login-modal">Iniciar Sesi&oacute;n</a>
-    -
-    <a href="/user/user_new.php" >Registrarse</a>
-
     <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="loginmodal-container">
@@ -44,7 +24,7 @@
             <input type="submit" class="login loginmodal-submit" value="Enviar">
           </form>
           <div class="login-help">
-            <a href="/user/user_new.php">Registrarse</a> - <a href="/session/recuperar_pass.php">Olvid&eacute; mi contrase&ntilde;a</a>
+            <a href="/session/recuperar_pass.php">Olvid&eacute; mi contrase&ntilde;a</a>
           </div>
         </div>
       </div>

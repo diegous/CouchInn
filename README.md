@@ -61,3 +61,12 @@ Contiene las vistas. Un archivo de vista específico a un controlador debe tener
    "trim_trailing_white_space_on_save": true,
    "ensure_newline_at_eof_on_save": true
 ```
+
+#Configuración de php necesaria para subir archivos grandes
+PHP por defecto no esta configurado para subir imagenes de tamaño promedio por lo que hay que cambiar estos atributos en ini.php
+```
+  upload_max_filesize=30M
+  post_max_size=30M
+  max_input_time=1000
+  max_execution_time=1000
+```

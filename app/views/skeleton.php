@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/site.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
     <script src="/resources/js/jquery.min.js"></script>
+    <script src="/resources/js/jquery.form.min.js"></script>
     <script src="/resources/js/bootstrap.min.js"></script>
     <script src="/resources/js/siteFunctions.js"></script>
 
@@ -18,11 +19,13 @@
 
     <div class="center-column">
       <? include($DRV . "/shared/header.php") ?>
+      <? include($DRV . "/shared/alerts.php") ?>
 
       <? include($content) ?>
 
-      <!--<? include("shared/footer.php") ?>-->
     </div>
+
+    <? include("shared/footer.php") ?>
 
   </body>
 </html>

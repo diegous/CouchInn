@@ -2,31 +2,24 @@
 
 abstract class GenericModel {
   public static function get_all() {
-    $query = 'SELECT * FROM ' . static::$table_name;
-    $connection = get_connection();
-    $query_result = $connection->query($query);
-
-    $result = array();
-
-    while ($row = $query_result->fetch_assoc())
-      $result[] = static::new_object_from_array($row);
-
-    $query_result->close();
-    $connection->close();
-
-    return $result;
+    return static::get_by_field_value('1', '1');
   }
-
 
   public function get_all_enabled() {
-    $query = 'SELECT * FROM ' . static::$table_name . ' WHERE enabled=true';
+    return static::get_by_field_value('enabled', 1);;
+  }
+
+  public static function get_by_field_value($field_name, $value) {
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE ' . $field_name . "='" . $value . "'";
+
     $connection = get_connection();
     $query_result = $connection->query($query);
 
     $result = array();
 
     while ($row = $query_result->fetch_assoc())
-      $result[] = static::new_object_from_array($row);
+      $result[$row['id']] = static::new_object_from_array($row);
 
     $query_result->close();
     $connection->close();
@@ -34,9 +27,10 @@ abstract class GenericModel {
     return $result;
   }
 
+  public static function get_first_by_field_value($field_name, $value) {
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE ' . $field_name . "='" . $value . "'";
 
-  public static function get_by_id($an_id) {
-    $query = 'SELECT * FROM ' . static::$table_name . ' WHERE id=' . $an_id;
     $connection = get_connection();
     $query_result = $connection->query($query);
 
@@ -53,10 +47,14 @@ abstract class GenericModel {
     return $result;
   }
 
+  public static function get_by_id($an_id) {
+    return static::get_first_by_field_value('id', $an_id);
+  }
+
   public function save_new() {
     $query =  'INSERT INTO ' . static::$table_name . ' ';
     $query .= '(' . static::$table_fields . ')';
-    $query .= 'VALUES (' . $this . ')';
+    $query .= ' VALUES (' . $this . ')';
 
     $connection = get_connection();
 
@@ -112,5 +110,4 @@ abstract class GenericModel {
   }
 
   abstract protected function values_for_update();
-
 }

@@ -1,4 +1,8 @@
-<footer>
-	<a href="/index.php">Pagina Principal -</a>
-	<a href="/couch_type/couch_type_list.php">Tipos de couch -</a>
+<footer class="footer">
+  <div class="container">
+  	<p class="text-muted" style="margin: 20px">
+      Todos los derechos reservados<br>
+      soporte&commat;couchinn.com
+    </p>
+  </div>
 </footer>

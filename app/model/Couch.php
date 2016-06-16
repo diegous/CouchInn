@@ -3,6 +3,8 @@
 class Couch extends GenericModel {
   protected static $table_name = 'couchs';
   protected static $table_fields = 'enabled, published, user_id, type_id, title, description, capacity, location';
+  public    static $maximum_amount_of_pictures = 3;
+
 
   public $id;
   public $enabled;
@@ -53,9 +55,9 @@ class Couch extends GenericModel {
 
   protected function values_for_update() {
     $result =  "enabled=" . $this->enabled . ", ";
-    $result .=  "published=" . $this->published . ", ";
-    $result .=  "user_id='" .  $this->user_id . "', ";
-    $result .=  "type_id='" . $this->type_id . "', ";
+    $result .= "published=" . $this->published . ", ";
+    $result .= "user_id='" .  $this->user_id . "', ";
+    $result .= "type_id='" . $this->type_id . "', ";
     $result .= "title='" . $this->title . "', ";
     $result .= "description='" . $this->description . "', ";
     $result .= "capacity='" . $this->capacity . "', ";
@@ -64,4 +66,33 @@ class Couch extends GenericModel {
     return $result;
   }
 
+  public static function search($title, $description, $couch_type, $location, $capacity) {
+    if (!$capacity)
+      $capacity = 0;
+
+    $query = "SELECT * FROM " . static::$table_name . " WHERE";
+    $query .= " title LIKE '%" . $title . "%' AND";
+    $query .= " location LIKE '%" . $location . "%' AND";
+    $query .= " description LIKE '%" . $description . "%' AND";
+    $query .= " capacity>=" . $capacity;
+
+    if ($couch_type != 0)
+      $query .= " AND type_id=" . $couch_type;
+
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()) {
+      $element = static::new_object_from_array($row);
+      $result[$element->id] = $element;
+    }
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
 }

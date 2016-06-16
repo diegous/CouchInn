@@ -54,18 +54,32 @@ class CouchComment extends GenericModel {
     return $result;
   }
 
-  public static function get_by_couch_id($an_couch_id) {
-    $query = 'SELECT * FROM ' . static::$table_name . ' WHERE couch_id=' . $an_couch_id . ' ORDER BY date desc';
-
+  public static function get_by_couch_id($a_couch_id) {
+    // return static::get_by_field_value("couch_id", $a_couch_id);
     $connection = get_connection();
-    $query_result = $connection->query($query);
-
     $result = array();
 
-    if ($row = $query_result->fetch_assoc())
-      $result = static::new_object_from_array($row);
-    else
-      $result = NULL;
+    // Traer preguntas sin respuesta
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE couch_id =' . $a_couch_id;
+    $query .= ' AND comment_answer="" OR comment_answer IS NULL';
+    $query .= ' ORDER BY date DESC';
+
+    $query_result = $connection->query($query);
+
+    while ($row = $query_result->fetch_assoc())
+      $result[$row['id']] = static::new_object_from_array($row);
+
+    // Traer preguntas con respuesta
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE couch_id =' . $a_couch_id;
+    $query .= ' AND comment_answer<>"" AND comment_answer IS NOT NULL';
+    $query .= ' ORDER BY date DESC';
+
+    $query_result = $connection->query($query);
+
+    while ($row = $query_result->fetch_assoc())
+      $result[$row['id']] = static::new_object_from_array($row);
 
     $query_result->close();
     $connection->close();

@@ -3,11 +3,21 @@
 class Picture extends GenericModel {
   protected static $table_name = 'pictures';
   protected static $table_fields = 'enabled, couch_id, filename';
+  public    static $size_limit = null;//inicializa en class_initialize
+  private   static $initialized = false;//inicializa en class_initialize
 
   public $id;
   public $enabled;
   public $couch_id;
   public $filename;
+
+  public static function class_initialize() {
+    if(! self::$initialized ){
+      //El tamaño de las imagenes sera el de los bytes enviables por POST
+      self::$size_limit = (floatval(ini_get('post_max_size'))*(pow(2,20)));
+      self::$initialized=true;
+    }
+  }
 
   public function __construct($id, $enabled, $couch_id, $filename) {
     $this->id = $id;
