@@ -52,15 +52,15 @@
 </div>
 
 <hr>
-  <form class="panel-body" action="/couch_comment/couch_comment_create.php" method="post">
+<form class="panel-body" action="/couch_comment/couch_comment_create.php" method="post">
+  <div class="form-group">
+    <input type="hidden" name="couch_id" value="<?= $couch->id ?>">
     <div class="form-group">
-      <input type="hidden" name="couch_id" value="<?= $couch->id ?>">
-      <div class="form-group">
-        <input id="question" class="form-control" type="text" name="question" required>
-      </div>
-      <button type="submit" class="btn btn-default">Preguntar</button>
+      <input id="question" class="form-control" type="text" name="question" required>
     </div>
-  </form>
+    <button type="submit" class="btn btn-default">Preguntar</button>
+  </div>
+</form>
 <h3>Preguntas del Couch</h3>
 <hr>
 <? foreach ($comment_list as $couch_comment): ?>

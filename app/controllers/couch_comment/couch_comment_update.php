@@ -15,5 +15,5 @@ if (isset($_POST["id"]) && isset($_POST["respuesta"])) {
     }
   }
 
-header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
+header('Location: ' . '/couch/couch.php?id=' . $couch->user_id);
 exit();
