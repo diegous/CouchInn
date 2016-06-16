@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
   var alertIdentity=function(mensaje){
-    alert(mensaje);
     return mensaje;
   }
 
@@ -16,15 +15,13 @@ $(document).ready(function(){
       function(message){errorTable=message;});
     if(errorTable==="success"){
       //vuelvo a la pagina principal
-      redirectToAlertPageView("","usuario creado exitosamente","/index.php");
+      redirectToAlertPageView("Exito","Usuario creado exitosamente","/index.php");
     }else{
       //convierto la salida de php a un objecto de javascript
       errorTable=JSON.parse(errorTable);
       var err_email=errorTable["error_email"]
       if(err_email){
-        $("#label-error-email")
-          .show()
-          .html(alertIdentity("error:"+err_email));
+        alertMessage.show("Email ya existe","danger");
         huboErrores=true;
       }else{
           $("#label-error-email").hide();
