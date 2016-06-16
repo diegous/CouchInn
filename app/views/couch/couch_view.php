@@ -1,19 +1,31 @@
 <? if ($_SESSION && $_SESSION['user']): ?>
-  <? if(($_SESSION['user']->id == $couch->user_id) || ($_SESSION['user']->is_admin)) : ?>
+  <? if($_SESSION['user']->id == $couch->user_id) : ?>
     <hr>
-    <? if ($couch->enabled) : ?>
+    <? if ($couch->enabled==1) : ?>
+      <a href="/couch/couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar Couch - </a>
+    <? else : ?>
+      <? if ($couch->enabled==0) : ?>
+        <a href="/couch/couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar Couch - </a>
+      <?endif?>
+    <?endif?>
+    <a href="/couch/couch_edit.php?id=<?= $couch->id ?>">Modificar Couch</a>
+    <hr>
+    <? if ($couch->enabled==2) : ?>
+      <strong><h4 style="color:red;">¡Atención Couch Deshabilitado por el administrador! </p></strong>
+    <?endif?>
+  <? endif ?>
+  <? if($_SESSION['user']->is_admin): ?>
+    <hr>
+    <? if ($couch->enabled==1) : ?>
       <a href="/couch/couch_habilitation.php?action=disable&amp;id=<?= $couch->id ?>">Deshabilitar Couch</a>
     <? else : ?>
-      <a href="/couch/couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar Couch</a>
-    <? endif ?>
+      <? if (($couch->enabled==0) || ($couch->enabled==2)): ?>
+        <a href="/couch/couch_habilitation.php?action=enable&amp;id=<?= $couch->id ?>">Habilitar Couch</a>
+      <?endif?>
+    <?endif?>
+    <hr>
   <?endif?>
-  <? if($_SESSION['user']->id == $couch->user_id) : ?>
-    -
-    <a href="/couch/couch_edit.php?id=<?= $couch->id ?>">Modificar Couch</a>
-  <?endif?>
-  <hr>
 <?endif?>
-
 
 <h1><?= $couch->title; ?></h1>
 <div class="couch-info-container">

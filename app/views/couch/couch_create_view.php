@@ -86,7 +86,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
         <h5>
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
           Conjunto de imagenes demasiado grande(ocupan <span class="image-filesize"></span>MB)<br>
-          (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
+          (tamaño maximo=<?echo number_format(Picture::$size_limit/(pow(2,20)),2)."MB";?>)
         </h5>
       </div>
 
@@ -114,7 +114,7 @@ CouchCreateGlobals.tamanioMaximoPost=<?=Picture::$size_limit?>;
                     <!-- class="image-label image-label-big label label-warning text-center full-width hidden"> -->
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 Imagen demasiado grande(ocupa <span class="image-filesize" aria-hidden="true"></span>MB)<br>
-                (tamaño maximo=<?echo number_format(Picture::$size_limit/(2**20),2)."MB";?>)
+                (tamaño maximo=<?echo number_format(Picture::$size_limit/(pow(2,20)),2)."MB";?>)
               </div>
             </div>
 

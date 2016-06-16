@@ -1,6 +1,6 @@
 <h1>Listado de couch</h1>
 
-<? if ($_SESSION && $_SESSION['user']): ?>
+<? if (isset($_SESSION['user'])): ?>
   <? $user_id = $_SESSION['user']->id ?>
   <? $is_admin = $_SESSION['user']->is_admin ?>
 <? else : ?>
@@ -9,7 +9,7 @@
 <? endif ?>
 
 <? foreach ($couch_list as $couch): ?>
-  <? if (($couch->enabled) || ($user_id == $couch->user_id) || ($is_admin)): ?>
+  <? if (($couch->enabled==1) || ($user_id == $couch->user_id) || ($is_admin)): ?>
     <div class="couch-list-item">
       <div class="couch-img-container">
         <a href="/couch/couch.php?id=<?= $couch->id ?>">
@@ -39,13 +39,13 @@
         <p class="couch-capacity"> <?= $couch->capacity; ?></p>
         <label>Ubicaci&oacute;n:</label>
         <p class="couch-location"> <?= $couch->location; ?></p>
-        <? if (!$couch->enabled) : ?>
+        <? if (($couch->enabled==0) || ($couch->enabled==2)) : ?>
           <strong><h4 style="color:red;">¡Atención Couch Deshabilitado! </p></strong>
 
         <? endif ?>
         <br>
       </div>
-      <hr>
     </div>
+    <hr>
   <? endif ?>
 <? endforeach ?>
