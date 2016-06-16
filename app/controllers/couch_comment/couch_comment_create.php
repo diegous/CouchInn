@@ -22,5 +22,5 @@ if (isset($_POST["preguntar"])) {
   }
 }
 
-// header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
-// exit();
+header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
+exit();

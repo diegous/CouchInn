@@ -52,7 +52,17 @@
 </div>
 
 <hr>
+  <form class="panel-body" action="/couch_comment/couch_comment_create.php" method="post">
+    <div class="form-group">
+      <input type="hidden" name="couch_id" value="<?= $couch->id ?>">
+      <div class="form-group">
+        <input id="question" class="form-control" type="text" name="question" required>
+      </div>
+      <button type="submit" class="btn btn-default">Preguntar</button>
+    </div>
+  </form>
 <h3>Preguntas del Couch</h3>
+<hr>
 <? foreach ($comment_list as $couch_comment): ?>
   <form class="panel-body" action="/couch_comment/couch_comment_update.php" method="post">
     <div class="form-group">
@@ -61,9 +71,6 @@
         <label for="name">Pregunta</label><br>
         <p><?= $couch_comment->comment_question; ?></p>
       </div>
-      </tr>
-      <tr>
-      </tr>
       <? if (!$couch_comment->comment_answer): ?>
         <? if(isset($_SESSION['user']) && ($_SESSION['user']->id == $couch->user_id)) : ?>
           <div class="form-group">
@@ -75,9 +82,9 @@
       <? else: ?>
         <p class="couch-answer"><b><?= $couch_comment->comment_answer ?></b></p>
       <? endif ?>
-      <br>
     </div>
   </form>
+  <hr>
 <? endforeach ?>
 
 <hr>
