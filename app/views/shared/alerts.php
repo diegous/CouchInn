@@ -34,6 +34,7 @@ var alertMessage=(function(){
         $("#alert-message-text").html(message);
       }
       this.changeClass(alertClass);
+      window.scrollTo(0,0);
       $("#alert-message").removeClass("hidden");
     },
     hide:function(message){
