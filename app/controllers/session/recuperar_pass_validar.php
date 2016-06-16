@@ -13,7 +13,7 @@ if ( !empty($_POST) ) {
   }
 }
 else {
-  echo "<script> alert('ERROR')</script>";
+  redirect_to_message('PROHIBIDO',"PROHIBIDO ENTRAR A ESTA DIRECCION",'/');
 }
 
 //header('Location: ' . "index.php");

@@ -124,7 +124,7 @@ function CouchCreateValidation(){
       if(resultTable["error"]===false){
         redirectToAlertPageView("Creacion de couch","El couch fue creado exitosamente","/");
       }else{
-        alert("error:\n"+resultTable["errorMessage"]);
+        alertMessage.show(resultTable["errorMessage"],"danger");
       }
     };
     var options = { 

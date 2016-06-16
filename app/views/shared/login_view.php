@@ -1,3 +1,9 @@
+<style>
+.bad-input{
+  background: #FCC;
+}
+</style>
+
 <div>
   <div class="logo-container">
   </div>
@@ -19,8 +25,11 @@
         <div class="loginmodal-container">
           <h1>Iniciar Sesi&oacute;n</h1><br>
           <form id="login-form" onsubmit="return checkLogin(this)">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Contrase&ntilde;a" required>
+            <input class="login-input" type="email" name="email" placeholder="Email" required>
+            <input class="login-input" type="password" name="password" placeholder="Contrase&ntilde;a" required>
+            <p id="incorrect-login-label" class="hidden" style="color:red;align:left">
+              Combinación usuario/contraseña incorrecto
+            </p>
             <input type="submit" class="login loginmodal-submit" value="Enviar">
           </form>
           <div class="login-help">

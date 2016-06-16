@@ -8,7 +8,15 @@ function checkLogin($form) {
       if (data) {
         location.reload();
       } else {
-        alert("Combinación usuario/contraseña incorrecto");
+        $("#incorrect-login-label").removeClass("hidden");
+        var dismiss=function(){
+          $("#login-dialog").removeClass("bad-input");
+          $("#incorrect-login-label").addClass("hidden");
+        }
+        $(".login-input").on("focus click",dismiss);
+        $('div#login-modal').on('hide.bs.modal ', dismiss);
+        
+        // alert("Combinación usuario/contraseña incorrecto");
       }
     }
   );
@@ -23,10 +31,9 @@ function checkEmail($form) {
     },
     function(data,status){
       if (data) {
-        alert("OK");
-        location.reload();
+        redirectToAlertPageView("Chequeo De Email","El Email Existe.",""+window.location);
       } else {
-        alert("No existe el usaurio");
+        alertMessage.show("No existe el usuario","danger");
       }
     }
   );
@@ -84,12 +91,12 @@ function redirectToAlertPageView(title,message,url){
 
 function parseJson(js_object){
     if(js_object==""){
-        alert("not valid json(empty string)");
+        alertMessage.show("not valid json(empty string)","danger");
     }
     try{
         return JSON.parse(js_object);
     }catch(e){
-        alert("not valid json:\n"+js_object);
+        alertMessage.show("not valid json:\n"+js_object,"danger");
         throw e;
     }
 }
@@ -104,11 +111,11 @@ function checkValidDates(form) {
     if (start_date < end_date) {;
       return true;
     } else {
-      alert("La fecha de inicio debe ser anterior a la fecha de finalización");
+      alertMessage.show("La fecha de inicio debe ser anterior a la fecha de finalización","danger");
       return false;
     }
   } else {
-    alert("La fecha de inicio debe ser a partir de hoy ");
+    alertMessage.show("La fecha de inicio debe ser a partir de hoy ","danger");
     return false;
   }
 }
