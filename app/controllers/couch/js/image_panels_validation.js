@@ -319,41 +319,45 @@ ImagePanelGlobals.addImagePanel=(function(){
 
 
 
-ImagePanelGlobals.createImagePanelNode=function(num,src,action){
-  action=action||this.imageOps.upload;
-  var hidden= (src?"":" hidden");
-  var hiddenImage= (src?" couch-image-shown":" couch-image-hidden");
-  var hiddenChoose= (src?" hidden ":"");
-  var hiddenDelete= (src?"":" hidden ");
-  // console.log("hiddenChoose:'"+hiddenChoose+"'");
+ImagePanelGlobals.createImagePanelNode=(function(){
 
-  var nodeSource=(
-    '<div class="panel-couch-image div-file#i#'+hidden+' form-group">'+
-      '<input type="hidden" class="input-action" name="action-#i#"'+
-            ' id="action-#i#" value="'+action+'" form="form-couch"/>'+
-      '<input type="file" name="file#i#" id="file#i#" form="form-couch" '+
-              'class="file-popup" style="display: none;" />'+
-      '<input type="button" class="button-choose-file btn btn-default btn-block'+hiddenChoose+'"'+
-             'value="Seleccione la imagen #i#(opcional)" />'+
-      '<input type="button" class="button-delete-image btn btn-default btn-block'+hiddenDelete+'"'+
-             'value="Borre la imagen #i# ."/>'+
-      '<div class="image-labels">'+
-        '<div id="image-label-non-file#i#"'+
-              'class="image-label image-label-non label alert alert-danger hidden ">'+
-          '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
-          'no es una imagen'+
-        '</div>'+
-        '<div id="image-label-big-file#i#"'+
-              'class="image-label image-label-big alert alert-danger hidden">'+
-          '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
-          'Imagen demasiado grande(ocupa <span class="image-filesize" aria-hidden="true"></span>MB)<br>'+
-          '(tamaño maximo='+this.printableFileSize(this.tamanioMaximoPost)+'MB)'+
-        '</div>'+
-      '</div>'+
-      '<img class="couch-img '+hiddenImage+'" src="'+src+'"/>'+
-    '</div>'
-  );
-  nodeSource=nodeSource.replace(new RegExp("#i#",'g'),num);
-  return $(nodeSource);
+  var numberRegex=new RegExp("#i#",'g');
+  return function(num,src,action){
+    action=action||this.imageOps.upload;
+    var hidden= (src?"":" hidden");
+    var hiddenImage= (src?" couch-image-shown":" couch-image-hidden");
+    var hiddenChoose= (src?" hidden ":"");
+    var hiddenDelete= (src?"":" hidden ");
+    // console.log("hiddenChoose:'"+hiddenChoose+"'");
 
-}
+    var nodeSource=(
+      '<div class="panel-couch-image div-file#i#'+hidden+' form-group">'+
+        '<input type="hidden" class="input-action" name="action-#i#"'+
+              ' id="action-#i#" value="'+action+'" form="form-couch"/>'+
+        '<input type="file" name="file#i#" id="file#i#" form="form-couch" '+
+                'class="file-popup" style="display: none;" />'+
+        '<input type="button" class="button-choose-file btn btn-default btn-block'+hiddenChoose+'"'+
+               'value="Seleccione la imagen #i#(opcional)" />'+
+        '<input type="button" class="button-delete-image btn btn-default btn-block'+hiddenDelete+'"'+
+               'value="Borre la imagen #i# ."/>'+
+        '<div class="image-labels">'+
+          '<div id="image-label-non-file#i#"'+
+                'class="image-label image-label-non label alert alert-danger hidden ">'+
+            '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
+            'no es una imagen'+
+          '</div>'+
+          '<div id="image-label-big-file#i#"'+
+                'class="image-label image-label-big alert alert-danger hidden">'+
+            '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'+
+            'Imagen demasiado grande(ocupa <span class="image-filesize" aria-hidden="true"></span>MB)<br>'+
+            '(tamaño maximo='+this.printableFileSize(this.tamanioMaximoPost)+'MB)'+
+          '</div>'+
+        '</div>'+
+        '<img class="couch-img '+hiddenImage+'" src="'+src+'"/>'+
+      '</div>'
+    );
+    nodeSource=nodeSource.replace(numberRegex,num);
+    return $(nodeSource);
+
+  }
+})();
