@@ -1,7 +1,7 @@
 <h1>Modificar datos de couch</h1>
 <table class="table">
   <tbody>
-    <form action="/couch/couch_update.php" method="post">
+    <form id="form-couch" action="/couch/couch_update.php" method="post" enctype="multipart/form-data" >
       <input type="hidden" name="id" value="<?= $couch->id ?>" >
 
       <tr>
@@ -31,7 +31,23 @@
           <input type="text" name="location" class="form-control" value="<?= $couch->location; ?>" required>
         </div>
       </tr>
-      <button type="submit" class="btn btn-default">Guardar</button>
+
+      <tr>
+      <? include($DRV . "/couch/couch_image_manipulation_panel.php") ?>
+      <script type="text/javascript">
+        ImagePanelGlobals.redirectTitle="Modificacion de Couch Exitosa";
+        ImagePanelGlobals.messageOnRedirect="Modificacion de Couch Exitosa";
+        ImagePanelGlobals.redirectToUrl='/couch/couch.php?id='+'<?=$couch->id?>';
+        $(function(){
+          <? foreach ($imageSources as $key => $value): ?>
+            console.log("<?="$key=>$value"?>");
+            ImagePanelGlobals.addImagePanel('<?=$value?>',undefined,true);
+          <? endforeach ?>
+        });
+      </script>
+
+      </tr>
+      <button type="submit" id="button-submit-couch" class="btn btn-default">Guardar</button>
     </form>
   </tbody>
 </table>

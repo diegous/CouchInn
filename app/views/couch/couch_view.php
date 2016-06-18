@@ -45,7 +45,7 @@
   <p class="couch-location"><?= $couch->location; ?></p>
   <div>
     <? foreach ($picture_list as $picture): ?>
-      <img class="couch-img" src="<?=$COUCHPICTUREDIR."/". $picture->filename ?>"
+      <img class="couch-img" src="<?=Picture::get_full_path($picture->filename) ?>"
            onError="this.src='<?=$PICTUREDIR?>/couchinn-logo-couch.png';">
     <? endforeach ?>
   </div>

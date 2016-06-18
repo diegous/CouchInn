@@ -15,7 +15,7 @@
         <a href="/couch/couch.php?id=<?= $couch->id ?>">
           <img class="couch-img"
                src="<? if (isset($images[$couch->id])) : ?>
-                      <?=$COUCHPICTUREDIR."/".$images[$couch->id] ?>
+                      <?=Picture::get_full_path($images[$couch->id]) ?>
                     <? else : ?>
                       /resources/images/couchinn-logo-couch.png
                     <? endif ?>
@@ -49,3 +49,4 @@
     <hr>
   <? endif ?>
 <? endforeach ?>
+
