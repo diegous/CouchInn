@@ -13,6 +13,7 @@ if (isset($_GET['id'])) {
   $couch_type = CouchType::get_by_id($couch->type_id);
   $owner = User::get_by_id($couch->user_id);
   $comment_list = CouchComment::get_by_couch_id($_GET["id"]);
+  //$comment_list_user = CouchComment::get_by_user_id($couch->user_id);
 
   $state_list = ReservationState::get_all();
   $reservation_list = Reservation::get_by_couch_id($_GET['id']);

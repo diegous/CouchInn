@@ -2,7 +2,7 @@
 
 class CouchComment extends GenericModel {
   protected static $table_name = 'couch_comments';
-  protected static $table_fields = 'id, enabled, user_id, couch_id, comment_question, date, comment_answer';
+  protected static $table_fields = 'enabled, user_id, couch_id, comment_question, date, comment_answer';
 
   public $id;
   public $enabled;
@@ -62,8 +62,8 @@ class CouchComment extends GenericModel {
     // Traer preguntas sin respuesta
     $query = 'SELECT * FROM ' . static::$table_name;
     $query .= ' WHERE couch_id =' . $a_couch_id;
-    $query .= ' AND comment_answer="" OR comment_answer IS NULL';
-    $query .= ' ORDER BY date DESC';
+    $query .= ' AND (comment_answer = "" OR comment_answer IS NULL)';
+    $query .= ' ORDER BY id DESC';
 
     $query_result = $connection->query($query);
 
@@ -73,8 +73,8 @@ class CouchComment extends GenericModel {
     // Traer preguntas con respuesta
     $query = 'SELECT * FROM ' . static::$table_name;
     $query .= ' WHERE couch_id =' . $a_couch_id;
-    $query .= ' AND comment_answer<>"" AND comment_answer IS NOT NULL';
-    $query .= ' ORDER BY date DESC';
+    $query .= ' AND (comment_answer <> "" AND comment_answer IS NOT NULL)';
+    $query .= ' ORDER BY id DESC';
 
     $query_result = $connection->query($query);
 
@@ -86,4 +86,30 @@ class CouchComment extends GenericModel {
 
     return $result;
   }
+
+/*
+  // Listado las preguntas sin responder de por usuario
+  public static function get_by_user_id($a_user_id) {
+    $connection = get_connection();
+    $result = array();
+
+    // Traer preguntas sin respuesta de un usuario
+    $query = 'SELECT a.*, b.title FROM ' . static::$table_name .' a ';
+    $query .= ' INNER JOIN couchs b ON a.couch_id = b.id';
+    $query .= ' WHERE a.user_id =' . $a_user_id;
+    $query .= ' AND (comment_answer = "" OR comment_answer IS NULL)';
+    $query .= ' ORDER BY a.id';
+
+    $query_result = $connection->query($query);
+
+    while ($row = $query_result->fetch_assoc())
+      $result[$row['id']] = static::new_object_from_array($row);
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
+*/
+
 }

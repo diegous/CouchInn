@@ -12,7 +12,7 @@ if (isset($_POST["question"])) {
     $_POST['user_id'],
     $_POST['couch_id'],
     $_POST["question"],
-    NULL,
+    getdate(),
     NULL
   );
 
