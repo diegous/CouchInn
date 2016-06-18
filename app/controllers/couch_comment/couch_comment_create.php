@@ -4,11 +4,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
 //redirect_if_not_admin();
 
+
 if (isset($_POST["question"])) {
   $couch_comment = new CouchComment(
     NULL,
     TRUE,
-    $_SESSION['user']->id,
+    $_POST['user_id'],
     $_POST['couch_id'],
     $_POST["question"],
     NULL,
@@ -22,5 +23,5 @@ if (isset($_POST["question"])) {
   }
 }
 
-//header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
-//exit();
+header('Location: ' . '/couch/couch.php?id=' . $_POST['couch_id']);
+exit();
