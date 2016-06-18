@@ -12,7 +12,7 @@
   </form>
 <? endif ?>
 
-<h3>Preguntas del Couch</h3>
+<h2>Preguntas del Couch</h2>
 <? foreach ($comment_list as $couch_comment): ?>
   <hr>
   <form  action="/couch_comment/couch_comment_update.php" method="post">
