@@ -1,5 +1,13 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
+// include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
+$dont_check=true;
+include $_SERVER['DOCUMENT_ROOT'] . "/couch/image/couch_image_validation.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/couch/image/couch_image_operations.php";
+
+
+$requiredParams=["id","type","title","description","capacity","location"];
+$files=$_FILES;
+check_pre_upload($requiredParams,$files);
 
 if ($_POST["id"] && $_POST["title"] && $_POST["description"] && $_POST["capacity"] && $_POST["location"]) {
 
@@ -12,7 +20,12 @@ if ($_POST["id"] && $_POST["title"] && $_POST["description"] && $_POST["capacity
 
   $couch->update();
 
+  image_operations($_POST,$_FILES,$couch->id);
 }
-redirect_to_message('Couch actualizado',"El couch ha sido actualizado",'/couch/couch.php?id=' . $_POST["id"]);
+
+echo json_encode($errorTable);
+
+
+// redirect_to_message('Couch actualizado',"El couch ha sido actualizado",'/couch/couch.php?id=' . $_POST["id"]);
 //header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
 //exit();

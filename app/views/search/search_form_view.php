@@ -46,10 +46,15 @@
 </div>
 
 <? if (isset($couch_list)): ?>
-  <h3>Resultados:</h3>
+  <h3 id="header-resultados">Resultados:</h3>
   <? if (count($couch_list) == 0): ?>
     <h4>No se encontraron resultados</h4>
   <? else: ?>
     <? include($DRV . "/couch/couch_list_view.php") ?>
   <? endif ?>
+  <script>
+    $(document).ready(function(){
+      document.getElementById("header-resultados").scrollIntoView( true );
+    }) 
+  </script>
 <? endif ?>

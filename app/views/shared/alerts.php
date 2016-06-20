@@ -27,14 +27,14 @@ var alertMessage=(function(){
                .join(" ");
 
   var isAlert=function(clase){ return $.inArray(clase,validAlerts) > -1 };
-
+  var alertDiv=$("#alert-message")[0];
   return{
     show:function(message,alertClass){
       if($.type(message)==="string"){
         $("#alert-message-text").html(message);
       }
       this.changeClass(alertClass);
-      window.scrollTo(0,0);
+      alertDiv.scrollIntoView( true );
       $("#alert-message").removeClass("hidden");
     },
     hide:function(message){

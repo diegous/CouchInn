@@ -42,14 +42,39 @@ class Picture extends GenericModel {
   }
 
   protected function values_for_update() {
-    $result = "enabled='" . $this->enabled . "' ";
-    $result .= "couch_id='" . $this->couch_id . "' ";
-    $result .= "filename='" . $this->filename . "'";
+    $result = "enabled='" . $this->enabled . "', ";
+    $result .= "couch_id='" . $this->couch_id . "', ";
+    $result .= "filename='" . $this->filename . "' ";
     return $result;
   }
 
-  public static function get_by_couch_id($an_id) {
+  public function full_path(){
+    return $GLOBALS["COUCHPICTUREDIR"]."/".$this->filename;
+  }
+
+  public static function get_full_path($filename){
+    return $GLOBALS["COUCHPICTUREDIR"]."/".$filename;
+  }
+
+  //retorna la posicion de la imagen dentro del couch usando el nombre de archivo
+  //formato de archivo:<couch_id>-<posicion_interna>.<extension_original>
+  //la posicion interna debe comenzar en 1 sino da error
+  public function get_position(){
+    if(strlen($this->filename)>0){
+      $name = $this->filename;
+      $pos1 = strpos($name, "-")+1 ;
+      $pos2 = strpos($name, ".", $pos1);
+      return substr($name,$pos1,$pos2-$pos1);
+    }else{
+      return 0;
+    }
+  }
+
+  public static function get_by_couch_id($an_id,$must_be_enabled=true) {
     $query = 'SELECT * FROM ' . static::$table_name . ' WHERE couch_id=' . $an_id;
+    if($must_be_enabled){
+      $query .= " and enabled='1'";
+    }
     $connection = get_connection();
     $query_result = $connection->query($query);
 
@@ -63,4 +88,5 @@ class Picture extends GenericModel {
 
     return $result;
   }
+
 }
