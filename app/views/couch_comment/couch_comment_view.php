@@ -23,6 +23,7 @@
 
     <? if (!$couch_comment->comment_answer): ?>
       <? if(isset($_SESSION['user']) && ($_SESSION['user']->id == $couch->user_id)) : ?>
+        <span class="glyphicon glyphicon-comment" style="color:lightblue" title="Pregunta" aria-hidden="true"></span>
         <input id="answer" class="form-control" type="text" name="respuesta" required>
         <br>
         <button type="submit" class="btn btn-default">Responder</button>
@@ -35,4 +36,6 @@
   </form>
 <? endforeach ?>
 
-<? include($DRV . "/couch_comment/couch_comment_user_view.php") ?>
+<? if(isset($_SESSION['user']) && ($_SESSION['user']->id == $couch->user_id)) : ?>
+  <? include($DRV . "/couch_comment/couch_comment_user_view.php") ?>
+<? endif ?>

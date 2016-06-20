@@ -87,18 +87,17 @@ class CouchComment extends GenericModel {
     return $result;
   }
 
-/*
+
   // Listado las preguntas sin responder de por usuario
   public static function get_by_user_id($a_user_id) {
     $connection = get_connection();
     $result = array();
 
     // Traer preguntas sin respuesta de un usuario
-    $query = 'SELECT a.*, b.title FROM ' . static::$table_name .' a ';
-    $query .= ' INNER JOIN couchs b ON a.couch_id = b.id';
-    $query .= ' WHERE a.user_id =' . $a_user_id;
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE user_id =' . $a_user_id;
     $query .= ' AND (comment_answer = "" OR comment_answer IS NULL)';
-    $query .= ' ORDER BY a.id';
+    $query .= ' ORDER BY id';
 
     $query_result = $connection->query($query);
 
@@ -110,6 +109,5 @@ class CouchComment extends GenericModel {
 
     return $result;
   }
-*/
 
 }
