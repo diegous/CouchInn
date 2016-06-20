@@ -29,19 +29,10 @@
       <?endif?>
     <? else: ?>
       <p class="couch-answer">
-        &nbsp;&nbsp;<span class="glyphicon glyphicon-comment" style="color:green" title="Pregunta" aria-hidden="true"></span>&nbsp;&nbsp;<?= $couch_comment->comment_answer ?>
+        &nbsp;&nbsp;<span class="glyphicon glyphicon-comment" style="color:lightblue" title="Pregunta" aria-hidden="true"></span>&nbsp;&nbsp;<?= $couch_comment->comment_answer ?>
       </p>
     <? endif ?>
   </form>
 <? endforeach ?>
 
-
-<!--
-<? if(isset($_SESSION['user'])) : ?>
-  <h2>Preguntas sin responder</h2>
-  <? foreach ($comment_list_user as $comment_user): ?>
-    <p> <?= $comment_user->title ?></p>
-  <? endforeach ?>
-<? endif ?>
-
--->
+<? include($DRV . "/couch_comment/couch_comment_user_view.php") ?>
