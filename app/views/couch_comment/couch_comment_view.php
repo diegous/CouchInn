@@ -36,6 +36,11 @@
   </form>
 <? endforeach ?>
 
-<? if(isset($_SESSION['user']) && ($_SESSION['user']->id == $couch->user_id)) : ?>
-  <? include($DRV . "/couch_comment/couch_comment_user_view.php") ?>
+<? if(isset($_SESSION['user']) && !($_SESSION['user']->is_admin) && (count($comment_list_user) <> 0)): ?>
+  <hr>
+  <font SIZE=3 COLOR=red>
+    <a style="color:#FF0000" href="/couch_comment/couch_comment_user_list.php">
+    Preguntas sin responder
+    </a>
+  </font>
 <? endif ?>
