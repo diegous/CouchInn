@@ -49,8 +49,6 @@
     </form>
     <hr>
 
-    <h2>Acciones De Couch:</h2>
-    <a href="/couch/couch_create.php">Crear couch</a>
     <h2>Cuenta Premium:</h2>
     <? if(! $_SESSION['user']->is_premium): ?>
       <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
