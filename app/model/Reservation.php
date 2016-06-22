@@ -119,7 +119,25 @@ class Reservation extends GenericModel {
     $query =  "UPDATE " . static::$table_name;
     $query .= " SET state_id=" . $states['Finalizada'];
     $query .= " WHERE state_id=" . $states['Confirmada'];
-    $query .= " AND end_date='" . $yesterday . "'";
+    $query .= " AND end_date<='" . $yesterday . "'";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = $connection->affected_rows;
+    $connection->close();
+
+    return $result;
+  }
+
+  public static function expire_pending_reservations() {
+    $states = ReservationState::get_all();
+    $yesterday = date('Y-m-d', strtotime( '-1 days' ));
+
+    $query =  "UPDATE " . static::$table_name;
+    $query .= " SET state_id=" . $states['Vencida'];
+    $query .= " WHERE state_id=" . $states['Pendiente'];
+    $query .= " AND start_date<='" . $yesterday . "'";
 
     $connection = get_connection();
     $query_result = $connection->query($query);
