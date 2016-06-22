@@ -24,9 +24,9 @@
                 <?
                   $couch=$couch_list[$reservation->couch_id];
                   $owner=$owner_list[$couch->user_id];
-                  echo '<td>' . $couch->title . '</td>';
-                  echo '<td>' . $owner->email . '</td>';
                 ?>
+                <td><a href="/couch/couch.php?id=<?=$couch->id?>"><?=$couch->title?></a> </td>
+                <td><?=$owner->email?></td>
                 <td><?= $reservation->start_date ?></td>
                 <td><?= $reservation->end_date ?></td>
               </tr>
