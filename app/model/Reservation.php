@@ -88,18 +88,14 @@ class Reservation extends GenericModel {
     return $result;
   }
   
-  public static function reservations_for_user_upto_date_in_state($user_id,$upto_date,$state_name) {
-    $upto_date=getDateOrFalse($upto_date);
-    if($upto_date===false){
-          return [];
-    }
+  public static function reservations_for_user($user_id) {
 
     $states = ReservationState::get_all();
 
     $query =  " SELECT * from ".static::$table_name;
     $query .= " WHERE user_id=".$user_id;
-    $query .= " AND end_date <= '".$upto_date."'";
-    $query .= " AND state_id=".$states[$state_name];
+    // $query .= " AND end_date <= '".$upto_date."'";
+    $query .= " ORDER BY start_date ;";
 
     $connection = get_connection();
     $query_result = $connection->query($query);
