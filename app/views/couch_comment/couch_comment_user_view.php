@@ -11,7 +11,7 @@
     <tbody>
       <? foreach ($comment_list_user as $comment_user) : ?>
         <tr>
-          <td><?= $comment_user->couch_id ?></td>
+          <td><?= $couch_list[$comment_user->couch_id]->title ?></td>
           <td>
             <a href="/couch/couch.php?id=<?= $comment_user->couch_id ?>">
             <?= $comment_user->comment_question ?>
