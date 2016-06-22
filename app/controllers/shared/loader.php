@@ -32,3 +32,8 @@ session_start();
  *  Constructores estaticos
  */
 Picture::class_initialize();
+
+// Load comments for a user's couchs
+if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)) {
+  $comment_list_user = CouchComment::get_by_user_id($_SESSION['user']->id);
+}
