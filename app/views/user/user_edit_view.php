@@ -46,6 +46,7 @@
         </div>
       </tr>
       <button type="submit" class="btn btn-default">Guardar</button>
+      <a href="javascript:returnToPreviousPage()" class="btn btn-default">Cancelar</a>
     </form>
     <hr>
 
