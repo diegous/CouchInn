@@ -6,7 +6,7 @@ $title = "Inicio";
 $content = "couch/couch_list_view.php";
 
 function enabled_or_owned_by_user($couch){
-  return ($couch->enabled===1) || ($_SESSION['user']->id == $couch->user_id);
+  return ($couch->enabled==1) || ($_SESSION['user']->id == $couch->user_id);
 }
 
 $list_header="Listado de couch";
