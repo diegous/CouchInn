@@ -87,7 +87,7 @@ class Reservation extends GenericModel {
 
     return $result;
   }
-  
+
   public static function reservations_for_user($user_id) {
 
     $states = ReservationState::get_all();
@@ -110,6 +110,24 @@ class Reservation extends GenericModel {
 
     $query_result->close();
     $connection->close();
+  }
+
+  public static function end_confirmed_reservations() {
+    $states = ReservationState::get_all();
+    $yesterday = date('Y-m-d', strtotime( '-1 days' ));
+
+    $query =  "UPDATE " . static::$table_name;
+    $query .= " SET state_id=" . $states['Finalizada'];
+    $query .= " WHERE state_id=" . $states['Confirmada'];
+    $query .= " AND end_date='" . $yesterday . "'";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = $connection->affected_rows;
+    $connection->close();
+
+    return $result;
   }
 }
 
