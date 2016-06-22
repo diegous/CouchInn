@@ -74,6 +74,13 @@ class Couch extends GenericModel {
     return $query_result;
   }
 
+  public function is_enabled(){
+    return $this->enabled==1 && $this->published==1;
+  }
+  public function is_visible_for_user($user){
+    return $this->is_enabled() ||($user->id == $this->user_id);
+  }
+
   public static function search($title, $description, $couch_type, $location, $capacity) {
     if (!$capacity)
       $capacity = 0;

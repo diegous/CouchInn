@@ -13,7 +13,7 @@ $content = "couch/couch_list_view.php";
 $list_header="Listado de couch";
 
 $user=(isset($_SESSION['user']) ? $_SESSION['user'] : null );
-$couch_list = filter_couch_list_for_user(Couch::get_all(),$user);
+$couch_list = filter_couch_list_for_display(Couch::get_all(),$user);
 
 include $DR . "/couch/couch_list_setup.php";
 include $DRV . "/skeleton.php";

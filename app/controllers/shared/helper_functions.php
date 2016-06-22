@@ -85,20 +85,14 @@ function redirect_with_alert($alert,$message,$url){
 };
 
 
-function filter_couch_list_for_user($couch_list,$user=null){
-  if($user){
-    if($user->is_admin){
-      return $couch_list;
-    }else{
-      $is_enabled_or_owned_by_user=function($couch)use($user){
-        return ($couch->enabled==1) ||($user->id == $couch->user_id);
-      };
-      return array_filter($couch_list,$is_enabled_or_owned_by_user);
-    }
-  }else{
-    $is_enabled=function($couch){ return ($couch->enabled==1); };
-    return array_filter($couch_list,$is_enabled);
-  }
+function filter_couch_list_for_display($couch_list,$user=null){
+  if($user && $user->is_admin)
+    return $couch_list;
+  $predicate=($user?
+    function($couch)use($user){ return $couch->is_visible_for_user($user); } :
+    function($couch){ return $couch->is_enabled(); }
+  );
+  return array_filter($couch_list,$predicate);
 }
 
 
