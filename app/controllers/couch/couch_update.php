@@ -24,8 +24,3 @@ if ($_POST["id"] && $_POST["title"] && $_POST["description"] && $_POST["capacity
 }
 
 echo json_encode($errorTable);
-
-
-// redirect_to_message('Couch actualizado',"El couch ha sido actualizado",'/couch/couch.php?id=' . $_POST["id"]);
-//header('Location: ' . '/couch/couch.php?id=' . $_POST["id"]);
-//exit();

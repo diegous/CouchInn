@@ -1,10 +1,13 @@
-<? if(isset($alert_variables) && $alert_variables){
+<?
+  $alert_variables=check_for_alert();
+  if($alert_variables){
     $alert_class="alert-".$alert_variables['alert'];
    }else{
     $alert_class="hidden";
     $alert_variables['message']="";
    }
 ?>
+
 
 <div id="alert-message" class="alert <?=$alert_class?>" role="alert">
   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

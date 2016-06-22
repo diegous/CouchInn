@@ -9,7 +9,7 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
 
   if ($_GET["action"] == "enable") {
     $couch->enable();
-    redirect_to_message('Couch habilitado',"El couch ha sido habilitado",'/couch/couch.php?id=' . $_GET["id"]);
+    redirect_with_alert('success',"El couch ha sido habilitado",'/couch/couch.php?id=' . $_GET["id"]);
   } else
     if ($_GET["action"] == "disable") {
       if($_SESSION['user']->is_admin) {
@@ -18,7 +18,7 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
       else{
         $couch->disable();
       }
-      redirect_to_message('Couch deshabilitado',"El couch ha sido deshabilitado",'/couch/couch.php?id=' . $_GET["id"]);
+      redirect_with_alert('success',"El couch ha sido deshabilitado",'/couch/couch.php?id=' . $_GET["id"]);
 
     }
 }

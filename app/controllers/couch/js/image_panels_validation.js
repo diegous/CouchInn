@@ -144,8 +144,8 @@ ImagePanelGlobals.CouchUploadValidation=function(){
         if(resultTable["couchId"]){
           redirectToUrl='/couch/couch.php?id='+resultTable["couchId"];
         }
-        redirectToAlertPageView(
-          ImagePanelGlobals.redirectTitle,
+        redirectWithAlert(
+          "success",
           ImagePanelGlobals.messageOnRedirect,
           redirectToUrl
           // "Creacion de couch",

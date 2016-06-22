@@ -7,13 +7,11 @@ if ( !empty($_POST) ) {
 
   if (User::exist_user($email)) {
     $user = User::exist_user($email);
-    redirect_to_message('Recuperar contraseña',"Se envío un e-mail a '$email' con la contraseña ($user->password)",'/');
+    redirect_with_alert('success',"Se envío un e-mail a '$email' con la contraseña ($user->password)",'/');
   }else {
-    redirect_to_message('Recuperar contraseña',"El usuario '$email' no existe",'/session/recuperar_pass.php');
+    redirect_with_alert('danger',"El usuario '$email' no existe",'/session/recuperar_pass.php');
   }
-}
-else {
-  redirect_to_message('PROHIBIDO',"PROHIBIDO ENTRAR A ESTA DIRECCION",'/');
+} else {
+  header('Location: ' . "/");
 }
 
-//header('Location: ' . "index.php");

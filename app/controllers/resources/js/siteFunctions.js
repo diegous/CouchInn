@@ -31,7 +31,7 @@ function checkEmail($form) {
     },
     function(data,status){
       if (data) {
-        redirectToAlertPageView("Chequeo De Email","El Email Existe.",""+window.location);
+        redirectWithAlert("info","Chequeo De Email:El Email Existe.",""+window.location);
       } else {
         alertMessage.show("No existe el usuario","danger");
       }
@@ -83,6 +83,15 @@ function redirectWithPost(url,contents){
 function redirectToAlertPageView(title,message,url){
   window.location=("/shared/alert_page.php"
       +"?title="+encodeURIComponent(title)
+      +"&url="+encodeURIComponent(url)
+      +"&message="+encodeURIComponent(message)
+    );
+}
+
+
+function redirectWithAlert(alert,message,url){
+  window.location=("/shared/redirect_with_alert.php"
+      +"?alert="+encodeURIComponent(alert)
       +"&url="+encodeURIComponent(url)
       +"&message="+encodeURIComponent(message)
     );

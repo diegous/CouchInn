@@ -2,7 +2,7 @@
 
 include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 
-$alert_variables = check_for_alert();
+
 
 $content = "couch_comment/couch_comment_user_view.php";
 $title = "Preguntas sin responder";

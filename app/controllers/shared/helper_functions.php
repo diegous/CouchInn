@@ -78,6 +78,12 @@ function redirect_to_message($title,$message,$url){
   );
 };
 
+function redirect_with_alert($alert,$message,$url){
+  create_alert($alert,$message);
+  header("Location: ".$url);
+  exit();
+};
+
 
 function filter_couch_list_for_user($couch_list,$user=null){
   if($user){

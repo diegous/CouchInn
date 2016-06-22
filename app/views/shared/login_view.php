@@ -8,7 +8,7 @@
   <div class="logo-container">
   </div>
 
-  <? if ($_SESSION && $_SESSION['user']): ?>
+  <? if ($_SESSION && isset($_SESSION['user'])): ?>
     <strong>Usuario actual: <a href="/user/user_edit.php"><?= $_SESSION['user']->email ?></a></strong>
 
     <? if($_SESSION['user']->is_admin) : ?>

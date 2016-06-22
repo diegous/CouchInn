@@ -15,7 +15,7 @@ $(document).ready(function(){
       function(message){errorTable=message;});
     if(errorTable==="success"){
       //vuelvo a la pagina principal
-      redirectToAlertPageView("Exito","Usuario creado exitosamente","/index.php");
+      redirectWithAlert("success","Usuario creado exitosamente","/index.php");
     }else{
       //convierto la salida de php a un objecto de javascript
       errorTable=JSON.parse(errorTable);
