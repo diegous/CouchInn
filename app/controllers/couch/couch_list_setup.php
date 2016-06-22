@@ -1,4 +1,4 @@
-<?
+<?php
 //se debe incluir para que couch_list_view.php funcione
 
 $couch_types = CouchType::get_all();
