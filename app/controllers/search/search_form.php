@@ -20,7 +20,8 @@ if (isset($_GET['title'])) {
                               $search_form['couch_type'],
                               $search_form['location'],
                               $search_form['capacity']);
-
+  $user=(isset($_SESSION['user']) ? $_SESSION['user'] : null );
+  $couch_list = filter_couch_list_for_user($couch_list,$user);
   $list_header="";
   include $DR . "/couch/couch_list_setup.php";
 }

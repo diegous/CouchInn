@@ -78,6 +78,24 @@ function redirect_to_message($title,$message,$url){
   );
 };
 
+
+function filter_couch_list_for_user($couch_list,$user=null){
+  if($user){
+    if($user->is_admin){
+      return $couch_list;
+    }else{
+      $is_enabled_or_owned_by_user=function($couch)use($user){
+        return ($couch->enabled==1) ||($user->id == $couch->user_id);
+      };
+      return array_filter($couch_list,$is_enabled_or_owned_by_user);
+    }
+  }else{
+    $is_enabled=function($couch){ return ($couch->enabled==1); };
+    return array_filter($couch_list,$is_enabled);
+  }
+}
+
+
 // Function that gets main picture for a LIST of COACHS
 function get_pictures_for_coachs($couch_list){
   $images = array();
