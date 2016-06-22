@@ -17,7 +17,7 @@
           <? else: ?>
             <li><a href="#">Mis Couchs</a></li>
             <li><a href="/couch/couch_create.php">Crear Couch</a></li>
-            <li><a href="/user/user_finished_reservation_list.php">Couchs donde me hosped&eacute;</a></li>
+            <li><a href="/user/user_reservation_list.php">Mis Reservas</a></li>
           <? endif ?>
         </ul>
        <? if(isset($_SESSION['user']) && !($_SESSION['user']->is_admin) && (count($comment_list_user) <> 0)): ?>
