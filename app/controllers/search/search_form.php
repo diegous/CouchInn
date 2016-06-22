@@ -5,7 +5,6 @@ include $_SERVER['DOCUMENT_ROOT'] . "/shared/loader.php";
 $content = "search/search_form_view.php";
 $title = "Buscar Couchs";
 
-$couch_types = CouchType::get_all();
 
 // Set default values in case no search was made yet
 $search_form['title'] = isset($_GET['title']) ? $_GET['title'] : "";
@@ -22,7 +21,9 @@ if (isset($_GET['title'])) {
                               $search_form['location'],
                               $search_form['capacity']);
 
-  $images = get_pictures_for_coachs($couch_list);
+  $list_header="";
+  include $DR . "/couch/couch_list_setup.php";
 }
+
 
 include $DRV . "/skeleton.php";
