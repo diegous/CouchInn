@@ -10,7 +10,7 @@
     </div>
     <button type="submit" class="btn btn-default">Preguntar</button>
   </div>
-  <hr>
+  <? if($comment_list): ?> <hr> <? endif ?>
 </form>
 <? else: ?>
   <br>
