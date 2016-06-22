@@ -10,5 +10,9 @@ $couch_types = CouchType::get_all();
 
 $images = get_pictures_for_coachs($couch_list);
 
+if(isset($_SESSION['user']) && !($_SESSION['user']->is_admin)):
+  $comment_list_user = CouchComment::get_by_user_id($_SESSION['user']->id);
+endif;
+
 include $DRV . "/skeleton.php";
 

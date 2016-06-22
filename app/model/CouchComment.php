@@ -94,10 +94,11 @@ class CouchComment extends GenericModel {
     $result = array();
 
     // Traer preguntas sin respuesta de un usuario
-    $query = 'SELECT * FROM ' . static::$table_name;
-    $query .= ' WHERE user_id =' . $a_user_id;
+    $query = 'SELECT a.* FROM ' . static::$table_name . ' a';
+    $query .= ' INNER JOIN couchs b ON a.couch_id = b.id ';
+    $query .= ' WHERE b.user_id =' . $a_user_id;
     $query .= ' AND (comment_answer = "" OR comment_answer IS NULL)';
-    $query .= ' ORDER BY id';
+    $query .= ' ORDER BY a.id';
 
     $query_result = $connection->query($query);
 
