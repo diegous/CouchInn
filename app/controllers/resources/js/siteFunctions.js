@@ -110,6 +110,10 @@ function parseJson(js_object){
     }
 }
 
+function returnToPreviousPage(){
+  window.history.back();
+}
+
 function checkValidDates(form) {
   start_date = new Date(form.start_date.value);
   end_date = new Date(form.end_date.value);

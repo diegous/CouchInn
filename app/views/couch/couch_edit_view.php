@@ -48,6 +48,7 @@
 
       </tr>
       <button type="submit" id="button-submit-couch" class="btn btn-default">Guardar</button>
+      <a href="javascript:returnToPreviousPage()" class="btn btn-default">Cancelar</a>
     </form>
   </tbody>
 </table>

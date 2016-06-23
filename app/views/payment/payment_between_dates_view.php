@@ -9,7 +9,7 @@
         var formulario=$("#date-sum-form").serialize();
         ajaxSync("payment_between_dates_calculation.php",formulario,
           function(message){errorTable=message;});
-        errorTable=JSON.parse(errorTable);
+        errorTable=parseJson(errorTable);
         var success=(errorTable["error"]===false);
         var texto=(success? "$"+errorTable["sum"] : errorTable["error"] );
         $("#date-sum").val(texto);
