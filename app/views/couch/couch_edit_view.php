@@ -20,6 +20,17 @@
 
       <tr>
         <div class="form-group">
+          <label for="select-type">Tipo:</label><br>
+          <select id="select-type" class="form-control" name="type" required="true" multiple="true">
+            <?php foreach($couch_type_list as $couch_type)
+                    echo "<option value='$couch_type->id' > $couch_type->description </option> "
+            ?>
+          </select>
+        </div>
+      </tr>
+
+      <tr>
+        <div class="form-group">
           <label for="capacity">Capacidad</label><br>
           <input type="number" name="capacity" class="form-control" value="<?= $couch->capacity; ?>" required>
         </div>

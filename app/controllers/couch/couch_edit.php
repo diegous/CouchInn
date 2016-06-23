@@ -10,7 +10,7 @@ $title = "Editar datos de un couch";
 if (isset($_GET["id"])) {
   $couch = Couch::get_by_id($_GET["id"]);
   $pictures = Picture::get_by_couch_id($couch->id,false);
-
+  $couch_type_list=CouchType::get_all_enabled();
   $imageSources = array();
 
   foreach ($pictures as $key => $value) {

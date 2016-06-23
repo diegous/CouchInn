@@ -10,9 +10,7 @@
     <?endif?>
     <a href="/couch/couch_edit.php?id=<?= $couch->id ?>">Modificar Couch</a>
     <hr>
-    <? if ($couch->enabled==2) : ?>
-      <strong><h4 style="color:red;">¡Atención Couch Deshabilitado por el administrador! </p></strong>
-    <?endif?>
+
   <? endif ?>
   <? if($_SESSION['user']->is_admin): ?>
     <hr>
@@ -24,6 +22,14 @@
       <?endif?>
     <?endif?>
     <hr>
+  <?endif?>
+<?endif?>
+
+<? if ($couch->enabled==2) : ?>
+  <strong><h4 style="color:red;">¡Atención Couch Deshabilitado por el administrador! </p></strong>
+<? else : ?>
+  <? if ($couch->enabled==0) : ?>
+      <strong><h4 style="color:red;">¡Atención Couch Deshabilitado! </p></strong>
   <?endif?>
 <?endif?>
 
