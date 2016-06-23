@@ -23,8 +23,11 @@ if (isset($_GET['title'])) {
   $user=(isset($_SESSION['user']) ? $_SESSION['user'] : null );
   $couch_list = filter_couch_list_for_display($couch_list,$user);
   $list_header="";
-  include $DR . "/couch/couch_list_setup.php";
+} else {
+  $couch_list = [];
 }
+
+  include $DR . "/couch/couch_list_setup.php";
 
 
 include $DRV . "/skeleton.php";
