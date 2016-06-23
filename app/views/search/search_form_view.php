@@ -46,7 +46,7 @@
 </div>
 
 <? if (isset($couch_list)): ?>
-  <h3 id="header-resultados">Resultados:</h3>
+  <h3 id="header-resultados">Resultados (<?= count($couch_list) ?>)</h3>
   <? if (count($couch_list) == 0): ?>
     <h4>No se encontraron resultados</h4>
   <? else: ?>
@@ -55,6 +55,6 @@
   <script>
     $(document).ready(function(){
       document.getElementById("header-resultados").scrollIntoView( true );
-    }) 
+    })
   </script>
 <? endif ?>
