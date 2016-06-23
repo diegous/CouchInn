@@ -1,7 +1,7 @@
 
 
 <div>
-  <h2>Todas Mis Reservas(las que hice).</h2>
+  <h2>Todas Las Reservas Que Hice.</h2>
   <? foreach ($orden_de_reservas as $tipo_reserva): ?>
   <? $reservation_list=$reservation_map[$tipo_reserva]; ?>
     <h3><?= $tipo_reserva ?>s:</h3>
