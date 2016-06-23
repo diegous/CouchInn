@@ -25,13 +25,14 @@
         <div class="loginmodal-container">
           <h1>Iniciar Sesi&oacute;n</h1><br>
           <form id="login-form" onsubmit="return checkLogin(this)">
+            <input class="login-input" type="email" name="email" placeholder="Email" required>
+            <input class="login-input" type="password" name="password" 
+                   placeholder="Contrase&ntilde;a" required>
             <div id="incorrect-login-label" class="alert alert-danger hidden" 
               role="alert" style="color:red;align:left">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
               Combinación usuario/contraseña incorrecto
             </div>
-            <input class="login-input" type="email" name="email" placeholder="Email" required>
-            <input class="login-input" type="password" name="password" placeholder="Contrase&ntilde;a" required>
             <input type="submit" class="login loginmodal-submit" value="Enviar">
           </form>
           <div class="login-help">
