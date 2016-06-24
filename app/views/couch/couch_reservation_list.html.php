@@ -25,7 +25,7 @@
                 <a href="/reservation/reservation_update.php?action=confirm&amp;id=<?= $reservation->id ?>">
                   Aceptar
                 </a> -
-                <a href="/reservation/reservation_update.php?action=reject&amp;id=<?= $reservation->id ?>">
+                <a href="/reservation/reservation_update.php?action=reject&amp;id=<?= $reservation->id ?>" onclick="return confirm('¿Seguro que desea rechazar la reserva?')">
                   Rechazar
                 </a>
               <? endif ?>
