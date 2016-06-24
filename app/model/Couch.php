@@ -92,10 +92,13 @@ class Couch extends GenericModel {
     $query .= " AND capacity>=" . $capacity;
 
     if ($dates_enabled && $start_date && $end_date) {
+      $states = ReservationState::get_all();
+
       $query .= " AND id NOT IN ";
       $query .= " (SELECT couch_id FROM reservations";
       $query .= " WHERE start_date<='" . $end_date . "'";
       $query .= " AND end_date>='" . $start_date . "'";
+      $query .= " AND state_id=" . $states["Confirmada"];
       $query .= " )";
     }
 
