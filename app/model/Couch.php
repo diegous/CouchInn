@@ -81,19 +81,26 @@ class Couch extends GenericModel {
     return $this->is_enabled() ||($user->id == $this->user_id);
   }
 
-  public static function search($title, $description, $couch_type, $location, $capacity) {
+  public static function search($title, $description, $couch_type, $location, $capacity, $dates_enabled, $start_date, $end_date) {
     if (!$capacity)
       $capacity = 0;
 
-    $query = "SELECT * FROM " . static::$table_name . " WHERE";
-    $query .= " title LIKE '%" . $title . "%' AND";
-    $query .= " location LIKE '%" . $location . "%' AND";
-    $query .= " description LIKE '%" . $description . "%' AND";
-    $query .= " capacity>=" . $capacity;
+    $query = "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE title LIKE '%" . $title . "%'";
+    $query .= " AND location LIKE '%" . $location . "%'";
+    $query .= " AND description LIKE '%" . $description . "%'";
+    $query .= " AND capacity>=" . $capacity;
+
+    if ($dates_enabled && $start_date && $end_date) {
+      $query .= " AND id NOT IN ";
+      $query .= " (SELECT couch_id FROM reservations";
+      $query .= " WHERE start_date<='" . $end_date . "'";
+      $query .= " AND end_date>='" . $start_date . "'";
+      $query .= " )";
+    }
 
     if ($couch_type != 0)
       $query .= " AND type_id=" . $couch_type;
-
 
     $connection = get_connection();
     $query_result = $connection->query($query);

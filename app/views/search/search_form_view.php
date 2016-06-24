@@ -41,6 +41,25 @@
       <input id="capacity" name="capacity" class="form-control" type="number" value="<?= $search_form['capacity'] ?>">
     </div>
 
+
+    <div class="form-group">
+      <label>Libre entre fechas <input type="checkbox" name="dates_enabled" onclick="enable_dates(this.checked)"
+          <?= $search_form['dates_enabled'] ?>
+          value="checked"></label><br>
+
+      <label for="start_date">Inicio</label>
+      <input id="start_date" name="start_date" class="form-control" type="date" value="<?= $search_form['start_date'] ?>"
+        <? if (!$search_form['dates_enabled']): ?>
+          disabled
+        <? endif ?>>
+
+      <label for="end_date">Fin</label>
+      <input id="end_date" name="end_date" class="form-control" type="date" value="<?= $search_form['end_date'] ?>"
+        <? if (!$search_form['dates_enabled']): ?>
+          disabled
+        <? endif ?>>
+    </div>
+
     <button type="submit" class="btn btn-default">Buscar</button>
   </form>
 </div>

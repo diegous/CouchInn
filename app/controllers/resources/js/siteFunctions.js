@@ -15,7 +15,7 @@ function checkLogin($form) {
         }
         $(".login-input").on("focus click",dismiss);
         $('div#login-modal').on('hide.bs.modal ', dismiss);
-        
+
         // alert("Combinación usuario/contraseña incorrecto");
       }
     }
@@ -131,4 +131,9 @@ function checkValidDates(form) {
     alertMessage.show("La fecha de inicio debe ser a partir de hoy ","danger");
     return false;
   }
+}
+
+function enable_dates(checked) {
+  $("#start_date").attr("disabled", !checked);
+  $("#end_date").attr("disabled", !checked);
 }
