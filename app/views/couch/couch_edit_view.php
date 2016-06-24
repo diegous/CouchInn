@@ -21,7 +21,7 @@
       <tr>
         <div class="form-group">
           <label for="select-type">Tipo:</label><br>
-          <select id="select-type" class="form-control" name="type" required="true" multiple="true">
+          <select id="select-type" class="form-control" name="type" required="true" >
             <?php foreach($couch_type_list as $couch_type)
                     echo "<option value='$couch_type->id' > $couch_type->description </option> "
             ?>
