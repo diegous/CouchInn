@@ -147,6 +147,27 @@ class Reservation extends GenericModel {
 
     return $result;
   }
+
+  public static function confirmed_reservation_conflicting_with($reservation) {
+    $states = ReservationState::get_all();
+
+    $query =  "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE state_id=" . $states['Confirmada'];
+    $query .= " AND couch_id=" . $reservation->couch_id;
+    $query .= " AND start_date<='" . $reservation->end_date . "'";
+    $query .= " AND end_date>='" . $reservation->start_date . "'";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    if ($row = $query_result->fetch_assoc())
+      $result = static::new_object_from_array($row);
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
 }
 
 
