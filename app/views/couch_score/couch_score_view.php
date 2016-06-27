@@ -11,11 +11,12 @@
 <hr>
 
 <?php
+  //poner en otro lado
   $max_stars=5;
   $stars=4;
 ?>
 
-<form id="form-score">
+<form id="form-score" action="/" method="POST">
   <!-- uso un hidden input para enviar la cantidad de estrellas -->
   <input type='hidden' class='input-star-selected' name='score' value='<?=$stars?>'/>
 
@@ -26,7 +27,7 @@
        $star_selected=($stars===$id ?"star-selected":"");
        $star_classes =($star_type." ".$star_selected);
     ?>
-      <span class='score-star glyphicon <?=$star_classes?>' id='star-<=?$id?>'></span>
+      <span class='score-star glyphicon <?=$star_classes?>' id='star-<?=$id?>'></span>
     <? endfor ?>
 
   </span>
@@ -63,6 +64,7 @@ $(function(){
           .removeClass("star-selected");
       self.addClass("star-selected");
       hoverUpdate(self);
+      //escribo cual estrella seleccione en el input oculto
       $(".input-star-selected").val(starNumber);
     }
   });

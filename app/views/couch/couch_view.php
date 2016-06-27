@@ -1,4 +1,4 @@
-y<? if ($_SESSION && $_SESSION['user']): ?>
+<? if ($_SESSION && $_SESSION['user']): ?>
   <? if($_SESSION['user']->id == $couch->user_id) : ?>
     <hr>
     <? if ($couch->enabled==1) : ?>
