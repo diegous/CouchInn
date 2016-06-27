@@ -1,4 +1,4 @@
-<? if ($_SESSION && $_SESSION['user']): ?>
+y<? if ($_SESSION && $_SESSION['user']): ?>
   <? if($_SESSION['user']->id == $couch->user_id) : ?>
     <hr>
     <? if ($couch->enabled==1) : ?>
@@ -57,9 +57,12 @@
   </div>
 </div>
 
+
+
+<? include($DRV . "/couch_score/couch_score_view.php") ?>
+
 <? include($DRV . "/couch_comment/couch_comment_view.php") ?>
 
-<hr>
 
 <? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)): ?>
   <? if ($_SESSION['user']->id == $couch->user_id): ?>
