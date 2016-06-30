@@ -86,8 +86,6 @@ function redirect_with_alert($alert,$message,$url){
 
 
 function filter_couch_list_for_display($couch_list,$user=null){
-  if($user && $user->is_admin)
-    return $couch_list;
   $predicate=($user?
     function($couch)use($user){ return $couch->is_visible_for_user($user); } :
     function($couch){ return $couch->is_enabled(); }

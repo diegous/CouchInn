@@ -78,7 +78,7 @@ class Couch extends GenericModel {
     return $this->enabled==1 && $this->published==1;
   }
   public function is_visible_for_user($user){
-    return $this->is_enabled() ||($user->id == $this->user_id);
+    return $this->is_enabled() || $user->is_admin ||($user->id == $this->user_id);
   }
 
   public static function search($title, $description, $couch_type, $location, $capacity, $dates_enabled, $start_date, $end_date) {

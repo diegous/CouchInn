@@ -9,6 +9,15 @@ $title = "Ver couch";
 
 if (isset($_GET['id'])) {
   $couch = Couch::get_by_id($_GET["id"]);
+
+  if( ! $couch->is_enabled() ){
+    $visible = isset($_SESSION['user']) && $couch->is_visible_for_user( $_SESSION['user'] );
+    if( ! $visible ){
+      header('Location: ' . '/index.php');
+      exit();
+    }
+  }
+
   $picture_list = Picture::get_by_couch_id($_GET["id"]);
   $couch_type = CouchType::get_by_id($couch->type_id);
   $owner = User::get_by_id($couch->user_id);
