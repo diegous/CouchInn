@@ -76,6 +76,7 @@ function redirect_to_message($title,$message,$url){
       ."&url=".encodeURIComponent($url)
       ."&message=".encodeURIComponent($message)
   );
+  exit();
 };
 
 function redirect_with_alert($alert,$message,$url){

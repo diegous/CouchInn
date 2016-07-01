@@ -13,6 +13,7 @@
         <ul class="nav navbar-nav">
           <? if($_SESSION['user']->is_admin): ?>
             <li><a href="/couch_type/couch_type_list.php">Ver tipos de couch</a></li>
+            <li><a href="/reservation/accepted_reservation_list.php">Ver reservas aceptadas entre dos fechas</a></li>
             <li><a href="/payment/payment_between_dates.php">Ver ganancias</a></li>
           <? else: ?>
             <li><a href="/user/user_couch_list.php">Mis Couchs</a></li>

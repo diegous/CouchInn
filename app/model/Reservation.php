@@ -112,6 +112,41 @@ class Reservation extends GenericModel {
     $connection->close();
   }
 
+  public static function reservations_by_state($description) {
+
+    $state = ReservationState::get_by_description($description);
+
+    return parent::get_by_field_value("state_id",$state->id);
+  }
+
+  //Incluye la reserva aun si esta solo parcialmente dentro de rango de fechas
+  public static function reservations_by_state_between_dates($description,$start_date,$end_date) {
+
+    $state = ReservationState::get_by_description($description);
+
+    $query =  " SELECT * from ".static::$table_name;
+    $query .= " WHERE state_id=".$state->id;
+    $query .= " AND (start_date>='" . $start_date . "'";
+    $query .= " AND start_date<='" . $end_date . "'";
+    $query .= " OR end_date>='" . $start_date . "'";
+    $query .= " AND end_date<='" . $end_date . "')";
+    $query .= " ORDER BY start_date ;";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[$row['id']] = static::new_object_from_array($row);
+    }
+
+    return $result;
+
+    $query_result->close();
+    $connection->close();
+  }
+
   public static function end_confirmed_reservations() {
     $states = ReservationState::get_all();
     $yesterday = date('Y-m-d', strtotime( '-1 days' ));
