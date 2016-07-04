@@ -110,4 +110,22 @@ class User extends GenericModel {
 
     return $result;
   }
+
+  public static function enabled_admins() {
+    $query = 'SELECT * FROM ' . static::$table_name;
+    $query .= ' WHERE is_admin=1 AND enabled=1';
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc())
+      $result[$row['id']] = static::new_object_from_array($row);
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
 }
