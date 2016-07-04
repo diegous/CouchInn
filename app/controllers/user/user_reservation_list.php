@@ -39,7 +39,7 @@ $orden_de_reservas=[
 
 
 $title="Listado de Couchs donde me hospedé";
-$content="/user/user_reservation_list_view.php";
+$content="user/user_reservation_list_view.php";
 
 include $DRV."/skeleton.php";
 
