@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 24, 2016 at 05:26 AM
+-- Host: localhost
+-- Generation Time: Jul 10, 2016 at 01:31 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.5.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -73,20 +73,6 @@ INSERT INTO `couch_comments` (`id`, `enabled`, `user_id`, `couch_id`, `comment_q
 (2, 1, 12, 1, 'Â¿Sos un robot?', '0000-00-00 00:00:00', 'No'),
 (3, 1, 12, 1, 'Â¿Entoces que sos?', '0000-00-00 00:00:00', ''),
 (4, 1, 13, 1, 'Â¿Como llego a la casa?', '0000-00-00 00:00:00', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `couch_scores`
---
-
-CREATE TABLE `couch_scores` (
-  `id` int(11) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `reservation_id` int(11) NOT NULL,
-  `score` int(11) NOT NULL,
-  `comment` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -162,20 +148,24 @@ CREATE TABLE `reservations` (
   `couch_id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL
+  `end_date` date NOT NULL,
+  `score_for_couch` int(11) DEFAULT '-1',
+  `comment_for_couch` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `score_for_user` int(11) DEFAULT '-1',
+  `comment_for_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `enabled`, `user_id`, `couch_id`, `state_id`, `start_date`, `end_date`) VALUES
-(7, 1, 13, 1, 3, '2016-06-16', '2016-06-23'),
-(8, 1, 13, 1, 4, '2016-06-15', '2016-06-20'),
-(9, 1, 13, 1, 3, '2016-06-18', '2016-06-22'),
-(13, 1, 13, 1, 1, '2016-06-25', '2016-07-10'),
-(14, 1, 12, 1, 1, '2016-06-26', '2016-07-14'),
-(15, 1, 12, 1, 1, '2016-07-10', '2016-07-16');
+INSERT INTO `reservations` (`id`, `enabled`, `user_id`, `couch_id`, `state_id`, `start_date`, `end_date`, `score_for_couch`, `comment_for_couch`, `score_for_user`, `comment_for_user`) VALUES
+(7, 1, 13, 1, 3, '2016-06-16', '2016-06-23', -1, '', -1, ''),
+(8, 1, 13, 1, 4, '2016-06-15', '2016-06-20', 3, '', -1, ''),
+(9, 1, 13, 1, 3, '2016-06-18', '2016-06-22', -1, '', -1, ''),
+(13, 1, 13, 1, 5, '2016-06-25', '2016-07-10', -1, '', -1, ''),
+(14, 1, 12, 1, 5, '2016-06-26', '2016-07-14', -1, '', -1, ''),
+(15, 1, 12, 1, 1, '2016-07-10', '2016-07-16', -1, '', -1, '');
 
 -- --------------------------------------------------------
 
@@ -231,20 +221,6 @@ INSERT INTO `users` (`id`, `enabled`, `email`, `password`, `name`, `last_name`, 
 (14, 1, 'user4@a.b', '1234', 'q', 'q', '1111-11-11', '', 0, 0),
 (23, 1, 'user5@a.b', '1234', 'Armando ', 'Perez', '1111-11-11', '', 0, 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_scores`
---
-
-CREATE TABLE `user_scores` (
-  `id` int(11) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  `reservation_id` int(11) NOT NULL,
-  `score` int(11) NOT NULL,
-  `comment` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Indexes for dumped tables
 --
@@ -259,12 +235,6 @@ ALTER TABLE `couchs`
 -- Indexes for table `couch_comments`
 --
 ALTER TABLE `couch_comments`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `couch_scores`
---
-ALTER TABLE `couch_scores`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -305,12 +275,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `user_scores`
---
-ALTER TABLE `user_scores`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -324,11 +288,6 @@ ALTER TABLE `couchs`
 --
 ALTER TABLE `couch_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `couch_scores`
---
-ALTER TABLE `couch_scores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `couch_types`
 --
@@ -359,11 +318,6 @@ ALTER TABLE `reservation_states`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT for table `user_scores`
---
-ALTER TABLE `user_scores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

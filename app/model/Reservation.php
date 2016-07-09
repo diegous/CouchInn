@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/shared/date_validation.php';
 
 class Reservation extends GenericModel {
   protected static $table_name = 'reservations';
-  protected static $table_fields = 'enabled, user_id, couch_id, state_id, start_date, end_date';
+  protected static $table_fields = 'enabled, user_id, couch_id, state_id, start_date, end_date, score_for_couch, comment_for_couch, score_for_user, comment_for_user';
 
   public $id;
   public $enabled;
@@ -12,8 +12,12 @@ class Reservation extends GenericModel {
   public $state_id;
   public $start_date;
   public $end_date;
+  public $score_for_couch;
+  public $comment_for_couch;
+  public $score_for_user;
+  public $comment_for_user;
 
-  public function __construct($id, $enabled = 1, $user_id, $couch_id, $state_id, $start_date, $end_date) {
+  public function __construct($id, $enabled = 1, $user_id, $couch_id, $state_id, $start_date, $end_date, $score_for_couch, $comment_for_couch, $score_for_user, $comment_for_user) {
     $this->id = $id;
     $this->enabled = $enabled;
     $this->user_id = $user_id;
@@ -21,6 +25,10 @@ class Reservation extends GenericModel {
     $this->state_id = $state_id;
     $this->start_date = $start_date;
     $this->end_date = $end_date;
+    $this->score_for_couch = $score_for_couch;
+    $this->comment_for_couch = $comment_for_couch;
+    $this->score_for_user = $score_for_user;
+    $this->comment_for_user = $comment_for_user;
   }
 
   static function new_object_from_array($arr) {
@@ -31,7 +39,11 @@ class Reservation extends GenericModel {
       $arr['couch_id'],
       $arr['state_id'],
       $arr['start_date'],
-      $arr['end_date']
+      $arr['end_date'],
+      $arr['score_for_couch'],
+      $arr['comment_for_couch'],
+      $arr['score_for_user'],
+      $arr['comment_for_user']
     );
   }
 
@@ -42,6 +54,10 @@ class Reservation extends GenericModel {
     $result .= "" . $this->state_id . ", ";
     $result .= "'" . $this->start_date . "', ";
     $result .= "'" . $this->end_date . "'";
+    $result .= "" . $this->$score_for_couch . ", ";
+    $result .= "'" . $this->$comment_for_couch . "', ";
+    $result .= "" . $this->$score_for_user . ", ";
+    $result .= "'" . $this->$comment_for_user . "' ";
 
     return $result;
   }
@@ -52,7 +68,11 @@ class Reservation extends GenericModel {
     $result .= "couch_id='" . $this->couch_id . "', ";
     $result .= "state_id='" . $this->state_id . "', ";
     $result .= "start_date='" . $this->start_date . "', ";
-    $result .= "end_date='" . $this->end_date . "'";
+    $result .= "end_date='" . $this->end_date . "', ";
+    $result .= "score_for_couch=" . $this->score_for_couch . ", ";
+    $result .= "comment_for_couch='" . $this->comment_for_couch . "', ";
+    $result .= "score_for_user=" . $this->score_for_user . ", ";
+    $result .= "comment_for_user='" . $this->comment_for_user . "' ";
 
     return $result;
   }

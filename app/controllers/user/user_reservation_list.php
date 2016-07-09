@@ -30,7 +30,6 @@ function reservations_to_a_map($reservation_list){
 }
 
 $orden_de_reservas=[
-  "Finalizada",
   "Vencida",
   "Pendiente",
   "Confirmada",
