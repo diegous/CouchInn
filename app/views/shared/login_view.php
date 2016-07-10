@@ -9,7 +9,7 @@
   </div>
 
   <? if ($_SESSION && isset($_SESSION['user'])): ?>
-    <strong>Usuario actual: <a href="/user/user_profile.php"><?= $_SESSION['user']->email ?></a></strong>
+    <strong>Usuario actual: <a href="/user/user_profile.php?id= <?= $_SESSION['user']->id ?>" ><?= $_SESSION['user']->email ?></a></strong>
 
     <? if($_SESSION['user']->is_admin) : ?>
       <span class="glyphicon glyphicon-cog" style="color:black" title="Usuario administrador" aria-hidden="true"></span>

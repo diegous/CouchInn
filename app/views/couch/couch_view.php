@@ -36,7 +36,7 @@
 <h1><?= $couch->title; ?></h1>
 <div class="couch-info-container">
   <h3>Due&ntilde;o:</h3>
-  <p class=""><?= $owner->name ?>, <?= $owner->last_name ?></p>
+  <a href="/user/user_profile.php?id=<?= $owner->id?>" ><?= $owner->name ?>, <?= $owner->last_name ?></a>
 
   <h3>Descripci&oacute;n:</h3>
   <p class="couch-description"> <?= $couch->description; ?> </p>

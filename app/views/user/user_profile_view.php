@@ -1,7 +1,12 @@
-<hr>
-<a href="/user/user_edit.php">Modificar Datos de Usuario - </a>
-<a href="/user/user_habilitation.php?id=<?= $user->id; ?> &amp; action=disable" onclick="return confirm('¿Está seguro que desea deshabilitar su usuario?        Recuerde que esta accion es permanente y no puede revertirse.')">Deshabilitar Usuario</a>
-<hr>
+
+<? if($_SESSION) : ?>
+  <? if($_SESSION['user']==$user): ?>
+    <hr>
+    <a href="/user/user_edit.php">Modificar Datos de Usuario - </a>
+    <a href="/user/user_habilitation.php?id=<?= $user->id; ?> &amp; action=disable" onclick="return confirm('¿Está seguro que desea deshabilitar su usuario?        Recuerde que esta accion es permanente y no puede revertirse.')">Deshabilitar Usuario</a>
+    <hr>
+  <? endif ?>
+<? endif ?>
 
 <h2>Datos de usuario</h2>
 
@@ -20,16 +25,20 @@
 <label>Puntuacion:</label>
 #  <br>
 
-<hr>
 
-<h2>Cuenta Premium:</h2>
-  <? if(! $_SESSION['user']->is_premium): ?>
-    <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
-      <input type="input" name="amount" value="30" hidden="true">
-      <a onclick="document.getElementById('hidden-amount-form').submit()" >
-        Adquirir Cuenta Premium</a>
-    </form>
-  <? else: ?>
-    Ya es Usuario Premium
+<? if($_SESSION) : ?>
+  <? if($_SESSION['user']==$user): ?>
+    <hr>
+    <h2>Cuenta Premium:</h2>
+      <? if(! $_SESSION['user']->is_premium): ?>
+        <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
+          <input type="input" name="amount" value="30" hidden="true">
+          <a onclick="document.getElementById('hidden-amount-form').submit()" >
+            Adquirir Cuenta Premium</a>
+        </form>
+      <? else: ?>
+        Ya es Usuario Premium
+      <? endif ?>
   <? endif ?>
+<? endif ?>
 <br><br>
