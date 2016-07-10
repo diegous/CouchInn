@@ -16,7 +16,6 @@ if ($_POST["id"] && $_POST["password"] && $_POST["name"] && $_POST["last_name"] 
   $user->update();
 
   $_SESSION['user'] = $user;
+  redirect_with_alert('success',"El usuario ha sido modificado",'/user/user_profile.php');
 }
 
-header('Location: ' . "/user/user_profile.php");
-exit();
