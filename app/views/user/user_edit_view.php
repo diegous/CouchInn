@@ -48,17 +48,6 @@
       <button type="submit" class="btn btn-default">Guardar</button>
       <a href="javascript:returnToPreviousPage()" class="btn btn-default">Cancelar</a>
     </form>
-    <hr>
-
-    <h2>Cuenta Premium:</h2>
-    <? if(! $_SESSION['user']->is_premium): ?>
-      <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
-        <input type="input" name="amount" value="30" hidden="true">
-        <a onclick="document.getElementById('hidden-amount-form').submit()" >
-          Adquirir Cuenta Premium</a>
-      </form>
-    <? else: ?>
-      Ya es Usuario Premium
-    <? endif ?>
   </tbody>
 </table>
+<br><br>
