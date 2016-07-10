@@ -31,12 +31,7 @@
             <td><?= $reservation->end_date ?></td>
             <td>
             <? if ($reservation->score_for_couch == -1): ?>
-              Puntuar:
-              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch&amp;score=1">1</a>
-              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch&amp;score=2">2</a>
-              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch&amp;score=3">3</a>
-              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch&amp;score=4">4</a>
-              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch&amp;score=5">5</a>
+              <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=couch">Puntuar</a>
             <? else: ?>
               <?= $reservation->score_for_couch ?>
             <? endif ?>
