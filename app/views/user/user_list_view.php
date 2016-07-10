@@ -17,7 +17,7 @@
         <? if (!$user->is_admin): ?>
           <tr>
             <td>
-              <a href="/user/user.php?id=<?= $user->id ?>">
+              <a href="/user/user_profile.php?id=<?= $user->id ?>">
                 <?= $user->email ?>
               </a>
             </td>
