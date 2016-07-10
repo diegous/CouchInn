@@ -28,6 +28,14 @@
                 <a href="/reservation/reservation_update.php?action=reject&amp;id=<?= $reservation->id ?>" onclick="return confirm('¿Seguro que desea rechazar la reserva?')">
                   Rechazar
                 </a>
+              <? elseif ($reservation->state_id == $state_list["Finalizada"]): ?>
+
+                <? if ($reservation->score_for_user == -1): ?>
+                  <a href="/reservation/reservation_score.php?id=<?= $reservation->id ?>&amp;for=user">Puntuar</a>
+                <? else: ?>
+                  Puntuado: <?= $reservation->score_for_user ?>
+                <? endif ?>
+
               <? endif ?>
             </td>
           </tr>
