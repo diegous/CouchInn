@@ -67,10 +67,11 @@
             <td><?= $user->email ?></td>
             <td>
               <? if ($user->enabled): ?>
-                <a href="/user/user_habilitation.php?action=disable&amp;id=<?= $user->id ?>">
+                <a href="/user/user_habilitation.php?action=disable&amp;id=<?= $user->id ?>"  onclick="return confirm('¿Está seguro que desea deshabilitar su usuario? Recuerde que esta accion es permanente y no puede revertirse. En caso afirmativo, se cerrará la sesión.')">
                   Deshabilitar
                 </a>
               <? else: ?>
+
                 <a href="/user/user_habilitation.php?action=enable&amp;id=<?= $user->id ?>">
                   Habilitar
                 </a>

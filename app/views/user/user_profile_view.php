@@ -3,7 +3,7 @@
   <? if($_SESSION['user']==$user): ?>
     <hr>
     <a href="/user/user_edit.php">Modificar Datos de Usuario - </a>
-    <a href="/user/user_habilitation.php?id=<?= $user->id; ?> &amp; action=disable" onclick="return confirm('¿Está seguro que desea deshabilitar su usuario?        Recuerde que esta accion es permanente y no puede revertirse.')">Deshabilitar Usuario</a>
+    <a href="/user/user_habilitation.php?id=<?= $user->id; ?> &amp; action=disable" onclick="return confirm('¿Está seguro que desea deshabilitar su usuario? Recuerde que esta accion es permanente y no puede revertirse. En caso afirmativo, se cerrará la sesión.')">Deshabilitar Usuario</a>
     <hr>
   <? endif ?>
 <? endif ?>
