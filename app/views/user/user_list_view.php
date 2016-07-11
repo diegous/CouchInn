@@ -50,6 +50,9 @@
 
 <div>
   <h2>Administradores del sitio</h2>
+  <a href="/user/user_new.php">
+    Dar de alta usuario administrador
+  </a>
   <table class="table">
     <thead>
       <tr>

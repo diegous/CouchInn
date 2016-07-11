@@ -21,7 +21,13 @@ if( count($errors_table)==0 ){
 	$birthday  = $_POST['birthday'] ? $_POST['birthday'] : NULL;
 	$phone     = $_POST['phone'] ? $_POST['phone'] : NULL;
 
-	$user = new User(NULL, TRUE, $email, $password, $name, $last_name, $birthday, $phone, 0, 0);
+	if ($_SESSION['user']->is_admin) {
+		$is_admin = 1;
+	} else {
+		$is_admin = 0;
+	}
+
+	$user = new User(NULL, TRUE, $email, $password, $name, $last_name, $birthday, $phone, $is_admin, 0);
 	$user->save_new();
 
 	echo "success";
