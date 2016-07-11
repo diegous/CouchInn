@@ -49,6 +49,10 @@
 
   <h3>Ubicaci&oacute;n:</h3>
   <p class="couch-location"><?= $couch->location; ?></p>
+  <h3>Puntaje promedio:</h3>
+  <p class="couch-score-average">
+    <?= ($score_average!==null ? $score_average : "Couch no puntuado" ) ?>
+  </p>
   <div>
     <? foreach ($picture_list as $picture): ?>
       <img class="couch-img" src="<?=Picture::get_full_path($picture->filename) ?>"
@@ -59,7 +63,6 @@
 
 
 <? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)): ?>
-  <? include($DRV . "/couch_score/couch_score_view.php") ?>
 
   <? include($DRV . "/couch_comment/couch_comment_view.php") ?>
 <? endif ?>

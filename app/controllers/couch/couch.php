@@ -26,6 +26,26 @@ if (isset($_GET['id'])) {
 
   $state_list = ReservationState::get_all();
   $reservation_list = Reservation::get_by_couch_id($_GET['id']);
+
+
+  function process_score_average($reservation_list,$state){
+    $suma=0;
+    $cantidad=0;
+    foreach ($reservation_list as $reservation) {
+      if($reservation->state_id==$state && $reservation->score_for_couch>=0){
+        $suma += $reservation->score_for_couch;
+        $cantidad += 1;
+      }
+    }
+    if($cantidad==0){
+      return null;
+    }else{
+      return ($suma / $cantidad);
+    }
+  }
+
+  $score_average=process_score_average($reservation_list,$state_list["Finalizada"]);
+
   $user_list = User::get_all();
 
   include $DRV . "/skeleton.php";
