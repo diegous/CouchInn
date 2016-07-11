@@ -58,10 +58,11 @@
 </div>
 
 
+<? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)): ?>
+  <? include($DRV . "/couch_score/couch_score_view.php") ?>
 
-<? include($DRV . "/couch_score/couch_score_view.php") ?>
-
-<? include($DRV . "/couch_comment/couch_comment_view.php") ?>
+  <? include($DRV . "/couch_comment/couch_comment_view.php") ?>
+<? endif ?>
 
 
 <? if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)): ?>

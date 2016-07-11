@@ -29,7 +29,8 @@
 <? if($_SESSION) : ?>
   <? if($_SESSION['user']==$user): ?>
     <hr>
-    <h2>Cuenta Premium:</h2>
+    <? if(! $_SESSION['user']->is_admin): ?>
+      <h2>Cuenta Premium:</h2>
       <? if(! $_SESSION['user']->is_premium): ?>
         <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
           <input type="input" name="amount" value="30" hidden="true">
@@ -39,6 +40,7 @@
       <? else: ?>
         Ya es Usuario Premium
       <? endif ?>
+    <? endif ?>
   <? endif ?>
 <? endif ?>
 <br><br>
