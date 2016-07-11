@@ -1,17 +1,31 @@
 function checkLogin($form) {
+  var constantes={
+    noExiste:0,
+    deshabilitado:1,
+    habilitado:2
+  };
   $.post("/session/session_create.php",
     {
       email: $form.email.value,
       password: $form.password.value,
     },
     function(data,status){
-      if (data) {
+      console.log(data);
+      if (data==constantes.habilitado) {
         location.reload();
       } else {
-        $("#incorrect-login-label").removeClass("hidden");
+        if(data==constantes.deshabilitado){
+          $("#disabled-login-label").removeClass("hidden");
+        }else if(data==constantes.noExiste){
+          $("#incorrect-login-label").removeClass("hidden");
+        }else{
+          //imposible
+          alertMessage.show(data);
+        }
+
         var dismiss=function(){
           $("#login-dialog").removeClass("bad-input");
-          $("#incorrect-login-label").addClass("hidden");
+          $(".login-label").addClass("hidden");
         }
         $(".login-input").on("focus click",dismiss);
         $('div#login-modal').on('hide.bs.modal ', dismiss);

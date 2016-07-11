@@ -73,17 +73,21 @@ class User extends GenericModel {
     $query = "SELECT * FROM " . static::$table_name;
     $query .= " WHERE email='" . $an_email . "'";
     $query .= " AND password='" . $a_password . "'";
-    $query .= " AND enabled=TRUE ";
+//    $query .= " AND enabled=TRUE ";
 
     $connection = get_connection();
     $query_result = $connection->query($query);
 
     $result = array();
 
-    if ($row = $query_result->fetch_assoc())
+    if ($row = $query_result->fetch_assoc()){
       $result = static::new_object_from_array($row);
-    else
+      if($result->enabled==false){
+        $result = false;
+      }
+    }else{
       $result = NULL;
+    }
 
     $query_result->close();
     $connection->close();
