@@ -34,12 +34,11 @@
 </table>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Nuevo tipo de Couch</div>
+  <label><div class="panel-heading">Nuevo tipo de Couch</div></label>
   <form class="panel-body" action="/couch_type/couch_type_create.php" method="post">
 
     <div class="form-group">
-      <label for="description">Descripci&oacute;n</label><br>
-      <input id="description" class="form-control" type="text" name="description">
+      <input id="description" class="form-control" type="text" name="description" placeholder="Descripci&oacute;n">
     </div>
 
     <button type="submit" class="btn btn-default">Guardar</button>
