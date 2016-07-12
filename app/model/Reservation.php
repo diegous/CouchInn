@@ -209,8 +209,6 @@ class Reservation extends GenericModel {
     $query .= " (SELECT couch_id FROM couchs";
     $query .= " WHERE user_id=" . $user_id . " ";
     $query .= " )";
-  
-    echo $query;
 
     $connection = get_connection();
     $query_result = $connection->query($query);
@@ -232,8 +230,6 @@ class Reservation extends GenericModel {
     $query .= " )";
     $query .= " AND score_for_user > -1";
   
-    echo $query;
-
     $connection = get_connection();
     $query_result = $connection->query($query);
     $result = array();
