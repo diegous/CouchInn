@@ -43,12 +43,3 @@ $content="user/user_reservation_list_view.php";
 include $DRV."/skeleton.php";
 
 
-
-/*
-
-  Edit Edit   Copy Copy   Delete Delete   1   1   Pendiente
-  Edit Edit   Copy Copy   Delete Delete   2   1   Confirmada
-  Edit Edit   Copy Copy   Delete Delete   3   1   Rechazada
-  Edit Edit   Copy Copy   Delete Delete   4   1   Finalizada
-  Edit Edit   Copy Copy   Delete Delete   5   1   Vencida
-*/
