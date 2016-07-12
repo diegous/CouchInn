@@ -200,7 +200,7 @@ class User extends GenericModel {
 
       $connection_ud->close();
 
-      /*return $query_result;  */
+      /*return $query_result;*/
       /*
       $result[$row['id']]->state_id = $states["Rechazada"];
       $result[$row['id']]->update();

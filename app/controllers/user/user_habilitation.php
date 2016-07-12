@@ -17,7 +17,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
         $user->disable();
         $user->disable_couch_user();
         $user->disable_reservation_user();
-        /*$user->disable_reservation_couch_user();*/
+        /*$user->disable_reservation_couch_user(); */
         create_alert('success', 'El usuario fue deshabilitado');
       } else
         if (count(User::enabled_admins()) > 1){

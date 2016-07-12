@@ -121,6 +121,7 @@ class Couch extends GenericModel {
     return $result;
   }
 
+/*
   public function disable_reservation_couch() {
     $query =  'UPDATE reservations ';
     $query .= 'SET enabled=FALSE ';
@@ -146,4 +147,5 @@ class Couch extends GenericModel {
 
     return $query_result;
   }
+*/
 }
