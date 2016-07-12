@@ -17,7 +17,7 @@ $date_end=getDateOrFalse((isset($_POST["date_end"])&& !empty($_POST["date_end"])
 if( $date_start && $date_end ){
 
   if($date_start > $date_end){
-    $errorTable["error"]="fechas mal escritas";
+    $errorTable["error"]="Fechas mal Escritas";
   }else{
     $lista= Payment::all_between_dates($date_start,$date_end) ;
     $errorTable["error"]=false;
@@ -28,8 +28,8 @@ if( $date_start && $date_end ){
   }
 }else{
   $errorTable["error"]=(
-    ($date_start?"":" (fecha inicio mal escrita) ").
-    ($date_end?"":" (fecha fin mal escrita) ")
+    ($date_start?"":" (Fecha inicio mal Escrita) ").
+    ($date_end?"":" (Fecha fin mal Escrita) ")
   );
 
 
