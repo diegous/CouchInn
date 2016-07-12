@@ -17,7 +17,7 @@ class Reservation extends GenericModel {
   public $score_for_user;
   public $comment_for_user;
 
-  public function __construct($id, $enabled = 1, $user_id, $couch_id, $state_id, $start_date, $end_date, $score_for_couch, $comment_for_couch, $score_for_user, $comment_for_user) {
+  public function __construct($id, $enabled = 1, $user_id, $couch_id, $state_id, $start_date, $end_date, $score_for_couch = -1, $comment_for_couch = "", $score_for_user = -1, $comment_for_user = "") {
     $this->id = $id;
     $this->enabled = $enabled;
     $this->user_id = $user_id;
@@ -53,11 +53,11 @@ class Reservation extends GenericModel {
     $result .= "" . $this->couch_id . ", ";
     $result .= "" . $this->state_id . ", ";
     $result .= "'" . $this->start_date . "', ";
-    $result .= "'" . $this->end_date . "'";
-    $result .= "" . $this->$score_for_couch . ", ";
-    $result .= "'" . $this->$comment_for_couch . "', ";
-    $result .= "" . $this->$score_for_user . ", ";
-    $result .= "'" . $this->$comment_for_user . "' ";
+    $result .= "'" . $this->end_date . "', ";
+    $result .= "" . $this->score_for_couch . ", ";
+    $result .= "'" . $this->comment_for_couch . "', ";
+    $result .= "" . $this->score_for_user . ", ";
+    $result .= "'" . $this->comment_for_user . "' ";
 
     return $result;
   }
@@ -229,7 +229,7 @@ class Reservation extends GenericModel {
     $query .= " WHERE user_id=" . $user_id . " ";
     $query .= " )";
     $query .= " AND score_for_user > -1";
-  
+
     $connection = get_connection();
     $query_result = $connection->query($query);
     $result = array();
@@ -256,6 +256,8 @@ class Reservation extends GenericModel {
 
     if ($row = $query_result->fetch_assoc())
       $result = static::new_object_from_array($row);
+    else
+      $result = NULL;
 
     $query_result->close();
     $connection->close();

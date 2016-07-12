@@ -8,7 +8,7 @@
 
     <div class="form-group">
       <label for="score">Puntaje</label><br>
-      <select id="score" class="" name="score">
+      <select id="score" class="" name="score" required>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -19,7 +19,7 @@
 
     <div class="form-group">
       <label for="comment">Comentario</label><br>
-      <input id="comment" class="form-control" type="text" name="comment">
+      <input id="comment" class="form-control" type="text" name="comment" required>
     </div>
 
     <button type="submit" class="btn btn-default">Guardar</button>
