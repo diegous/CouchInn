@@ -120,4 +120,30 @@ class Couch extends GenericModel {
 
     return $result;
   }
+
+  public function disable_reservation_couch() {
+    $query =  'UPDATE reservations ';
+    $query .= 'SET enabled=FALSE ';
+    $query .= 'WHERE couch_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
+
+  public function enabled_reservation_couch() {
+    $query =  'UPDATE reservations ';
+    $query .= 'SET enabled=TRUE ';
+    $query .= 'WHERE couch_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
 }

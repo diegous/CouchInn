@@ -132,4 +132,85 @@ class User extends GenericModel {
 
     return $result;
   }
+
+  /*Desabilitar los couch de un usuario*/
+  public function disable_couch_user() {
+    $query =  'UPDATE couchs ';
+    $query .= 'SET enabled=FALSE ';
+    $query .= 'WHERE user_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
+
+  /*Habilitar los couch de un usuario*/
+  public function enabled_couch_user() {
+    $query =  'UPDATE couchs ';
+    $query .= 'SET enabled=TRUE ';
+    $query .= 'WHERE user_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
+
+  /* Desabilitar reservas que hizo un usuario*/
+  public function disable_reservation_user() {
+    $query =  'UPDATE reservations ';
+    $query .= 'SET state_id = 3 ';
+    $query .= 'WHERE state_id IN (1,2) ';
+    $query .= 'AND user_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $connection->close();
+
+    return $query_result;
+  }
+
+  /*Deshabilitar reservas de los couchs de un usuario*/
+  public static function disable_reservation_couch_user() {
+    $query = 'SELECT * FROM couchs ';
+    $query .= ' WHERE enabled= 1 ';
+    $query .= 'AND user_id=' . $this->id;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[$row['id']] = static::new_object_from_array($row);
+
+      $query_ud =  'UPDATE reservations ';
+      $query_ud .= 'SET state_id = 3 ';
+      $query_ud .= 'WHERE state_id IN (1,2) ';
+      $query_ud .= 'AND couch_id= ' . $result[$row['id']]->couch_id;
+
+      $connection_ud = get_connection();
+      $query_result_ud = $connection_ud->query($query_ud);
+
+      $connection_ud->close();
+
+      /*return $query_result;  */
+      /*
+      $result[$row['id']]->state_id = $states["Rechazada"];
+      $result[$row['id']]->update();
+      */
+    }
+
+    $query_result->close();
+    $connection->close();
+
+    return $result;
+  }
+
 }
