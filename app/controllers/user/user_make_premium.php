@@ -15,7 +15,7 @@ $title = "Solicitacion de cuenta premium";
 if($user_has_paid){
   $_SESSION["just_became_premium"]=false;
   $_SESSION['user']->is_premium=true;
-	$_SESSION['user']->update();
+  $_SESSION['user']->update();
 
 }
 
