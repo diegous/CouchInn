@@ -161,10 +161,10 @@ class Reservation extends GenericModel {
       $result[$row['id']] = static::new_object_from_array($row);
     }
 
-    return $result;
 
     $query_result->close();
     $connection->close();
+    return $result;
   }
 
   public static function end_confirmed_reservations() {
@@ -200,6 +200,49 @@ class Reservation extends GenericModel {
     $result = $connection->affected_rows;
     $connection->close();
 
+    return $result;
+  }
+
+  public static function reservations_as_couch_owner($user_id){
+    $query = "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE couch_id IN ";
+    $query .= " (SELECT couch_id FROM couchs";
+    $query .= " WHERE user_id=" . $user_id . " ";
+    $query .= " )";
+  
+    echo $query;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[] = static::new_object_from_array($row);
+    }
+    $query_result->close();
+    $connection->close();
+    return $result;
+  }
+
+  public static function get_all_scores_for_user($user_id){
+    $query = "SELECT score_for_user FROM " . static::$table_name;
+    $query .= " WHERE couch_id IN ";
+    $query .= " (SELECT couch_id FROM couchs";
+    $query .= " WHERE user_id=" . $user_id . " ";
+    $query .= " )";
+    $query .= " AND score_for_user > -1";
+  
+    echo $query;
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[] = (int)$row["score_for_user"];
+    }
+    $query_result->close();
+    $connection->close();
     return $result;
   }
 

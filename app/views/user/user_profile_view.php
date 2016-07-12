@@ -23,7 +23,7 @@
   <?= $user->phone; ?><br>
 <? endif ?>
 <label>Puntuacion:</label>
-#  <br>
+<?= ( $average_score!==null ? $average_score : "No tiene puntuacion" ) ?>  <br>
 
 
 <? if($_SESSION) : ?>
