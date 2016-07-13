@@ -15,8 +15,11 @@ $date_end=getDateOrFalse(isset($_GET["date_end"])?$_GET["date_end"]:"");
 if($date_start && $date_end){
   $couch_list=Couch::get_all();
   $user_list=User::get_all();
-  $reservation_list=
+
+  $accepted_reservation_list =
     Reservation::reservations_by_state_between_dates("Confirmada",$date_start,$date_end);
+  $finished_reservation_list =
+    Reservation::reservations_by_state_between_dates("Finalizada",$date_start,$date_end);
 }
 include $DRV . "/skeleton.php";
 
