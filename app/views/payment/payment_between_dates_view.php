@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    
+
 
     $(document).ready(function(){
       var validation=function(e){
@@ -27,13 +27,13 @@
     <h2>Estimar Ganancias entre 2 Fechas</h2>
     <br>
     <div class="form-group">
-      <label for="date-start">Inicio(AAAA-MM-DD):</label>
+      <label for="date-start">Inicio:</label>
       <input type="date" class="form-control" id="date-start" name="date_start"
             value="<?= date('Y-m-d') ?>"
             pattern="([01]\d{3}|20[0-2]\d|203[0-7])-(0[1-9]|1[012])-(0[1-9]|[1-2]\d|3[01])" required>
     </div>
     <div class="form-group">
-      <label for="date-end">&nbsp;Fin&nbsp;&nbsp;(AAAA-MM-DD):</label>
+      <label for="date-end">&nbsp;Fin&nbsp;&nbsp;:</label>
       <input type="date" class="form-control" id="date-end" name="date_end"
             value="<?= date('Y-m-d') ?>"
             pattern="(19\d{2}|20[0-2]\d)-(0[1-9]|1[012])-(0[1-9]|[1-2]\d|3[01])" required>
@@ -44,6 +44,6 @@
       <label for="date-sum">Ganancias entre dos fechas:</label>
       <input type="text" class="form-control" id="date-sum" disabled="disabled">
     </div>
-    
+
     <br><br>
 </form>

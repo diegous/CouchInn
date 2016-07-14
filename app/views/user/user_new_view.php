@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group">
-      <label for="birthday">Fecha de nacimiento(AAAA-MM-DD)</label><br>
+      <label for="birthday">Fecha de nacimiento</label><br>
       <input id="birthday" class="form-control" type="date" name="birthday" required
         pattern="\d{4}-(0[1-9]|1[012])-(0[1-9]|[1-2]\d|3[01])">
     </div>
