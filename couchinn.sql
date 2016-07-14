@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jul 10, 2016 at 01:31 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.5.35
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 15-07-2016 a las 01:39:28
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `couchinn`
+-- Base de datos: `couchinn`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `couchs`
+-- Estructura de tabla para la tabla `couchs`
 --
 
 CREATE TABLE `couchs` (
@@ -39,7 +39,7 @@ CREATE TABLE `couchs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `couchs`
+-- Volcado de datos para la tabla `couchs`
 --
 
 INSERT INTO `couchs` (`id`, `enabled`, `published`, `user_id`, `type_id`, `title`, `description`, `capacity`, `location`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `couchs` (`id`, `enabled`, `published`, `user_id`, `type_id`, `title
 -- --------------------------------------------------------
 
 --
--- Table structure for table `couch_comments`
+-- Estructura de tabla para la tabla `couch_comments`
 --
 
 CREATE TABLE `couch_comments` (
@@ -65,7 +65,7 @@ CREATE TABLE `couch_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `couch_comments`
+-- Volcado de datos para la tabla `couch_comments`
 --
 
 INSERT INTO `couch_comments` (`id`, `enabled`, `user_id`, `couch_id`, `comment_question`, `date`, `comment_answer`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `couch_comments` (`id`, `enabled`, `user_id`, `couch_id`, `comment_q
 -- --------------------------------------------------------
 
 --
--- Table structure for table `couch_types`
+-- Estructura de tabla para la tabla `couch_types`
 --
 
 CREATE TABLE `couch_types` (
@@ -87,7 +87,7 @@ CREATE TABLE `couch_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `couch_types`
+-- Volcado de datos para la tabla `couch_types`
 --
 
 INSERT INTO `couch_types` (`id`, `enabled`, `description`) VALUES
@@ -100,7 +100,7 @@ INSERT INTO `couch_types` (`id`, `enabled`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Estructura de tabla para la tabla `payments`
 --
 
 CREATE TABLE `payments` (
@@ -114,7 +114,7 @@ CREATE TABLE `payments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pictures`
+-- Estructura de tabla para la tabla `pictures`
 --
 
 CREATE TABLE `pictures` (
@@ -125,7 +125,7 @@ CREATE TABLE `pictures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pictures`
+-- Volcado de datos para la tabla `pictures`
 --
 
 INSERT INTO `pictures` (`id`, `enabled`, `couch_id`, `filename`) VALUES
@@ -138,7 +138,7 @@ INSERT INTO `pictures` (`id`, `enabled`, `couch_id`, `filename`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservations`
+-- Estructura de tabla para la tabla `reservations`
 --
 
 CREATE TABLE `reservations` (
@@ -156,21 +156,17 @@ CREATE TABLE `reservations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reservations`
+-- Volcado de datos para la tabla `reservations`
 --
 
 INSERT INTO `reservations` (`id`, `enabled`, `user_id`, `couch_id`, `state_id`, `start_date`, `end_date`, `score_for_couch`, `comment_for_couch`, `score_for_user`, `comment_for_user`) VALUES
-(7, 1, 13, 1, 3, '2016-06-16', '2016-06-23', -1, '', -1, ''),
-(8, 1, 13, 1, 4, '2016-06-15', '2016-06-20', 3, '', -1, ''),
-(9, 1, 13, 1, 3, '2016-06-18', '2016-06-22', -1, '', -1, ''),
-(13, 1, 13, 1, 5, '2016-06-25', '2016-07-10', -1, '', -1, ''),
-(14, 1, 12, 1, 5, '2016-06-26', '2016-07-14', -1, '', -1, ''),
-(15, 1, 12, 1, 1, '2016-07-10', '2016-07-16', -1, '', -1, '');
+(16, 1, 23, 4, 2, '2016-07-16', '2016-07-17', -1, '', -1, ''),
+(18, 1, 23, 4, 1, '2016-07-18', '2016-07-19', -1, '', -1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation_states`
+-- Estructura de tabla para la tabla `reservation_states`
 --
 
 CREATE TABLE `reservation_states` (
@@ -180,7 +176,7 @@ CREATE TABLE `reservation_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reservation_states`
+-- Volcado de datos para la tabla `reservation_states`
 --
 
 INSERT INTO `reservation_states` (`id`, `enabled`, `description`) VALUES
@@ -193,7 +189,7 @@ INSERT INTO `reservation_states` (`id`, `enabled`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -210,7 +206,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `enabled`, `email`, `password`, `name`, `last_name`, `birthday`, `phone`, `is_admin`, `is_premium`) VALUES
@@ -222,99 +218,99 @@ INSERT INTO `users` (`id`, `enabled`, `email`, `password`, `name`, `last_name`, 
 (23, 1, 'user5@a.b', '1234', 'Armando ', 'Perez', '1111-11-11', '', 0, 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `couchs`
+-- Indices de la tabla `couchs`
 --
 ALTER TABLE `couchs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `couch_comments`
+-- Indices de la tabla `couch_comments`
 --
 ALTER TABLE `couch_comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `couch_types`
+-- Indices de la tabla `couch_types`
 --
 ALTER TABLE `couch_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payments`
+-- Indices de la tabla `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pictures`
+-- Indices de la tabla `pictures`
 --
 ALTER TABLE `pictures`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reservations`
+-- Indices de la tabla `reservations`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reservation_states`
+-- Indices de la tabla `reservation_states`
 --
 ALTER TABLE `reservation_states`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `couchs`
+-- AUTO_INCREMENT de la tabla `couchs`
 --
 ALTER TABLE `couchs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `couch_comments`
+-- AUTO_INCREMENT de la tabla `couch_comments`
 --
 ALTER TABLE `couch_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `couch_types`
+-- AUTO_INCREMENT de la tabla `couch_types`
 --
 ALTER TABLE `couch_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `payments`
+-- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pictures`
+-- AUTO_INCREMENT de la tabla `pictures`
 --
 ALTER TABLE `pictures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `reservations`
+-- AUTO_INCREMENT de la tabla `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
--- AUTO_INCREMENT for table `reservation_states`
+-- AUTO_INCREMENT de la tabla `reservation_states`
 --
 ALTER TABLE `reservation_states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
