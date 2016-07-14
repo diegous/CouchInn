@@ -10,6 +10,7 @@
         <th>Inicio</th>
         <th>Fin</th>
         <th>Puntaje</th>
+        <th>Comentario</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
           <td><?= $reservation->start_date ?></td>
           <td><?= $reservation->end_date ?></td>
           <td><?= $reservation->score_for_user ?></td>
+          <td><?= $reservation->comment_for_user ?></td>
         </tr>
       <? endforeach ?>
     </tbody>

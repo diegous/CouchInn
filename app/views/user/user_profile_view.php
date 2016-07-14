@@ -21,20 +21,21 @@
 <? if($user->phone): ?>
   <label>Telefono  :</label>
   <?= $user->phone; ?><br>
-<? endif ?> 
+<? endif ?>
+<? if(! $user->is_admin ): ?>
+  <label>Puntuacion:</label>
+  <? if($average_score===null): ?>
+    No tiene puntuacion
+  <? else: ?>
+    <a href="/user/user_scores_as_visitor.php"><?=$average_score?></a>
+  <? endif ?>
+<? endif ?>
+<br>
 
 <? if($_SESSION) : ?>
   <? if($_SESSION['user']==$user): ?>
+    <hr>
     <? if(! $_SESSION['user']->is_admin): ?>
-      <label>Puntuacion:</label>
-      <? if($average_score===null): ?>
-        No tiene puntuacion
-      <? else: ?>
-        <a href="/user/user_scores_as_visitor.php"><?=$average_score?></a>
-      <? endif ?>
-
-      <hr>
-
       <h2>Cuenta Premium:</h2>
       <? if(! $_SESSION['user']->is_premium): ?>
         <form id="hidden-amount-form" action="/payment/payment_system.php" method="post">
