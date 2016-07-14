@@ -37,3 +37,14 @@ Picture::class_initialize();
 if (isset($_SESSION['user']) && !($_SESSION['user']->is_admin)) {
   $comment_list_user = CouchComment::get_by_user_id($_SESSION['user']->id);
 }
+
+if (isset($_SESSION['user'])) {
+  $_SESSION['user'] = User::get_by_id($_SESSION['user']->id);
+
+  if (!$_SESSION['user']->enabled) {
+    session_unset();
+    session_destroy();
+    header('Location: ' . "/index.php");
+    exit();
+  }
+}
