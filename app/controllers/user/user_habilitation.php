@@ -9,7 +9,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
 
   if ($_GET['action'] == 'enable' && $_SESSION['user']->is_admin) {
     $user->enable();
-    $user->enabled_couch_user();
     create_alert('success', 'El usuario fue habilitado');
   } else
     if ($_GET['action'] == 'disable') {
