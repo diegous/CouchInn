@@ -224,10 +224,7 @@ class Reservation extends GenericModel {
 
   public static function get_all_scores_for_user($user_id){
     $query = "SELECT score_for_user FROM " . static::$table_name;
-    $query .= " WHERE couch_id IN ";
-    $query .= " (SELECT couch_id FROM couchs";
     $query .= " WHERE user_id=" . $user_id . " ";
-    $query .= " )";
     $query .= " AND score_for_user > -1";
 
     $connection = get_connection();
@@ -241,6 +238,25 @@ class Reservation extends GenericModel {
     $connection->close();
     return $result;
   }
+
+  public static function get_all_scored_reservations_for_user($user_id){
+    $query = "SELECT * FROM " . static::$table_name;
+    $query .= " WHERE user_id=" . $user_id . " ";
+    $query .= " AND score_for_user > -1";
+    $query .= " ORDER BY couch_id AND start_date";
+
+    $connection = get_connection();
+    $query_result = $connection->query($query);
+    $result = array();
+
+    while ($row = $query_result->fetch_assoc()){
+      $result[] =  static::new_object_from_array($row);
+    }
+    $query_result->close();
+    $connection->close();
+    return $result;
+  }
+
 
   public static function confirmed_reservation_conflicting_with($reservation) {
     $states = ReservationState::get_all();
