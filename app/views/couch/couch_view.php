@@ -51,7 +51,11 @@
   <p class="couch-location"><?= $couch->location; ?></p>
   <h3>Puntaje promedio:</h3>
   <p class="couch-score-average">
-    <?= ($score_average!==null ? $score_average : "Couch no puntuado" ) ?>
+    <? if($score_average===null): ?>
+      No tiene puntuacion
+    <? else: ?>
+      <a href="/couch/couch_scores_list.php?id=<?= $couch->id ?>"><?=$score_average?></a>
+    <? endif ?>
   </p>
   <div>
     <? foreach ($picture_list as $picture): ?>

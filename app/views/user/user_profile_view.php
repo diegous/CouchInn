@@ -27,7 +27,7 @@
   <? if($average_score===null): ?>
     No tiene puntuacion
   <? else: ?>
-    <a href="/user/user_scores_as_visitor.php"><?=$average_score?></a>
+    <a href="/user/user_scores_as_visitor.php?id=<?= $user->id ?>"><?=$average_score?></a>
   <? endif ?>
 <? endif ?>
 <br>
