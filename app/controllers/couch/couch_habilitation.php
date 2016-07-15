@@ -14,9 +14,11 @@ if (isset($_GET["id"]) && isset($_GET["action"])) {
     if ($_GET["action"] == "disable") {
       if($_SESSION['user']->is_admin) {
         $couch->disable_as_admin();
+        $couch->disable_reservation_couch();
       }
       else{
         $couch->disable();
+        $couch->disable_reservation_couch();
       }
       redirect_with_alert('success',"El couch ha sido deshabilitado",'/couch/couch.php?id=' . $_GET["id"]);
 

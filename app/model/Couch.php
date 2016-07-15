@@ -121,11 +121,15 @@ class Couch extends GenericModel {
     return $result;
   }
 
-/*
   public function disable_reservation_couch() {
+    $states = ReservationState::get_all();
+
     $query =  'UPDATE reservations ';
-    $query .= 'SET enabled=FALSE ';
-    $query .= 'WHERE couch_id=' . $this->id;
+    $query .= ' SET state_id=' . $states['Rechazada'];;
+    $query .= ' WHERE couch_id=' . $this->id;
+    $query .= ' AND state_id IN ';
+    $query .= '(' . $states["Confirmada"];
+    $query .= ', ' . $states["Pendiente"] . ')';
 
     $connection = get_connection();
     $query_result = $connection->query($query);
@@ -134,7 +138,7 @@ class Couch extends GenericModel {
 
     return $query_result;
   }
-
+/*
   public function enabled_reservation_couch() {
     $query =  'UPDATE reservations ';
     $query .= 'SET enabled=TRUE ';
