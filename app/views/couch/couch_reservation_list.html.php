@@ -16,7 +16,11 @@
       <tbody>
         <? foreach ($reservation_list as $reservation): ?>
           <tr>
-            <td><?= $user_list[$reservation->user_id]->email ?></td>
+            <td>
+              <a href="/user/user_profile.php?id=<?=$reservation->user_id?>">
+                <?= $user_list[$reservation->user_id]->email ?>
+              </a>
+            </td>
             <td><?= $reservation->start_date ?></td>
             <td><?= $reservation->end_date ?></td>
             <td><?= $state_list[$reservation->state_id]->description ?></td>
